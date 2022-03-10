@@ -75,6 +75,21 @@ public class Animal
         return healthStatus;
     }   //getHealthStatus
 
+    public void setCageID(String cageID) {
+        this.cageID = cageID;
+    }
+    public String getCageID() {
+        return cageID;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
     public void eatFood(int amount) 
     {
         this.hungerStatus += amount;
@@ -126,7 +141,8 @@ public class Animal
 
     public void showAnimal()
     {
-
+        System.out.println("Cage ID: "+ cageID);
+        System.out.println("Category: "+ category);
         System.out.println("Species: "+species);
         System.out.println("Name: "+name);
         System.out.println("Age: "+age);

@@ -40,18 +40,43 @@ public class Zoo
     }   //showAnimal
 
     public Animal getAnimal(String cageID)
-    {
-        Animal obj = new Animal();
-        return obj;
+    {   
+        for(int i = 0; i < cages.size(); i++)
+        {
+            if(cages.get(i).getCageID().equals(cageID))
+            {
+                return cages.get(i);
+            }
+        }
+        return null;
     }   //getAnimal
     
     public void removeAnimal(String cageID)
     {
-    
+        for(int i = 0; i < cages.size(); i++)
+        {
+            if(cages.get(i).getCageID().equals(cageID))
+            {
+                cages.remove(i);
+                return;
+            }
+        }
     }   //removeAnimal
 
     public void printHungerReport()
     {
+        if(cages.size() == 0)
+        {
+            System.out.println("No animals present");
+            return;
+        }
+        for(int i = 0; i < cages.size(); i++)
+        {
+            System.out.println("Animal # " +(i+1)+"/"+cages.size()); //Displays the position of the animal in the list of animals
+            System.out.println("Name: "+cages.get(i).getName()); //Uses the getName method from the Animal class
+            System.out.println("Species: "+cages.get(i).getSpecies()); //Uses the getSpecies method from the Animal class
+            System.out.println("Hunger Status: "+cages.get(i).getHungerStatus()); //Uses the getHungerStatus method from the Animal class
+        }
 
     }   //printHungerReport
 

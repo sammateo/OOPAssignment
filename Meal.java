@@ -12,30 +12,30 @@ public class Meal {
     public String getCageID() 
     {
         return cageID;
-    }
+    }//getcageID
 
     public void setCageID(String cageID) 
     {
         this.cageID = cageID;
-    }
+    }//setCageID
 
     public int getFoodAmt() 
     {
         return foodAmt;
-    }
+    }//getFoodAmt
     public void setFoodAmt(int foodAmt) 
     {
         this.foodAmt = foodAmt;
-    }
+    }//setFoodAmt
 
     public String getFoodType() 
     {
         return foodType;
-    }
+    }//getFoodType
 
     public void setFoodType(String foodType) 
     {
         this.foodType = foodType;
-    }
+    }//setFoodType
 
-}
+}//Meal

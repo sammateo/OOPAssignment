@@ -7,7 +7,7 @@ public class ZooKeeper
     public ZooKeeper()
     {
         
-    }
+    }//Zookeeper constructor
     public void setName(String name) 
     {
         this.name = name;

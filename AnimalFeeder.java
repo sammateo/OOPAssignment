@@ -6,20 +6,21 @@ public class AnimalFeeder
     public AnimalFeeder(ArrayList<Animal> cages)
     {
 
-    }
+    }//AnimalFeeder
 
     public void addMeal()
     {
 
-    }
+    }//addMeal
 
     public void printFeedingList()
     {
 
-    }
+    }//printFeedingList
 
     public void simFeeding()
     {
         
-    }
-}
+    }//simFeeding
+    
+}//AnimalFeeder

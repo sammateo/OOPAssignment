@@ -1,6 +1,9 @@
 // Mateo Sam
 // 400006967
 import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 public class Zoo 
 {
     private ArrayList<Animal> cages;    //holds an array list of the animals in the zoo
@@ -9,6 +12,27 @@ public class Zoo
     {
         cages = new ArrayList<Animal>();
     }   //Zoo
+
+    public void readAnimals() throws IOException
+    {
+        File animalFile = new File("animals.txt"); 
+        Scanner readFile = new Scanner(animalFile);
+        while (readFile.hasNext()) //read data from file & place into the list
+        {
+            Animal tempAnimal = new Animal();
+            String animalRecord = readFile.nextLine();
+            String[] animalArray = animalRecord.split(" ");
+            tempAnimal.setCageID(animalArray[0]);
+            tempAnimal.setName(animalArray[1]);
+            tempAnimal.setSpecies(animalArray[2]);
+            tempAnimal.setAge(Integer.parseInt(animalArray[3]));
+            tempAnimal.setHungerStatus(Integer.parseInt(animalArray[4]));
+            tempAnimal.setHealthStatus(Integer.parseInt(animalArray[5]));
+            tempAnimal.setCategory(animalArray[6]);
+            cages.add(tempAnimal);
+        } //while
+
+    }
 
     public void setCages(ArrayList<Animal> cages) 
     {

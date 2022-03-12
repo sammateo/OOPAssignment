@@ -8,9 +8,14 @@ public class ZooManager extends JFrame implements ActionListener
 {
     public static void main(String[] args)
     {
-        ZooManager zm = new ZooManager();
         Welcome msg = new Welcome();
         msg.displayWelcome();
+        if(msg.getZooKeeperName()==null||msg.getZooKeeperName().trim().isEmpty())
+        {
+            System.exit(0);
+            return;
+        }
+        ZooManager zm = new ZooManager();
     }   //main
 
     public ZooManager()

@@ -12,6 +12,8 @@ public class ZooManager extends JFrame implements ActionListener
     JPanel animalPanel;
     JPanel welcomePanel;
     JPanel foodPanel;
+    JPanel foodReportPanel;
+    JPanel medReportPanel;
     protected JButton next;
     private int cagePosition;
     Zoo theZoo;
@@ -170,6 +172,90 @@ public class ZooManager extends JFrame implements ActionListener
         foodPanel.add(foodTotalsPanel);
     }
 
+    public void displayFeedListPanel()
+    {
+        JPanel fReportPanel = new JPanel();
+        JPanel info = new JPanel();
+        
+            //JLabel animalAge = new JLabel("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
+       
+        fReportPanel.setLayout(new GridLayout(6,10,10,10));
+        info.setLayout(new GridLayout(2,2,2,2));
+
+        JLabel test = new JLabel("This is a test");
+        JScrollPane scroll = new JScrollPane(info);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        fReportPanel.add(test);
+        fReportPanel.add(scroll);
+        
+        for(int i=0; i< theZoo.getCages().size();i++)
+        {
+            JLabel animalID = new JLabel();
+            JLabel animalNameLabel= new JLabel();
+            JLabel animalSpecies = new JLabel();
+            JLabel animalType = new JLabel(); 
+            JLabel animalHunger= new JLabel();
+            JLabel animalHealth= new JLabel();
+
+            animalID.setText("Cage ID: " + theZoo.getCages().get(i).getCageID());
+            animalNameLabel.setText("Name: "+theZoo.getCages().get(i).getName()); 
+            animalSpecies.setText("Species: "+theZoo.getCages().get(i).getSpecies());
+            animalType.setText("Category: "+theZoo.getCages().get(i).getCategory());
+            animalHunger.setText("Hunger: "+theZoo.getCages().get(i).getHungerStatus()+"/5");
+            animalHealth.setText("Health: "+theZoo.getCages().get(i).getHealthStatus()+"/10");
+            //animalPanel.add(animalAge);
+
+            info.add(animalID);
+        }
+        fReportPanel.setBorder(BorderFactory.createTitledBorder("Feeding Report"));
+        foodReportPanel.add(fReportPanel);
+
+    }
+
+    public void displayMedListPanel()
+     {
+        JPanel mReportPanel = new JPanel();
+        JPanel info = new JPanel();
+        
+            //JLabel animalAge = new JLabel("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
+       
+        mReportPanel.setLayout(new GridLayout(6,10,10,10));
+        info.setLayout(new GridLayout(2,2,2,2));
+
+        JLabel test = new JLabel("This is a test");
+        JScrollPane scroll = new JScrollPane(info);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        mReportPanel.add(test);
+        mReportPanel.add(scroll);
+        
+        for(int i=0; i< theZoo.getCages().size();i++)
+        {
+            JLabel animalID = new JLabel();
+            JLabel animalNameLabel= new JLabel();
+            JLabel animalSpecies = new JLabel();
+            JLabel animalType = new JLabel(); 
+            JLabel animalHunger= new JLabel();
+            JLabel animalHealth= new JLabel();
+
+            animalID.setText("Cage ID: " + theZoo.getCages().get(i).getCageID());
+            animalNameLabel.setText("Name: "+theZoo.getCages().get(i).getName()); 
+            animalSpecies.setText("Species: "+theZoo.getCages().get(i).getSpecies());
+            animalType.setText("Category: "+theZoo.getCages().get(i).getCategory());
+            animalHunger.setText("Hunger: "+theZoo.getCages().get(i).getHungerStatus()+"/5");
+            animalHealth.setText("Health: "+theZoo.getCages().get(i).getHealthStatus()+"/10");
+            //animalPanel.add(animalAge);
+
+            info.add(animalID);
+        }
+        mReportPanel.setBorder(BorderFactory.createTitledBorder("Feeding Report"));
+        foodReportPanel.add(mReportPanel);
+
+    }
+
     public ZooManager() throws IOException
     {
         theZoo = new Zoo();
@@ -184,6 +270,7 @@ public class ZooManager extends JFrame implements ActionListener
         welcomePanel = new JPanel();
         animalPanel = new JPanel();
         foodPanel = new JPanel();
+        foodReportPanel = new JPanel();
         addFoodButton = new JButton("Add ->");
         // foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS)); 
         animalPanel.setBorder(BorderFactory.createTitledBorder("Animal"));
@@ -218,6 +305,8 @@ public class ZooManager extends JFrame implements ActionListener
             displayAnimalPanel(0);
         displayWelcomePanel();
         displayFoodPanel();
+        displayFeedListPanel();
+        //displayMedListPanel();
         // add("West",westPanel);
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.weighty = 0.1;
@@ -241,6 +330,15 @@ public class ZooManager extends JFrame implements ActionListener
         add(foodPanel,gbc);
         // westPanel.add(animalPanel);
         // westPanel.add(welcomePanel);
+        add(foodReportPanel,gbc);
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        // gbc.gridheight=2;
+    
+        add(foodReportPanel,gbc);
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+
         centerFrame();
         // maxFrame();
         setVisible(true);

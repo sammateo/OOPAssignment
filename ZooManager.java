@@ -35,35 +35,35 @@ public class ZooManager extends JFrame implements ActionListener
         remove(animalPanel);
         
         // theZoo.readAnimals();
-            int i = position;
-            JLabel animalID = new JLabel();
-            JLabel animalNameLabel = new JLabel();
-            JLabel animalAge = new JLabel();
-            JLabel animalSpecies = new JLabel();
-            JLabel animalType = new JLabel();
-            JLabel animalHunger = new JLabel();
-            JLabel animalHealth = new JLabel();
-            
-            animalID.setText("Cage ID: " + theZoo.getCages().get(i).getCageID());
-            animalNameLabel.setText("Name: "+theZoo.getCages().get(i).getName());
-            animalAge.setText("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
-            animalSpecies.setText("Species: "+theZoo.getCages().get(i).getSpecies());
-            animalType.setText("Category: "+theZoo.getCages().get(i).getCategory());
-            animalHunger.setText("Hunger: "+theZoo.getCages().get(i).getHungerStatus()+"/5");
-            animalHealth.setText("Health: "+theZoo.getCages().get(i).getHealthStatus()+"/10");
-            
-            animalPanel.add(animalID);
-            animalPanel.add(animalNameLabel); 
-            animalPanel.add(animalSpecies);
-            animalPanel.add(animalType);
-            animalPanel.add(animalHunger);
-            animalPanel.add(animalHealth);
+        int i = position;
+        JLabel animalID = new JLabel();
+        JLabel animalNameLabel = new JLabel();
+        JLabel animalAge = new JLabel();
+        JLabel animalSpecies = new JLabel();
+        JLabel animalType = new JLabel();
+        JLabel animalHunger = new JLabel();
+        JLabel animalHealth = new JLabel();
+        
+        animalID.setText("Cage ID: " + theZoo.getCages().get(i).getCageID());
+        animalNameLabel.setText("Name: "+theZoo.getCages().get(i).getName());
+        animalAge.setText("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
+        animalSpecies.setText("Species: "+theZoo.getCages().get(i).getSpecies());
+        animalType.setText("Category: "+theZoo.getCages().get(i).getCategory());
+        animalHunger.setText("Hunger: "+theZoo.getCages().get(i).getHungerStatus()+"/5");
+        animalHealth.setText("Health: "+theZoo.getCages().get(i).getHealthStatus()+"/10");
+        
+        animalPanel.add(animalID);
+        animalPanel.add(animalNameLabel); 
+        animalPanel.add(animalSpecies);
+        animalPanel.add(animalType);
+        animalPanel.add(animalHunger);
+        animalPanel.add(animalHealth);
 
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-            add(animalPanel,gbc);
-            revalidate();
-            repaint();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        add(animalPanel,gbc);
+        revalidate();
+        repaint();
     }
 
     public void displayWelcomePanel()
@@ -172,102 +172,101 @@ public class ZooManager extends JFrame implements ActionListener
 
     public ZooManager() throws IOException
     {
-            theZoo = new Zoo();
-            theZoo.readAnimals();
-            setLayout(new GridBagLayout());
-            setSize(900,700);
-            setTitle("Zoo Manager");
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            next = new JButton("Next ->");
-            westPanel = new JPanel();
-            westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
-            welcomePanel = new JPanel();
-            animalPanel = new JPanel();
-            foodPanel = new JPanel();
-            addFoodButton = new JButton("Add ->");
-            // foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS)); 
-            animalPanel.setBorder(BorderFactory.createTitledBorder("Animal"));
-            // animalPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-            animalPanel.setLayout(new BoxLayout(animalPanel, BoxLayout.Y_AXIS));
-            // Initialize elementsdv
-            // toFahrenheit = new JButton("Convert to Fahrenheit");
-            // toCelsius = new JButton("Convert to Celsius");
-            // tempIn = new JTextField(5);
-            // enterTemp = new JLabel("Enter temperature: ");
-            // resultLabel = new JLabel("Result: ");
-            // resultValue = new JLabel("---");
-            // Set up the event listeners
-            // tempIn.addActionListener(this);
-            // toFahrenheit.addActionListener(this);
-            // toCelsius.addActionListener(this);
-            // Organize the top panel
-            // JPanel top = new JPanel();
-            // add(enterTemp);
-            // add(tempIn);
-            // add(toFahrenheit);
-            // add(toCelsius);
-            // add(resultLabel);
-            // add(resultValue);
-            // setLayout(new FlowLayout());
-            // position the top panel at the north of the layout
-            // add("North",top);
-            // if(theZoo.getCages().size() > 0 )
-            cagePosition = 0;
-            next.addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    cagePosition++;
-                    if(cagePosition < theZoo.getCages().size())
-                    {
-                        try {
-                            animalPanel.removeAll();
-                            animalPanel.revalidate();
-                            animalPanel.repaint();
-                            displayAnimalPanel(cagePosition);
-                            // System.out.println(cagePosition);
-                        } catch (IOException e1) {
-                            // TODO Auto-generated catch block
-                            e1.printStackTrace();
-                        }
-                    }
-                }
-            });
-            if(theZoo.getCages().size() > 0 )
-                displayAnimalPanel(0);
-            displayWelcomePanel();
-            displayFoodPanel();
-            // add("West",westPanel);
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-            gbc.weighty = 0.1;
-            gbc.weightx = 0.1;
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-            add(animalPanel,gbc);
-            // gbc.anchor = GridBagConstraints.LINE_START;
-            gbc.gridx = 0;
-            gbc.gridy = 1;
-            add(next,gbc);
-            gbc.gridx = 0;
-            gbc.gridy = 2;
-            gbc.gridheight = 2;
-            // gbc.fill = GridBagConstraints.VERTICAL;
-            add(welcomePanel,gbc);
-            gbc.gridheight = 1;
-            gbc.gridx = 1;
-            gbc.gridy = 0;
-            // gbc.anchor = GridBagConstraints.PAGE_START;
-            add(foodPanel,gbc);
-            // westPanel.add(animalPanel);
-            // westPanel.add(welcomePanel);
-            centerFrame();
-            // maxFrame();
-            setVisible(true);
+        theZoo = new Zoo();
+        theZoo.readAnimals();
+        setLayout(new GridBagLayout());
+        setSize(900,700);
+        setTitle("Zoo Manager");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        next = new JButton("Next ->");
+        westPanel = new JPanel();
+        westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
+        welcomePanel = new JPanel();
+        animalPanel = new JPanel();
+        foodPanel = new JPanel();
+        addFoodButton = new JButton("Add ->");
+        // foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS)); 
+        animalPanel.setBorder(BorderFactory.createTitledBorder("Animal"));
+        // animalPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        animalPanel.setLayout(new BoxLayout(animalPanel, BoxLayout.Y_AXIS));
+        // Initialize elementsdv
+        // toFahrenheit = new JButton("Convert to Fahrenheit");
+        // toCelsius = new JButton("Convert to Celsius");
+        // tempIn = new JTextField(5);
+        // enterTemp = new JLabel("Enter temperature: ");
+        // resultLabel = new JLabel("Result: ");
+        // resultValue = new JLabel("---");
+        // Set up the event listeners
+        // tempIn.addActionListener(this);
+        // toFahrenheit.addActionListener(this);
+        // toCelsius.addActionListener(this);
+        // Organize the top panel
+        // JPanel top = new JPanel();
+        // add(enterTemp);
+        // add(tempIn);
+        // add(toFahrenheit);
+        // add(toCelsius);
+        // add(resultLabel);
+        // add(resultValue);
+        // setLayout(new FlowLayout());
+        // position the top panel at the north of the layout
+        // add("North",top);
+        // if(theZoo.getCages().size() > 0 )
+        cagePosition = 0;
+        next.addActionListener(this);
+        if(theZoo.getCages().size() > 0 )
+            displayAnimalPanel(0);
+        displayWelcomePanel();
+        displayFoodPanel();
+        // add("West",westPanel);
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.weighty = 0.1;
+        gbc.weightx = 0.1;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        add(animalPanel,gbc);
+        // gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        add(next,gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridheight = 2;
+        // gbc.fill = GridBagConstraints.VERTICAL;
+        add(welcomePanel,gbc);
+        gbc.gridheight = 1;
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        // gbc.anchor = GridBagConstraints.PAGE_START;
+        add(foodPanel,gbc);
+        // westPanel.add(animalPanel);
+        // westPanel.add(welcomePanel);
+        centerFrame();
+        // maxFrame();
+        setVisible(true);
     }
     public void actionPerformed(ActionEvent e)
     {
         if(e.getSource()==next){
-            try {
-                displayAnimalPanel(1);
+            try 
+            {
+                cagePosition++;
+                if(cagePosition < theZoo.getCages().size())
+                {
+                    try 
+                    {
+                        animalPanel.removeAll();
+                        animalPanel.revalidate();
+                        animalPanel.repaint();
+                        displayAnimalPanel(cagePosition);
+                        // System.out.println(cagePosition);
+                    } catch (IOException e1) 
+                    {
+                        // TODO Auto-generated catch block
+                        // e1.printStackTrace();
+                        System.out.println("Error: "+ e1);
+                    }
+                }
             } catch (Exception err) {
                 //TODO: handle exception
             }

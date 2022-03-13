@@ -3,6 +3,12 @@ public class Prescription {
     private String medType;
     private int unitsOfMed;
 
+    public Prescription()
+    {
+        cageID = null;
+        medType = null;
+        unitsOfMed = 0;
+    }//Prescription constructor
     public void setcageID(String x)
     {
         cageID = x;
@@ -33,8 +39,5 @@ public class Prescription {
         return unitsOfMed;
     }//getUnits_med
 
-    public Prescription()
-    {
-
-    }//Prescription constructor
+    
 }//Prescription

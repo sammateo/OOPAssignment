@@ -24,7 +24,8 @@ public class ZooManager extends JFrame implements ActionListener
     private JTextField fruitAmount;
     private JTextField grainAmount;
     private JTextField fishAmount;     
-    private JTextField meatAmount;     
+    private JTextField meatAmount;
+    private boolean isFed;     
     private GridBagConstraints gbc = new GridBagConstraints();
     public static void main(String[] args) throws IOException
     {
@@ -261,6 +262,20 @@ public class ZooManager extends JFrame implements ActionListener
 
     }
 
+     public void buttonswitch()
+        {
+            
+            if(isFed == true)
+            {
+                addFoodButton.setEnabled(false);
+            }
+
+            else
+            {
+                addFoodButton.setEnabled(true);
+            }
+        }//buttonswitch
+
     public ZooManager() throws IOException
     {
 
@@ -283,6 +298,7 @@ public class ZooManager extends JFrame implements ActionListener
         grainAmount = new JTextField();
         fishAmount = new JTextField();
         meatAmount = new JTextField();
+        isFed = false;
         foodReportPanel = new JPanel();
         addFoodButton = new JButton("Add ->");
         addFoodButton.setEnabled(false);
@@ -296,6 +312,8 @@ public class ZooManager extends JFrame implements ActionListener
         //         System.out.println(hayAmount.getText());
         //     }
         // });
+
+    
         hayAmount.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 try 
@@ -317,8 +335,7 @@ public class ZooManager extends JFrame implements ActionListener
                     grainAmount.setEnabled(false);
                     fishAmount.setEnabled(false);
                     meatAmount.setEnabled(false);
-                    addFoodButton.setEnabled(true);
-
+                    buttonswitch();
                 }
                 else{
                     categoryFieldManager();
@@ -355,7 +372,7 @@ public class ZooManager extends JFrame implements ActionListener
                     grainAmount.setEnabled(false);
                     fishAmount.setEnabled(false);
                     meatAmount.setEnabled(false);
-                    addFoodButton.setEnabled(true);
+                    buttonswitch();
 
                 }
                 else{
@@ -372,6 +389,124 @@ public class ZooManager extends JFrame implements ActionListener
                 
             }
         });
+
+        grainAmount.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                try 
+                {
+                    if(grainAmount.getText() == null) {
+                        categoryFieldManager();
+                        addFoodButton.setEnabled(false);
+                        return;
+                    }
+                else if(grainAmount.getText().trim().isEmpty())
+                {
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
+                }
+                else if(Integer.parseInt(grainAmount.getText()) > 0)
+                {
+                    hayAmount.setEnabled(false);
+                    fruitAmount.setEnabled(false);
+                    fishAmount.setEnabled(false);
+                    meatAmount.setEnabled(false);
+                    buttonswitch();
+
+                }
+                else{
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
+                }
+                System.out.println(grainAmount.getText());
+                } catch (Exception err) {
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+                    System.out.println(err.getMessage());
+                }
+                
+            }
+        });
+
+        fishAmount.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                try 
+                {
+                    if(fishAmount.getText() == null) {
+                        categoryFieldManager();
+                        addFoodButton.setEnabled(false);
+                        return;
+                    }
+                else if(fishAmount.getText().trim().isEmpty())
+                {
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
+                }
+                else if(Integer.parseInt(fishAmount.getText()) > 0)
+                {
+                    hayAmount.setEnabled(false);
+                    grainAmount.setEnabled(false);
+                    fruitAmount.setEnabled(false);
+                    meatAmount.setEnabled(false);
+                    buttonswitch();
+
+                }
+                else{
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
+                }
+                System.out.println(fishAmount.getText());
+                } catch (Exception err) {
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+                    System.out.println(err.getMessage());
+                }
+                
+            }
+        });
+
+        meatAmount.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                try 
+                {
+                    if(meatAmount.getText() == null) {
+                        categoryFieldManager();
+                        addFoodButton.setEnabled(false);
+                        return;
+                    }
+                else if(meatAmount.getText().trim().isEmpty())
+                {
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
+                }
+                else if(Integer.parseInt(meatAmount.getText()) > 0)
+                {
+                    hayAmount.setEnabled(false);
+                    grainAmount.setEnabled(false);
+                    fishAmount.setEnabled(false);
+                    fruitAmount.setEnabled(false);
+                    buttonswitch();
+                }
+                else{
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
+                }
+                System.out.println(meatAmount.getText());
+                } catch (Exception err) {
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+                    System.out.println(err.getMessage());
+                }
+                
+            }
+        });
+
+
         nextButton.addActionListener(this);
         addFoodButton.addActionListener(this);
         if(theZoo.getCages().size() > 0 )
@@ -421,6 +556,7 @@ public class ZooManager extends JFrame implements ActionListener
         if(e.getSource()==nextButton){
             try 
             {
+                isFed=false;
                 cagePosition++;
                 if(cagePosition < theZoo.getCages().size())
                 {
@@ -455,6 +591,8 @@ public class ZooManager extends JFrame implements ActionListener
 
         if(e.getSource()==addFoodButton)
         {
+            isFed = true;
+            buttonswitch();
             int rowPosition = 0;
             int foodAmt = 0;
             
@@ -503,6 +641,7 @@ public class ZooManager extends JFrame implements ActionListener
                     zonePosition = 3;
                 }
                 foodTotals[rowPosition][zonePosition] += foodAmt;
+                
                 foodPanel.removeAll();
                 foodPanel.revalidate();
                 foodPanel.repaint();

@@ -20,6 +20,7 @@ public class ZooManager extends JFrame implements ActionListener
     private int cagePosition;
     private Zoo theZoo;
     private JButton addFoodButton;
+    private JButton printFeedingList;
     private JTextField hayAmount;  
     private JTextField fruitAmount;
     private JTextField grainAmount;
@@ -288,6 +289,7 @@ public class ZooManager extends JFrame implements ActionListener
         setTitle("Zoo Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         nextButton = new JButton("Next ->");
+        printFeedingList = new JButton("Print List");
         westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         welcomePanel = new JPanel();
@@ -509,6 +511,8 @@ public class ZooManager extends JFrame implements ActionListener
 
         nextButton.addActionListener(this);
         addFoodButton.addActionListener(this);
+        printFeedingList.addActionListener(this);
+        
         if(theZoo.getCages().size() > 0 )
             displayAnimalPanel(0);
         displayWelcomePanel();

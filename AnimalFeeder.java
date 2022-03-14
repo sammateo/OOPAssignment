@@ -3,25 +3,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 public class AnimalFeeder 
 {
-    // public static void main(String[] args)
-    // {
-    //     ArrayList<Animal> cages = new ArrayList<Animal>();
-    //     Animal temp = new Animal();
-    //     temp.setName("Bob");
-    //     temp.setSpecies("Jeff");
-    //     temp.setCageID("A-2");
-    //     cages.add(temp);
-    //     temp = new Animal();
-    //     temp.setName("Horace");
-    //     temp.setSpecies("Elephant");
-    //     temp.setCageID("D-18");
-    //     cages.add(temp);
-    //     AnimalFeeder f = new AnimalFeeder(cages);
-    //     f.addMeal("A-2","Hay",2);
-    //     f.addMeal("D-18","Fruit",8);
-    //     f.printFeedingList();
-
-    // }
     private ArrayList<Meal> feedingList;    //holds an array list of the animals in the zoo
     private ArrayList<Animal> cages;    //holds an array list of the animals in the zoo
     public AnimalFeeder(ArrayList<Animal> cages)
@@ -110,9 +91,22 @@ public class AnimalFeeder
 
     public void simFeeding()
     {
-        
+        for(int i = 0; i <feedingList.size(); i++)
+        {
+            Animal tempAnimal = getAnimal(feedingList.get(i).getCageID());
+            tempAnimal.eatFood(feedingList.get(i).getFoodAmt());
+        }
     }//simFeeding
 
+    public ArrayList<Meal> getFeedingList() {
+        return feedingList;
+    }
+    public int getFeedingListSize() {
+        return feedingList.size();
+    }
+    public void setFeedingList(ArrayList<Meal> feedingList) {
+        this.feedingList = feedingList;
+    }
     public Animal getAnimal(String cageID)
     {   
         for(int i = 0; i < cages.size(); i++)

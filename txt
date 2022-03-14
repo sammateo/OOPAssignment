@@ -46,3 +46,43 @@
         // foodTotalsPanel.add(bMeat);
         // foodTotalsPanel.add(cMeat);
         // foodTotalsPanel.add(dMeat);
+
+
+
+    // public static void main(String[] args)
+    // {
+    //     ArrayList<Animal> cages = new ArrayList<Animal>();
+    //     Animal temp = new Animal();
+    //     temp.setName("Bob");
+    //     temp.setSpecies("Jeff");
+    //     temp.setCageID("A-2");
+    //     cages.add(temp);
+    //     temp = new Animal();
+    //     temp.setName("Horace");
+    //     temp.setSpecies("Elephant");
+    //     temp.setCageID("D-18");
+    //     cages.add(temp);
+    //     AnimalFeeder f = new AnimalFeeder(cages);
+    //     f.addMeal("A-2","Hay",2);
+    //     f.addMeal("D-18","Fruit",8);
+    //     f.printFeedingList();
+
+    // }
+
+    // JLabel animalID = new JLabel();
+            // JLabel animalNameLabel= new JLabel();
+            // JLabel animalSpecies = new JLabel();
+            // JLabel animalType = new JLabel(); 
+            // JLabel animalHunger= new JLabel();
+            // JLabel animalHealth= new JLabel();
+
+            // animalID.setText("Cage ID: " + theZoo.getCages().get(i).getCageID());
+            // animalNameLabel.setText("Name: "+theZoo.getCages().get(i).getName()); 
+            // animalSpecies.setText("Species: "+theZoo.getCages().get(i).getSpecies());
+            // animalType.setText("Category: "+theZoo.getCages().get(i).getCategory());
+            // animalHunger.setText("Hunger: "+theZoo.getCages().get(i).getHungerStatus()+"/5");
+            // animalHealth.setText("Health: "+theZoo.getCages().get(i).getHealthStatus()+"/10");
+            // //animalPanel.add(animalAge);
+
+            // info.add(animalID);
+            // info.add(animalSpecies);

@@ -74,7 +74,7 @@ public class ZooManager extends JFrame implements ActionListener
         info.add(animalHealth);
 
         nxtContainer.add(nextButton);
-        
+
         animalPanel.add(info);
         animalPanel.add(nxtContainer);
         revalidate();
@@ -120,7 +120,11 @@ public class ZooManager extends JFrame implements ActionListener
 
     public void displayFoodPanel()
     {
+        foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS));
         JPanel foodInfoPanel = new JPanel();
+        JPanel print = new JPanel();
+        JPanel allFood = new JPanel();
+        print.setLayout(new FlowLayout());
         foodInfoPanel.setLayout(new GridLayout(6,2,10,10));
         JLabel typeLabel = new JLabel("Type");
         JLabel hayLabel = new JLabel("Hay");
@@ -156,10 +160,12 @@ public class ZooManager extends JFrame implements ActionListener
         foodInfoPanel.add(meatLabel);
         foodInfoPanel.add(meatAmount);
         foodInfoPanel.setBorder(BorderFactory.createTitledBorder("Food"));
-        foodPanel.add(foodInfoPanel);
+        allFood.add(foodInfoPanel);
 
         
-        foodPanel.add(addFoodButton);
+        allFood.add(addFoodButton);
+        print.add(printFeedingList);
+        //foodInfoPanel.add(print);
 
         JPanel foodTotalsPanel = new JPanel();
         foodTotalsPanel.setLayout(new GridLayout(6,4,10,10));
@@ -181,7 +187,9 @@ public class ZooManager extends JFrame implements ActionListener
             }
         }
         foodTotalsPanel.setBorder(BorderFactory.createTitledBorder("Totals"));
-        foodPanel.add(foodTotalsPanel);
+        allFood.add(foodTotalsPanel);
+        foodPanel.add(allFood);
+        foodPanel.add(print);
     }
 
     public void displayFeedListPanel()
@@ -533,22 +541,11 @@ public class ZooManager extends JFrame implements ActionListener
         add(foodReportPanel);
         add(welcomePanel);
 
-        
-        
-    
-        
-    
-        
-       
         // westPanel.add(animalPanel);
         // westPanel.add(welcomePanel);
        
     
         //add(medReportPanel);
-        
-
-        add(printFeedingList);
-        
 
         centerFrame();
         // maxFrame();
@@ -658,17 +655,31 @@ public class ZooManager extends JFrame implements ActionListener
                 foodPanel.repaint();
                 displayFoodPanel();
                 // System.out.println(cageLetter[0]+" "+foodTotals[rowPosition][zonePosition]);
-                animalFeeder.printFeedingList();
+                //animalFeeder.printFeedingList();
             } catch (Exception err) {
                 //TODO: handle exception
                 System.out.println(err.getMessage());
             }
-            
+  
         }
         // if(e.getSource()==hayAmount)
         // {
         //     System.out.println("Hi");
         // }
+
+        if(e.getSource()==printFeedingList)
+            {
+                try
+                {
+                    System.out.println("Cat");
+                    animalFeeder.printFeedingList();
+                }
+
+                 catch (Exception err) {
+                //TODO: handle exception
+                System.out.println(err.getMessage());
+                }
+            }
 
     }
     private void centerFrame() 

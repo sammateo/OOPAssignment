@@ -43,8 +43,11 @@ public class ZooManager extends JFrame implements ActionListener
 
     public void displayAnimalPanel(int position) throws IOException
     {
-        remove(animalPanel);
-        
+        JPanel info = new JPanel();
+        info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+        JPanel nxtContainer = new JPanel();
+        nxtContainer.setLayout(new FlowLayout());
+
         // theZoo.readAnimals();
         int i = position;
         JLabel animalID = new JLabel();
@@ -63,16 +66,17 @@ public class ZooManager extends JFrame implements ActionListener
         animalHunger.setText("Hunger: "+theZoo.getCages().get(i).getHungerStatus()+"/5");
         animalHealth.setText("Health: "+theZoo.getCages().get(i).getHealthStatus()+"/10");
         
-        animalPanel.add(animalID);
-        animalPanel.add(animalNameLabel); 
-        animalPanel.add(animalSpecies);
-        animalPanel.add(animalType);
-        animalPanel.add(animalHunger);
-        animalPanel.add(animalHealth);
+        info.add(animalID);
+        info.add(animalNameLabel); 
+        info.add(animalSpecies);
+        info.add(animalType);
+        info.add(animalHunger);
+        info.add(animalHealth);
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(animalPanel,gbc);
+        nxtContainer.add(nextButton);
+        
+        animalPanel.add(info);
+        animalPanel.add(nxtContainer);
         revalidate();
         repaint();
     }
@@ -286,7 +290,7 @@ public class ZooManager extends JFrame implements ActionListener
         theZoo.readAnimals();   //reads animals from text file
         animalFeeder = new AnimalFeeder(theZoo.getCages()); //initializes animal feeder object with cages
         foodTotals = new int[5][4]; //[rows][columns]
-        setLayout(new GridBagLayout());
+        setLayout(new GridLayout(2,3));
         setSize(900,700);
         setTitle("Zoo Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -524,36 +528,27 @@ public class ZooManager extends JFrame implements ActionListener
         displayFeedListPanel();
         //displayMedListPanel();
         // add("West",westPanel);
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.weighty = 0.1;
-        gbc.weightx = 0.1;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(animalPanel,gbc);
-        // gbc.anchor = GridBagConstraints.LINE_START;
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        add(nextButton,gbc);
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridheight = 2;
-        // gbc.fill = GridBagConstraints.VERTICAL;
-        add(welcomePanel,gbc);
-        gbc.gridheight = 1;
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        // gbc.anchor = GridBagConstraints.PAGE_START;
-        add(foodPanel,gbc);
+        add(animalPanel);
+        add(foodPanel);
+        add(foodReportPanel);
+        add(welcomePanel);
+
+        
+        
+    
+        
+    
+        
+       
         // westPanel.add(animalPanel);
         // westPanel.add(welcomePanel);
-        add(foodReportPanel,gbc);
-        gbc.gridx = 3;
-        gbc.gridy = 0;
-        // gbc.gridheight=2;
+       
     
-        add(foodReportPanel,gbc);
-        gbc.gridx = 3;
-        gbc.gridy = 1;
+        //add(medReportPanel);
+        
+
+        add(printFeedingList);
+        
 
         centerFrame();
         // maxFrame();

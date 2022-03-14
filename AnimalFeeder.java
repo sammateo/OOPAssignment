@@ -5,11 +5,17 @@ public class AnimalFeeder
     private ArrayList<Animal> cages;    //holds an array list of the animals in the zoo
     public AnimalFeeder(ArrayList<Animal> cages)
     {
-
+        feedingList = new ArrayList<Meal>();
+        this.cages = cages;
     }//AnimalFeeder
 
-    public void addMeal()
+    public void addMeal(String cageID,String foodType, int foodAmt)
     {
+        Meal newMeal = new Meal();
+        newMeal.setCageID(cageID);
+        newMeal.setFoodAmt(foodAmt);
+        newMeal.setFoodType(foodType);
+        feedingList.add(newMeal);
 
     }//addMeal
 

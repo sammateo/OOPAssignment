@@ -8,17 +8,23 @@ import java.io.IOException;
 
 public class ZooManager extends JFrame implements ActionListener
 {   
-    JPanel westPanel;
-    JPanel animalPanel;
-    JPanel welcomePanel;
-    JPanel foodPanel;
-    JPanel foodReportPanel;
-    JPanel medReportPanel;
-    protected JButton next;
+    private AnimalFeeder animalFeeder;
+    private JPanel westPanel;
+    private JPanel animalPanel;
+    private JPanel welcomePanel;
+    private JPanel foodPanel;
+    private JPanel foodReportPanel;
+    private JPanel medReportPanel;
+    private JButton nextButton;
     private int cagePosition;
-    Zoo theZoo;
-    JButton addFoodButton;
-    GridBagConstraints gbc = new GridBagConstraints();
+    private Zoo theZoo;
+    private JButton addFoodButton;
+    private JTextField hayAmount;  
+    private JTextField fruitAmount;
+    private JTextField grainAmount;
+    private JTextField fishAmount;     
+    private JTextField meatAmount;     
+    private GridBagConstraints gbc = new GridBagConstraints();
     public static void main(String[] args) throws IOException
     {
         // Welcome msg = new Welcome();
@@ -48,7 +54,7 @@ public class ZooManager extends JFrame implements ActionListener
         
         animalID.setText("Cage ID: " + theZoo.getCages().get(i).getCageID());
         animalNameLabel.setText("Name: "+theZoo.getCages().get(i).getName());
-        animalAge.setText("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
+        // animalAge.setText("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
         animalSpecies.setText("Species: "+theZoo.getCages().get(i).getSpecies());
         animalType.setText("Category: "+theZoo.getCages().get(i).getCategory());
         animalHunger.setText("Hunger: "+theZoo.getCages().get(i).getHungerStatus()+"/5");
@@ -67,7 +73,35 @@ public class ZooManager extends JFrame implements ActionListener
         revalidate();
         repaint();
     }
-
+    public void categoryFieldManager()
+    {
+        if(theZoo.getCages().get(cagePosition).getCategory().equalsIgnoreCase("Herbivore"))
+        {
+            hayAmount.setEnabled(true);
+            fruitAmount.setEnabled(true);
+            grainAmount.setEnabled(true);
+            fishAmount.setEnabled(false);
+            meatAmount.setEnabled(false);
+        }
+        else if(theZoo.getCages().get(cagePosition).getCategory().equalsIgnoreCase("Carnivore"))
+        {
+            hayAmount.setEnabled(false);
+            fruitAmount.setEnabled(false);
+            grainAmount.setEnabled(false);
+            fishAmount.setEnabled(true);
+            meatAmount.setEnabled(true);
+        }
+        else if(theZoo.getCages().get(cagePosition).getCategory().equalsIgnoreCase("Omnivore"))
+        {
+            hayAmount.setEnabled(true);
+            fruitAmount.setEnabled(true);
+            grainAmount.setEnabled(false);
+            fishAmount.setEnabled(true);
+            meatAmount.setEnabled(false);
+        }
+        foodPanel.revalidate();
+        foodPanel.repaint();
+    }
     public void displayWelcomePanel()
     {
         welcomePanel.setLayout(new BoxLayout(welcomePanel, BoxLayout.Y_AXIS));
@@ -88,11 +122,10 @@ public class ZooManager extends JFrame implements ActionListener
         JLabel fishLabel = new JLabel("Fish");
         JLabel meatLabel = new JLabel("Meat");
         JLabel amountLabel = new JLabel("Amount");
-        JTextField hayAmount= new JTextField();
-        JTextField fruitAmount = new JTextField();
-        JTextField grainAmount = new JTextField();
-        JTextField fishAmount = new JTextField();
-        JTextField meatAmount = new JTextField();
+        
+
+        categoryFieldManager();
+
         //headings
         foodInfoPanel.add(typeLabel);
         foodInfoPanel.add(amountLabel);
@@ -178,7 +211,6 @@ public class ZooManager extends JFrame implements ActionListener
         JPanel info = new JPanel();
         
             //JLabel animalAge = new JLabel("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
-       
         fReportPanel.setLayout(new GridLayout(6,10,10,10));
         info.setLayout(new GridLayout(2,2,2,2));
 
@@ -258,49 +290,65 @@ public class ZooManager extends JFrame implements ActionListener
 
     public ZooManager() throws IOException
     {
-        theZoo = new Zoo();
-        theZoo.readAnimals();
+
+        theZoo = new Zoo(); //initializes the zoo object
+        theZoo.readAnimals();   //reads animals from text file
+        animalFeeder = new AnimalFeeder(theZoo.getCages()); //initializes animal feeder object with cages
         setLayout(new GridBagLayout());
         setSize(900,700);
         setTitle("Zoo Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        next = new JButton("Next ->");
+        nextButton = new JButton("Next ->");
         westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         welcomePanel = new JPanel();
         animalPanel = new JPanel();
         foodPanel = new JPanel();
+        hayAmount= new JTextField(4);
+        fruitAmount = new JTextField();
+        grainAmount = new JTextField();
+        fishAmount = new JTextField();
+        meatAmount = new JTextField();
         foodReportPanel = new JPanel();
         addFoodButton = new JButton("Add ->");
         // foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS)); 
         animalPanel.setBorder(BorderFactory.createTitledBorder("Animal"));
         // animalPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         animalPanel.setLayout(new BoxLayout(animalPanel, BoxLayout.Y_AXIS));
-        // Initialize elementsdv
-        // toFahrenheit = new JButton("Convert to Fahrenheit");
-        // toCelsius = new JButton("Convert to Celsius");
-        // tempIn = new JTextField(5);
-        // enterTemp = new JLabel("Enter temperature: ");
-        // resultLabel = new JLabel("Result: ");
-        // resultValue = new JLabel("---");
-        // Set up the event listeners
-        // tempIn.addActionListener(this);
-        // toFahrenheit.addActionListener(this);
-        // toCelsius.addActionListener(this);
-        // Organize the top panel
-        // JPanel top = new JPanel();
-        // add(enterTemp);
-        // add(tempIn);
-        // add(toFahrenheit);
-        // add(toCelsius);
-        // add(resultLabel);
-        // add(resultValue);
-        // setLayout(new FlowLayout());
-        // position the top panel at the north of the layout
-        // add("North",top);
-        // if(theZoo.getCages().size() > 0 )
         cagePosition = 0;
-        next.addActionListener(this);
+        // hayAmount.addActionListener(new ActionListener() {
+        //     public void actionPerformed(ActionEvent e) {
+        //         System.out.println(hayAmount.getText());
+        //     }
+        // });
+        hayAmount.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                try {
+                if(hayAmount.getText().isEmpty())
+                {
+                    categoryFieldManager();
+                }
+                else if(Integer.parseInt(hayAmount.getText()) > 0)
+                {
+                    fruitAmount.setEnabled(false);
+                    grainAmount.setEnabled(false);
+                    fishAmount.setEnabled(false);
+                    meatAmount.setEnabled(false);
+                    
+                }
+                else{
+                    categoryFieldManager();
+                }
+                System.out.println(hayAmount.getText());
+                } catch (Exception err) {
+                    categoryFieldManager();
+                    System.out.println(err.getMessage());
+                }
+                
+            }
+        });
+        nextButton.addActionListener(this);
+        addFoodButton.addActionListener(this);
         if(theZoo.getCages().size() > 0 )
             displayAnimalPanel(0);
         displayWelcomePanel();
@@ -317,7 +365,7 @@ public class ZooManager extends JFrame implements ActionListener
         // gbc.anchor = GridBagConstraints.LINE_START;
         gbc.gridx = 0;
         gbc.gridy = 1;
-        add(next,gbc);
+        add(nextButton,gbc);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridheight = 2;
@@ -345,7 +393,7 @@ public class ZooManager extends JFrame implements ActionListener
     }
     public void actionPerformed(ActionEvent e)
     {
-        if(e.getSource()==next){
+        if(e.getSource()==nextButton){
             try 
             {
                 cagePosition++;
@@ -353,10 +401,20 @@ public class ZooManager extends JFrame implements ActionListener
                 {
                     try 
                     {
+                        
                         animalPanel.removeAll();
                         animalPanel.revalidate();
                         animalPanel.repaint();
                         displayAnimalPanel(cagePosition);
+                        hayAmount.setText("");
+                        fruitAmount.setText("");
+                        grainAmount.setText("");
+                        fishAmount.setText("");
+                        meatAmount.setText("");
+                        foodPanel.removeAll();
+                        foodPanel.revalidate();
+                        foodPanel.repaint();
+                        displayFoodPanel();
                         // System.out.println(cagePosition);
                     } catch (IOException e1) 
                     {
@@ -372,7 +430,12 @@ public class ZooManager extends JFrame implements ActionListener
 
         if(e.getSource()==addFoodButton)
         {
+            
             System.out.println("Hello");
+        }
+        if(e.getSource()==hayAmount)
+        {
+            System.out.println("Hi");
         }
 
     }

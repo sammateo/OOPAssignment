@@ -299,7 +299,7 @@ public class ZooManager extends JFrame implements ActionListener
         animalFeeder = new AnimalFeeder(theZoo.getCages()); //initializes animal feeder object with cages
         foodTotals = new int[5][4]; //[rows][columns]
         setLayout(new GridLayout(2,3));
-        setSize(900,700);
+        setSize(1080,720);
         setTitle("Zoo Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         nextButton = new JButton("Next ->");
@@ -672,11 +672,10 @@ public class ZooManager extends JFrame implements ActionListener
             {
                 try
                 {
-                    System.out.println("Cat");
                     animalFeeder.printFeedingList();
                 }
 
-                 catch (Exception err) {
+                catch (Exception err) {
                 //TODO: handle exception
                 System.out.println(err.getMessage());
                 }

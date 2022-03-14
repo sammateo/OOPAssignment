@@ -22,9 +22,16 @@ public class Zoo
             Animal tempAnimal = new Animal();
             String animalRecord = readFile.nextLine();
             String[] animalArray = animalRecord.split(" ");
+            String tempSpecies = animalArray[2];
+            String[] tempSpeciesArray = tempSpecies.split("-");
+            String species = "";
+            for(int i=0;i<tempSpeciesArray.length;i++)
+            {
+                species+=tempSpeciesArray[i]+" ";
+            }
             tempAnimal.setCageID(animalArray[0]);
             tempAnimal.setName(animalArray[1]);
-            tempAnimal.setSpecies(animalArray[2]);
+            tempAnimal.setSpecies(species);
             tempAnimal.setAge(Integer.parseInt(animalArray[3]));
             tempAnimal.setHungerStatus(Integer.parseInt(animalArray[4]));
             tempAnimal.setHealthStatus(Integer.parseInt(animalArray[5]));

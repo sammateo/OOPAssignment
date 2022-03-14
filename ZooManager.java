@@ -14,6 +14,7 @@ public class ZooManager extends JFrame implements ActionListener
     private JPanel welcomePanel;
     private JPanel foodPanel;
     private JPanel foodReportPanel;
+    private int foodTotals[][];
     private JPanel medReportPanel;
     private JButton nextButton;
     private int cagePosition;
@@ -125,7 +126,11 @@ public class ZooManager extends JFrame implements ActionListener
         
 
         categoryFieldManager();
-
+        hayAmount.setText("");
+        fruitAmount.setText("");
+        grainAmount.setText("");
+        fishAmount.setText("");
+        meatAmount.setText("");
         //headings
         foodInfoPanel.add(typeLabel);
         foodInfoPanel.add(amountLabel);
@@ -156,51 +161,67 @@ public class ZooManager extends JFrame implements ActionListener
         JLabel bLabel = new JLabel("B");
         JLabel cLabel = new JLabel("C");
         JLabel dLabel = new JLabel("D");
-        JLabel aHay = new JLabel("0");
-        JLabel bHay = new JLabel("0");
-        JLabel cHay = new JLabel("0");
-        JLabel dHay = new JLabel("0");
-        JLabel aFruit = new JLabel("0");
-        JLabel bFruit = new JLabel("0");
-        JLabel cFruit = new JLabel("0");
-        JLabel dFruit = new JLabel("0");
-        JLabel aGrain = new JLabel("0");
-        JLabel bGrain = new JLabel("0");
-        JLabel cGrain = new JLabel("0");
-        JLabel dGrain = new JLabel("0");
-        JLabel aFish = new JLabel("0");
-        JLabel bFish = new JLabel("0");
-        JLabel cFish = new JLabel("0");
-        JLabel dFish = new JLabel("0");
-        JLabel aMeat = new JLabel("0");
-        JLabel bMeat = new JLabel("0");
-        JLabel cMeat = new JLabel("0");
-        JLabel dMeat = new JLabel("0");
-        
+
         foodTotalsPanel.add(aLabel);
         foodTotalsPanel.add(bLabel);
         foodTotalsPanel.add(cLabel);
         foodTotalsPanel.add(dLabel);
-        foodTotalsPanel.add(aHay);
-        foodTotalsPanel.add(bHay);
-        foodTotalsPanel.add(cHay);
-        foodTotalsPanel.add(dHay);
-        foodTotalsPanel.add(aFruit);
-        foodTotalsPanel.add(bFruit);
-        foodTotalsPanel.add(cFruit);
-        foodTotalsPanel.add(dFruit);
-        foodTotalsPanel.add(aGrain);
-        foodTotalsPanel.add(bGrain);
-        foodTotalsPanel.add(cGrain);
-        foodTotalsPanel.add(dGrain);
-        foodTotalsPanel.add(aFish);
-        foodTotalsPanel.add(bFish);
-        foodTotalsPanel.add(cFish);
-        foodTotalsPanel.add(dFish);
-        foodTotalsPanel.add(aMeat);
-        foodTotalsPanel.add(bMeat);
-        foodTotalsPanel.add(cMeat);
-        foodTotalsPanel.add(dMeat);
+        for(int i = 0; i < 5;i++)
+        {
+            for(int j = 0;j<4;j++)
+            {
+                JLabel totalLabel = new JLabel(""+ foodTotals[i][j]);
+                foodTotalsPanel.add(totalLabel);
+            }
+        }
+            
+
+        // JLabel aHay = new JLabel(""+foodTotals[0][0]); //[row][column]
+        // JLabel bHay = new JLabel(""+foodTotals[0][1]);
+        // JLabel cHay = new JLabel(""+foodTotals[0][2]);
+        // JLabel dHay = new JLabel(""+foodTotals[0][3]);
+
+        // JLabel aFruit = new JLabel(""+foodTotals[1][0]);
+        // JLabel bFruit = new JLabel(""+foodTotals[1][1]);
+        // JLabel cFruit = new JLabel(""+foodTotals[1][2]);
+        // JLabel dFruit = new JLabel(""+foodTotals[1][3]);
+
+        // JLabel aGrain = new JLabel(""+foodTotals[0][0]);
+        // JLabel bGrain = new JLabel(""+foodTotals[0][1]);
+        // JLabel cGrain = new JLabel(""+foodTotals[0][2]);
+        // JLabel dGrain = new JLabel(""+foodTotals[0][3]);
+
+        // JLabel aFish = new JLabel(""+foodTotals[0][0]);
+        // JLabel bFish = new JLabel(""+foodTotals[0][1]);
+        // JLabel cFish = new JLabel(""+foodTotals[0][2]);
+        // JLabel dFish = new JLabel(""+foodTotals[0][3]);
+
+        // JLabel aMeat = new JLabel(""+foodTotals[0][0]);
+        // JLabel bMeat = new JLabel(""+foodTotals[0][1]);
+        // JLabel cMeat = new JLabel(""+foodTotals[0][2]);
+        // JLabel dMeat = new JLabel(""+foodTotals[0][3]);
+        
+        
+        // foodTotalsPanel.add(aHay);
+        // foodTotalsPanel.add(bHay);
+        // foodTotalsPanel.add(cHay);
+        // foodTotalsPanel.add(dHay);
+        // foodTotalsPanel.add(aFruit);
+        // foodTotalsPanel.add(bFruit);
+        // foodTotalsPanel.add(cFruit);
+        // foodTotalsPanel.add(dFruit);
+        // foodTotalsPanel.add(aGrain);
+        // foodTotalsPanel.add(bGrain);
+        // foodTotalsPanel.add(cGrain);
+        // foodTotalsPanel.add(dGrain);
+        // foodTotalsPanel.add(aFish);
+        // foodTotalsPanel.add(bFish);
+        // foodTotalsPanel.add(cFish);
+        // foodTotalsPanel.add(dFish);
+        // foodTotalsPanel.add(aMeat);
+        // foodTotalsPanel.add(bMeat);
+        // foodTotalsPanel.add(cMeat);
+        // foodTotalsPanel.add(dMeat);
         foodTotalsPanel.setBorder(BorderFactory.createTitledBorder("Totals"));
         foodPanel.add(foodTotalsPanel);
     }
@@ -247,12 +268,12 @@ public class ZooManager extends JFrame implements ActionListener
     }
 
     public void displayMedListPanel()
-     {
+    {
         JPanel mReportPanel = new JPanel();
         JPanel info = new JPanel();
         
             //JLabel animalAge = new JLabel("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
-       
+
         mReportPanel.setLayout(new GridLayout(6,10,10,10));
         info.setLayout(new GridLayout(2,2,2,2));
 
@@ -294,6 +315,7 @@ public class ZooManager extends JFrame implements ActionListener
         theZoo = new Zoo(); //initializes the zoo object
         theZoo.readAnimals();   //reads animals from text file
         animalFeeder = new AnimalFeeder(theZoo.getCages()); //initializes animal feeder object with cages
+        foodTotals = new int[5][4]; //[rows][columns]
         setLayout(new GridBagLayout());
         setSize(900,700);
         setTitle("Zoo Manager");
@@ -311,6 +333,7 @@ public class ZooManager extends JFrame implements ActionListener
         meatAmount = new JTextField();
         foodReportPanel = new JPanel();
         addFoodButton = new JButton("Add ->");
+        addFoodButton.setEnabled(false);
         // foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS)); 
         animalPanel.setBorder(BorderFactory.createTitledBorder("Animal"));
         // animalPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -323,10 +346,18 @@ public class ZooManager extends JFrame implements ActionListener
         // });
         hayAmount.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
-                try {
-                if(hayAmount.getText().isEmpty())
+                try 
+                {
+                    if(hayAmount.getText() == null) {
+                        categoryFieldManager();
+                        addFoodButton.setEnabled(false);
+                        return;
+                    }
+                else if(hayAmount.getText().trim().isEmpty())
                 {
                     categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
                 }
                 else if(Integer.parseInt(hayAmount.getText()) > 0)
                 {
@@ -334,14 +365,56 @@ public class ZooManager extends JFrame implements ActionListener
                     grainAmount.setEnabled(false);
                     fishAmount.setEnabled(false);
                     meatAmount.setEnabled(false);
-                    
+                    addFoodButton.setEnabled(true);
+
                 }
                 else{
                     categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
                 }
                 System.out.println(hayAmount.getText());
                 } catch (Exception err) {
                     categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+                    System.out.println(err.getMessage());
+                }
+                
+            }
+        });
+        fruitAmount.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                try 
+                {
+                    if(fruitAmount.getText() == null) {
+                        categoryFieldManager();
+                        addFoodButton.setEnabled(false);
+                        return;
+                    }
+                else if(fruitAmount.getText().trim().isEmpty())
+                {
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
+                }
+                else if(Integer.parseInt(fruitAmount.getText()) > 0)
+                {
+                    hayAmount.setEnabled(false);
+                    grainAmount.setEnabled(false);
+                    fishAmount.setEnabled(false);
+                    meatAmount.setEnabled(false);
+                    addFoodButton.setEnabled(true);
+
+                }
+                else{
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
+
+                }
+                System.out.println(fruitAmount.getText());
+                } catch (Exception err) {
+                    categoryFieldManager();
+                    addFoodButton.setEnabled(false);
                     System.out.println(err.getMessage());
                 }
                 
@@ -430,13 +503,64 @@ public class ZooManager extends JFrame implements ActionListener
 
         if(e.getSource()==addFoodButton)
         {
+            int rowPosition = 0;
+            int foodAmt = 0;
             
-            System.out.println("Hello");
+            if(hayAmount.getText() != null && !hayAmount.getText().equals("")&& Integer.parseInt(hayAmount.getText())>0)
+            {
+
+                rowPosition = 0;
+                foodAmt= Integer.parseInt(hayAmount.getText());
+            }
+            else if(fruitAmount.getText() != null&& !fruitAmount.getText().equals("") && Integer.parseInt(fruitAmount.getText())>0)
+            {
+                rowPosition = 1;
+                foodAmt = Integer.parseInt(fruitAmount.getText());
+            }
+            else if(grainAmount.getText() != null && !grainAmount.getText().equals("") && Integer.parseInt(grainAmount.getText())>0)
+            {
+                rowPosition = 2;
+                foodAmt = Integer.parseInt(grainAmount.getText());
+            }
+            else if(fishAmount.getText() != null && !fishAmount.getText().equals("") && Integer.parseInt(fishAmount.getText())>0)
+            {
+                rowPosition = 3;
+                foodAmt = Integer.parseInt(fishAmount.getText());
+            }
+            else if(meatAmount.getText() != null && !meatAmount.getText().equals("") && Integer.parseInt(meatAmount.getText())>0)
+            {
+                rowPosition = 4;
+                foodAmt = Integer.parseInt(meatAmount.getText());
+            }
+            String[] cageLetter = theZoo.getCages().get(cagePosition).getCageID().split("-");
+                int zonePosition = 0;
+                if(cageLetter[0].equals("A"))
+                {
+                    zonePosition = 0;
+                }
+                else if(cageLetter[0].equals("B"))
+                {
+                    zonePosition = 1;
+                }
+                else if(cageLetter[0].equals("C"))
+                {
+                    zonePosition = 2;
+                }
+                else if(cageLetter[0].equals("D"))
+                {
+                    zonePosition = 3;
+                }
+                foodTotals[rowPosition][zonePosition] += foodAmt;
+                foodPanel.removeAll();
+                foodPanel.revalidate();
+                foodPanel.repaint();
+                displayFoodPanel();
+                System.out.println(cageLetter[0]+" "+foodTotals[rowPosition][zonePosition]);
         }
-        if(e.getSource()==hayAmount)
-        {
-            System.out.println("Hi");
-        }
+        // if(e.getSource()==hayAmount)
+        // {
+        //     System.out.println("Hi");
+        // }
 
     }
     private void centerFrame() 

@@ -309,9 +309,9 @@ public class ZooManager extends JFrame implements ActionListener
         isFed = false;
         foodReportPanel = new JPanel();
         addFoodButton = new JButton("Add ->");
-        addFoodButton.setEnabled(false);
+        
         buttonswitch();
-
+        addFoodButton.setEnabled(false);
         // foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS)); 
         animalPanel.setBorder(BorderFactory.createTitledBorder("Animal"));
         // animalPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -390,7 +390,7 @@ public class ZooManager extends JFrame implements ActionListener
                     addFoodButton.setEnabled(false);
 
                 }
-                System.out.println(fruitAmount.getText());
+                // System.out.println(fruitAmount.getText());
                 } catch (Exception err) {
                     categoryFieldManager();
                     addFoodButton.setEnabled(false);
@@ -567,6 +567,7 @@ public class ZooManager extends JFrame implements ActionListener
                     {
                         isFed=false;
                         buttonswitch();
+                        addFoodButton.setEnabled(false);
                         animalPanel.removeAll();
                         animalPanel.revalidate();
                         animalPanel.repaint();

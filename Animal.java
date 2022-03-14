@@ -28,6 +28,12 @@ public class Animal
         healthStatus = generator.nextInt(10)+1; //Generate a random integer from 1 to 10
     }   //Animal
 
+    public String getCauseOfDeath() {
+        return causeOfDeath;
+    }
+    public void setCauseOfDeath(String causeOfDeath) {
+        this.causeOfDeath = causeOfDeath;
+    }
     public void setSpecies(String species) 
     {
         this.species = species;

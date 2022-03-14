@@ -6,8 +6,19 @@ public class AnimalFeeder
     // public static void main(String[] args)
     // {
     //     ArrayList<Animal> cages = new ArrayList<Animal>();
-    //     cages.add(new Animal());
+    //     Animal temp = new Animal();
+    //     temp.setName("Bob");
+    //     temp.setSpecies("Jeff");
+    //     temp.setCageID("A-2");
+    //     cages.add(temp);
+    //     temp = new Animal();
+    //     temp.setName("Horace");
+    //     temp.setSpecies("Elephant");
+    //     temp.setCageID("D-18");
+    //     cages.add(temp);
     //     AnimalFeeder f = new AnimalFeeder(cages);
+    //     f.addMeal("A-2","Hay",2);
+    //     f.addMeal("D-18","Fruit",8);
     //     f.printFeedingList();
 
     // }
@@ -38,9 +49,62 @@ public class AnimalFeeder
         sdf = new SimpleDateFormat("yyyy");
         String year = sdf.format(new Date());
         System.out.println("Feeding List - "+ day+ " " + month+ " "+ year);
+        ArrayList<Meal> aMeals = new ArrayList<Meal>();
+        ArrayList<Meal> bMeals = new ArrayList<Meal>();
+        ArrayList<Meal> cMeals = new ArrayList<Meal>();
+        ArrayList<Meal> dMeals = new ArrayList<Meal>();
+        ArrayList<ArrayList<Meal>> totalMeals = new ArrayList<ArrayList<Meal>>();
+        // Organize the Feeding List by Zone
         for(int i = 0; i <feedingList.size(); i++)
         {
-            System.out.println("");
+            String[] cageLetter = feedingList.get(i).getCageID().split("-");
+            if(cageLetter[0].equals("A"))
+            {
+                aMeals.add(feedingList.get(i));
+            }
+            else if(cageLetter[0].equals("B"))
+            {
+                bMeals.add(feedingList.get(i));
+            }
+            else if(cageLetter[0].equals("C"))
+            {
+                cMeals.add(feedingList.get(i));
+            }
+            else if(cageLetter[0].equals("D"))
+            {
+                dMeals.add(feedingList.get(i));
+            }
+            
+        }
+        // Add zoned lists to a total list of everything
+        totalMeals.add(aMeals);
+        totalMeals.add(bMeals);
+        totalMeals.add(cMeals);
+        totalMeals.add(dMeals);
+        String[] zoneLabels = {"(A) African Savanna","(B) Amazonian Jungle","(C) Eurasian Wild","(D) Frozen Tundra"};
+        for(int i = 0; i< totalMeals.size(); i++)
+        {
+            System.out.println(zoneLabels[i]);
+            int[] foodSummary = {0,0,0,0,0}; //hay,fruit,grain,fish,meat
+            String[] foodType = {"Hay","Fruit","Grain","Fish","Meat"};
+            for(int j = 0; j< totalMeals.get(i).size();j++)
+            {
+                Animal tempAnimal = getAnimal(totalMeals.get(i).get(j).getCageID());
+                System.out.println(tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" "+totalMeals.get(i).get(j).getFoodAmt() + " "+totalMeals.get(i).get(j).getFoodType() );
+                for(int z = 0; z< foodType.length; z++)
+                {
+                    if(totalMeals.get(i).get(j).getFoodType().equalsIgnoreCase(foodType[z]))
+                    {
+                        foodSummary[z]+=totalMeals.get(i).get(j).getFoodAmt();
+                    }
+                }
+            }
+            System.out.println("Food Summary");
+            for(int x = 0; x < foodSummary.length;x++)
+            {
+                if(foodSummary[x] > 0)
+                    System.out.println(foodSummary[x]+" "+ foodType[x]);
+            }
         }
     }//printFeedingList
 
@@ -48,5 +112,17 @@ public class AnimalFeeder
     {
         
     }//simFeeding
+
+    public Animal getAnimal(String cageID)
+    {   
+        for(int i = 0; i < cages.size(); i++)
+        {
+            if(cages.get(i).getCageID().equals(cageID))
+            {
+                return cages.get(i);
+            }
+        }
+        return null;
+    }   //getAnimal
     
 }//AnimalFeeder

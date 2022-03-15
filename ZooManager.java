@@ -249,15 +249,16 @@ public class ZooManager extends JFrame implements ActionListener
             info.add(deathAnimals);
             for(int i=0;i<deadAnimals.size(); i++)
             {
-                JLabel deadAnimalInfo = new JLabel(deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies());
-                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies();
+                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+ " "+ animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID())+ " "+ animalFeeder.getFoodType(deadAnimals.get(i).getCageID());
+                JLabel deadAnimalInfo = new JLabel(deadAnimalInfo2);
+                
                 report.write("\n"+"\n"+ deadAnimalInfo2);
                 info.add(deadAnimalInfo);
             }
             fReportPanel.setBorder(BorderFactory.createTitledBorder("Feeding Report"));
             foodReportPanel.add(fReportPanel);
             report.close();
-            System.out.println("Report Printed");
+            // System.out.println("Report Printed");
         }//end try
 
         catch(IOException e)
@@ -323,6 +324,7 @@ public class ZooManager extends JFrame implements ActionListener
                 addFoodButton.setEnabled(true);
                 nextButton.setEnabled(false);
             }
+            
         }//buttonswitch
 
     public String getDate()
@@ -344,11 +346,13 @@ public class ZooManager extends JFrame implements ActionListener
         foodTotals = new int[5][4]; //[rows][columns]
         setLayout(new GridLayout(2,3));
         setSize(1080,720);
-        setTitle("Zoo Manager");
+        setTitle("The Cave Hill Zoo Manager System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         nextButton = new JButton("Next ->");
         printFeedingList = new JButton("Print List");
+        printFeedingList.setEnabled(false);
         feedButton = new JButton("Feed");
+        feedButton.setEnabled(false);
         westPanel = new JPanel();
         westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         welcomePanel = new JPanel();
@@ -607,6 +611,8 @@ public class ZooManager extends JFrame implements ActionListener
                 {
                     try 
                     {
+                        printFeedingList.setEnabled(false);
+                        feedButton.setEnabled(false);
                         isFed=false;
                         buttonswitch();
                         addFoodButton.setEnabled(false);
@@ -629,6 +635,17 @@ public class ZooManager extends JFrame implements ActionListener
                         // e1.printStackTrace();
                         System.out.println("Error: "+ e1);
                     }
+                }
+                else
+                {
+                    nextButton.setEnabled(false);
+                    printFeedingList.setEnabled(true);
+                    feedButton.setEnabled(true);
+                    hayAmount.setEnabled(false);
+                    fruitAmount.setEnabled(false);
+                    grainAmount.setEnabled(false);
+                    fishAmount.setEnabled(false);
+                    meatAmount.setEnabled(false);
                 }
             } catch (Exception err) {
             }
@@ -709,6 +726,7 @@ public class ZooManager extends JFrame implements ActionListener
                 try
                 {
                     animalFeeder.printFeedingList();
+                    printFeedingList.setEnabled(false);
                 }
 
                 catch (Exception err) {
@@ -723,6 +741,7 @@ public class ZooManager extends JFrame implements ActionListener
                 displayFeedListPanel();
                 foodReportPanel.revalidate();
                 foodReportPanel.repaint();
+                feedButton.setEnabled(false);
             }
             catch (Exception err) {
                 System.out.println(err.getMessage());

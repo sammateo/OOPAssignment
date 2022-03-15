@@ -8,7 +8,7 @@ public class Welcome
         
         // welcomeMessage = new JLabel("Welcome to the Zoo Manager System");
         zooKeeperName = null;
-        welcomeFrame = new JFrame();
+        // welcomeFrame = new JFrame();
         
         // panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     }//Welcome constructor
@@ -16,8 +16,8 @@ public class Welcome
     public void displayWelcome()
     {
         
-        welcomeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        zooKeeperName = JOptionPane.showInputDialog(welcomeFrame, "Welcome to the Zoo Manager System \nEnter your name");
+        // welcomeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        zooKeeperName = JOptionPane.showInputDialog(null, "Welcome to the Cave Hill Zoo Manager System \nEnter your name","Welcome", JOptionPane.INFORMATION_MESSAGE);
         if(zooKeeperName==null)
         {
             return;

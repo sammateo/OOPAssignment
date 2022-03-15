@@ -102,7 +102,7 @@ public class AnimalFeeder
            
         }
             report.close();
-            System.out.println("Report Printed");
+            // System.out.println("Report Printed");
         }//end try
         catch(IOException e)
         {
@@ -141,4 +141,28 @@ public class AnimalFeeder
         return null;
     }   //getAnimal
     
+    public String getFoodType(String cageID)
+    {
+        for(int i = 0; i < feedingList.size(); i++)
+        {
+            if(feedingList.get(i).getCageID().equals(cageID))
+            {
+                return feedingList.get(i).getFoodType();
+            }
+        }
+        return null;
+    }   //getFoodType
+
+    public int getFoodAmt(String cageID)
+    {
+        for(int i = 0; i < feedingList.size(); i++)
+        {
+            if(feedingList.get(i).getCageID().equals(cageID))
+            {
+                return feedingList.get(i).getFoodAmt();
+            }
+        }
+        return 0;
+    }   //getFoodType
+
 }//AnimalFeeder

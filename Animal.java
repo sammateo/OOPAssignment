@@ -114,7 +114,7 @@ public class Animal
         {
             this.healthStatus = 0;
             this.hungerStatus = 0;
-            System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
+            // System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
         }
     }   //eatFood
 
@@ -135,7 +135,7 @@ public class Animal
         {
             this.healthStatus = 0;
             this.hungerStatus = 0;
-            System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
+            // System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
 
         }
     }   //takeMedicine

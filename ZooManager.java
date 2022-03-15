@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
+import java.io.FileWriter;
+
 
 public class ZooManager extends JFrame implements ActionListener
 {   
@@ -199,47 +201,70 @@ public class ZooManager extends JFrame implements ActionListener
 
     public void displayFeedListPanel()
     {
-        JPanel fReportPanel = new JPanel();
-        JPanel info = new JPanel();
-        fReportPanel.setPreferredSize(new Dimension(200, 200));
+        try
+        {
+            FileWriter report = new FileWriter("FeedingReport.txt");
+            JPanel fReportPanel = new JPanel();
+            JPanel info = new JPanel();
+            fReportPanel.setPreferredSize(new Dimension(200, 200));
             //JLabel animalAge = new JLabel("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
-        fReportPanel.setLayout(new BoxLayout(fReportPanel, BoxLayout.Y_AXIS));
-        info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+            fReportPanel.setLayout(new BoxLayout(fReportPanel, BoxLayout.Y_AXIS));
+            info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
 
-        // JLabel test = new JLabel("This is a test");
-        JScrollPane scroll = new JScrollPane(info);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            // JLabel test = new JLabel("This is a test");
+            JScrollPane scroll = new JScrollPane(info);
+            scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        // fReportPanel.add(test);
-        fReportPanel.add(scroll);
-        JLabel date = new JLabel(getDate());
-        JLabel animalsFed = new JLabel("AnimalsFed: "+ animalFeeder.getFeedingListSize());
-        ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
+            // fReportPanel.add(test);
+            fReportPanel.add(scroll);
+            JLabel date = new JLabel(getDate());
+            String date2 = getDate();
+            report.write(date2);
+
+            JLabel animalsFed = new JLabel("AnimalsFed: "+ animalFeeder.getFeedingListSize());
+            String animalsFed2 = "AnimalsFed: "+ animalFeeder.getFeedingListSize();
+            report.write("\n"+"\n"+animalsFed2);
+            ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
         
 
-        for(int i=0; i<animalFeeder.getFeedingListSize();i++)
-        {
-            Animal tempFedAnimal = animalFeeder.getAnimal(animalFeeder.getFeedingList().get(i).getCageID());
-            if(tempFedAnimal.getHealthStatus() == 0)
+            for(int i=0; i<animalFeeder.getFeedingListSize();i++)
             {
+                Animal tempFedAnimal = animalFeeder.getAnimal(animalFeeder.getFeedingList().get(i).getCageID());
+                if(tempFedAnimal.getHealthStatus() == 0)
+                {
                 deadAnimals.add(tempFedAnimal);
+                }
             }
-        }
-        JLabel okAnimals = new JLabel("OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size()));
-        JLabel deathAnimals = new JLabel("Deaths: "+ deadAnimals.size());
-        info.add(date);
-        info.add(animalsFed);
-        info.add(okAnimals);
-        info.add(deathAnimals);
-        for(int i=0;i<deadAnimals.size(); i++)
+            JLabel okAnimals = new JLabel("OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size()));
+            String okAnimals2 = "OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size());
+            report.write("\n"+okAnimals2);
+
+            JLabel deathAnimals = new JLabel("Deaths: "+ deadAnimals.size());
+            String deathAnimals2 = "Deaths: "+ deadAnimals.size();
+            report.write("\n"+deathAnimals2);
+
+            info.add(date);
+            info.add(animalsFed);
+            info.add(okAnimals);
+            info.add(deathAnimals);
+            for(int i=0;i<deadAnimals.size(); i++)
+            {
+                JLabel deadAnimalInfo = new JLabel(deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies());
+                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies();
+                report.write("\n"+"\n"+ deadAnimalInfo2);
+                info.add(deadAnimalInfo);
+            }
+            fReportPanel.setBorder(BorderFactory.createTitledBorder("Feeding Report"));
+            foodReportPanel.add(fReportPanel);
+            report.close();
+            System.out.println("Report Printed");
+        }//end try
+
+        catch(IOException e)
         {
-            JLabel deadAnimalInfo = new JLabel(deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies());
-            info.add(deadAnimalInfo);
-            
-        }
-        fReportPanel.setBorder(BorderFactory.createTitledBorder("Feeding Report"));
-        foodReportPanel.add(fReportPanel);
+            System.out.println("Error");
+        }//endcatch
 
     }
 
@@ -709,6 +734,7 @@ public class ZooManager extends JFrame implements ActionListener
                 System.out.println(err.getMessage());
             }
         }
+
     }
     private void centerFrame() 
     {

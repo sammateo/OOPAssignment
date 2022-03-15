@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class AnimalFeeder 
 {
     private ArrayList<Meal> feedingList;    //holds an array list of the animals in the zoo
@@ -23,18 +27,21 @@ public class AnimalFeeder
 
     public void printFeedingList()
     {
-        SimpleDateFormat sdf = new SimpleDateFormat("MMMM");
-        String month = sdf.format(new Date());
-        sdf = new SimpleDateFormat("dd");
-        String day = sdf.format(new Date());
-        sdf = new SimpleDateFormat("yyyy");
-        String year = sdf.format(new Date());
-        System.out.println("Feeding List - "+ day+ " " + month+ " "+ year);
-        ArrayList<Meal> aMeals = new ArrayList<Meal>();
-        ArrayList<Meal> bMeals = new ArrayList<Meal>();
-        ArrayList<Meal> cMeals = new ArrayList<Meal>();
-        ArrayList<Meal> dMeals = new ArrayList<Meal>();
-        ArrayList<ArrayList<Meal>> totalMeals = new ArrayList<ArrayList<Meal>>();
+        try{
+            FileWriter report = new FileWriter("FeedingList.txt");
+            SimpleDateFormat sdf = new SimpleDateFormat("MMMM");
+            String month = sdf.format(new Date());
+            sdf = new SimpleDateFormat("dd");
+            String day = sdf.format(new Date());
+            sdf = new SimpleDateFormat("yyyy");
+            String year = sdf.format(new Date());
+            //System.out.println("Feeding List - "+ day+ " " + month+ " "+ year);
+            report.write("Feeding List - "+ day+ " " + month+ " "+ year);
+            ArrayList<Meal> aMeals = new ArrayList<Meal>();
+            ArrayList<Meal> bMeals = new ArrayList<Meal>();
+            ArrayList<Meal> cMeals = new ArrayList<Meal>();
+            ArrayList<Meal> dMeals = new ArrayList<Meal>();
+            ArrayList<ArrayList<Meal>> totalMeals = new ArrayList<ArrayList<Meal>>();
         // Organize the Feeding List by Zone
         for(int i = 0; i <feedingList.size(); i++)
         {
@@ -65,13 +72,15 @@ public class AnimalFeeder
         String[] zoneLabels = {"(A) African Savanna","(B) Amazonian Jungle","(C) Eurasian Wild","(D) Frozen Tundra"};
         for(int i = 0; i< totalMeals.size(); i++)
         {
-            System.out.println(zoneLabels[i]);
+            //System.out.println(zoneLabels[i]);
+            report.write("\n"+"\n"+zoneLabels[i]);
             int[] foodSummary = {0,0,0,0,0}; //hay,fruit,grain,fish,meat
             String[] foodType = {"Hay","Fruit","Grain","Fish","Meat"};
             for(int j = 0; j< totalMeals.get(i).size();j++)
             {
                 Animal tempAnimal = getAnimal(totalMeals.get(i).get(j).getCageID());
-                System.out.println(tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" "+totalMeals.get(i).get(j).getFoodAmt() + " "+totalMeals.get(i).get(j).getFoodType() );
+                //System.out.println(tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" "+totalMeals.get(i).get(j).getFoodAmt() + " "+totalMeals.get(i).get(j).getFoodType() );
+                report.write("\n"+tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" "+totalMeals.get(i).get(j).getFoodAmt() + " "+totalMeals.get(i).get(j).getFoodType());
                 for(int z = 0; z< foodType.length; z++)
                 {
                     if(totalMeals.get(i).get(j).getFoodType().equalsIgnoreCase(foodType[z]))
@@ -80,13 +89,26 @@ public class AnimalFeeder
                     }
                 }
             }
-            System.out.println("Food Summary");
+            //System.out.println("Food Summary");
+            report.write("\n"+"\n" + "Food Summary");
             for(int x = 0; x < foodSummary.length;x++)
             {
                 if(foodSummary[x] > 0)
-                    System.out.println(foodSummary[x]+" "+ foodType[x]);
+                    {
+                        //System.out.println(foodSummary[x]+" "+ foodType[x]);
+                        report.write("\n"+foodSummary[x]+" "+ foodType[x]);
+                    }
             }
+           
         }
+            report.close();
+            System.out.println("Report Printed");
+        }//end try
+        catch(IOException e)
+        {
+            System.out.println("Error");
+        }//end catch
+       
     }//printFeedingList
 
     public void simFeeding()

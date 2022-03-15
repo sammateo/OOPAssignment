@@ -3,7 +3,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.Scanner;
+// import java.util.Scanner;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +22,7 @@ public class ZooManager extends JFrame implements ActionListener
     private int foodTotals[][];
     private JPanel medReportPanel;
     private JButton nextButton;
-    private int cagePosition;
+    private int cagePosition;   //to keep track of the current animal being worked on
     private Zoo theZoo;
     private JButton addFoodButton;
     private JButton printFeedingList;
@@ -33,16 +33,15 @@ public class ZooManager extends JFrame implements ActionListener
     private JTextField fishAmount;     
     private JTextField meatAmount;
     private boolean isFed;     
-    private GridBagConstraints gbc = new GridBagConstraints();
     public static void main(String[] args) throws IOException
     {
-        // Welcome msg = new Welcome();
-        // msg.displayWelcome();
-        // if(msg.getZooKeeperName()==null||msg.getZooKeeperName().trim().isEmpty())
-        // {
-        //     System.exit(0);
-        //     return;
-        // }
+        Welcome msg = new Welcome();
+        msg.displayWelcome();
+        if(msg.getZooKeeperName()==null||msg.getZooKeeperName().trim().isEmpty())
+        {
+            System.exit(0);
+            return;
+        }
         ZooManager zm = new ZooManager();
         
     }   //main
@@ -58,7 +57,7 @@ public class ZooManager extends JFrame implements ActionListener
         int i = position;
         JLabel animalID = new JLabel();
         JLabel animalNameLabel = new JLabel();
-        JLabel animalAge = new JLabel();
+        // JLabel animalAge = new JLabel();
         JLabel animalSpecies = new JLabel();
         JLabel animalType = new JLabel();
         JLabel animalHunger = new JLabel();
@@ -627,13 +626,11 @@ public class ZooManager extends JFrame implements ActionListener
                         // System.out.println(cagePosition);
                     } catch (IOException e1) 
                     {
-                        // TODO Auto-generated catch block
                         // e1.printStackTrace();
                         System.out.println("Error: "+ e1);
                     }
                 }
             } catch (Exception err) {
-                //TODO: handle exception
             }
         }
 
@@ -704,10 +701,8 @@ public class ZooManager extends JFrame implements ActionListener
                 // System.out.println(cageLetter[0]+" "+foodTotals[rowPosition][zonePosition]);
                 //animalFeeder.printFeedingList();
             } catch (Exception err) {
-                //TODO: handle exception
                 System.out.println(err.getMessage());
             }
-  
         }
         if(e.getSource()==printFeedingList)
             {
@@ -717,7 +712,6 @@ public class ZooManager extends JFrame implements ActionListener
                 }
 
                 catch (Exception err) {
-                //TODO: handle exception
                 System.out.println(err.getMessage());
                 }
             }

@@ -8,13 +8,14 @@ public class Welcome
         
         // welcomeMessage = new JLabel("Welcome to the Zoo Manager System");
         zooKeeperName = null;
+        welcomeFrame = new JFrame();
         
         // panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     }//Welcome constructor
 
     public void displayWelcome()
     {
-        welcomeFrame = new JFrame();
+        
         welcomeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         zooKeeperName = JOptionPane.showInputDialog(welcomeFrame, "Welcome to the Zoo Manager System \nEnter your name");
         if(zooKeeperName==null)
@@ -25,8 +26,12 @@ public class Welcome
         {
             JOptionPane.showMessageDialog(welcomeFrame, "The amount you entered is invalid");
             zooKeeperName = JOptionPane.showInputDialog(welcomeFrame, "Welcome to the Zoo Manager System \nEnter your name");
-
+            if(zooKeeperName==null)
+            {
+                return;
+            }
         }
+        
     }//displayWelcome
 
     public String getZooKeeperName() {

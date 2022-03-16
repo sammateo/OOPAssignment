@@ -1,11 +1,11 @@
-15 March 2022
+16 March 2022
 
 AnimalsFed: 12
 OK: 9
 Deaths: 3
 
-B-1 Oliver Ocelot  Original Hunger Status: 5 Food Amount: 1 Food Type: Fish
+B-1 Oliver Ocelot  Original Hunger Status: 5 Food Amount: 1 Food Type: Meat
 
-B-6 Sally Saddleback Tamarin  Original Hunger Status: 5 Food Amount: 1 Food Type: Fish
+B-6 Sally Saddleback Tamarin  Original Hunger Status: 5 Food Amount: 1 Food Type: Fruit
 
 C-22 Camille Camel  Original Hunger Status: 5 Food Amount: 1 Food Type: Hay

@@ -26,6 +26,7 @@ public class ZooManager extends JFrame implements ActionListener
     private Zoo theZoo;
     private JButton addFoodButton;
     private JButton printFeedingList;
+    private JButton printFoodReport;
     private JButton feedButton;
     private JTextField hayAmount;  
     private JTextField fruitAmount;
@@ -200,11 +201,9 @@ public class ZooManager extends JFrame implements ActionListener
 
     public void displayFeedListPanel()
     {
-        try
-        {
-            FileWriter report = new FileWriter("FeedingReport.txt");
             JPanel fReportPanel = new JPanel();
             JPanel info = new JPanel();
+            JPanel button = new JPanel();
             fReportPanel.setPreferredSize(new Dimension(400, 200));
             //JLabel animalAge = new JLabel("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
             fReportPanel.setLayout(new BoxLayout(fReportPanel, BoxLayout.Y_AXIS));
@@ -218,12 +217,9 @@ public class ZooManager extends JFrame implements ActionListener
             // fReportPanel.add(test);
             fReportPanel.add(scroll);
             JLabel date = new JLabel(getDate());
-            String date2 = getDate();
-            report.write(date2);
-
+            
             JLabel animalsFed = new JLabel("AnimalsFed: "+ animalFeeder.getFeedingListSize());
-            String animalsFed2 = "AnimalsFed: "+ animalFeeder.getFeedingListSize();
-            report.write("\n"+"\n"+animalsFed2);
+            
             ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
             for(int i=0; i<animalFeeder.getFeedingListSize();i++)
             {
@@ -234,11 +230,9 @@ public class ZooManager extends JFrame implements ActionListener
                 }
             }
             JLabel okAnimals = new JLabel("OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size()));
-            String okAnimals2 = "OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size());
-            report.write("\n"+okAnimals2);
+           
             JLabel deathAnimals = new JLabel("Deaths: "+ deadAnimals.size());
-            String deathAnimals2 = "Deaths: "+ deadAnimals.size();
-            report.write("\n"+deathAnimals2);
+            
             info.add(date);
             info.add(animalsFed);
             info.add(okAnimals);
@@ -246,21 +240,56 @@ public class ZooManager extends JFrame implements ActionListener
             for(int i=0;i<deadAnimals.size(); i++)
             {
                 String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Hunger Status: "+ (deadAnimals.get(i).hungerStatus - animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID()))+" Food Amount: "+ animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID())+ " Food Type: "+ animalFeeder.getFoodType(deadAnimals.get(i).getCageID());
-                JLabel deadAnimalInfo = new JLabel(deadAnimalInfo2);
-                report.write("\n"+"\n"+ deadAnimalInfo2);
+                JLabel deadAnimalInfo = new JLabel(deadAnimalInfo2);   
                 info.add(deadAnimalInfo);
             }
+            button.add(printFoodReport);
+            fReportPanel.add(button);
             fReportPanel.setBorder(BorderFactory.createTitledBorder("Feeding Report"));
             foodReportPanel.add(fReportPanel);
-            report.close();
-            // System.out.println("Report Printed");
-        }//end try
 
+    }
+
+    public void printFReport()
+    {
+        try
+        {
+            FileWriter report = new FileWriter("FeedingReport.txt");
+            String date2 = getDate();
+            report.write(date2);
+
+            String animalsFed2 = "AnimalsFed: "+ animalFeeder.getFeedingListSize();
+            report.write("\n"+"\n"+animalsFed2);
+
+            ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
+            for(int i=0; i<animalFeeder.getFeedingListSize();i++)
+            {
+                Animal tempFedAnimal = animalFeeder.getAnimal(animalFeeder.getFeedingList().get(i).getCageID());
+                if(tempFedAnimal.getHungerStatus() > 5)
+                {
+                    deadAnimals.add(tempFedAnimal);
+                }
+            }
+
+            String okAnimals2 = "OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size());
+            report.write("\n"+okAnimals2);
+
+            String deathAnimals2 = "Deaths: "+ deadAnimals.size();
+            report.write("\n"+deathAnimals2);
+
+            for(int i=0;i<deadAnimals.size(); i++)
+            {
+                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Hunger Status: "+ (deadAnimals.get(i).hungerStatus - animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID()))+" Food Amount: "+ animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID())+ " Food Type: "+ animalFeeder.getFoodType(deadAnimals.get(i).getCageID());
+                report.write("\n"+"\n"+ deadAnimalInfo2); 
+            }
+            System.out.println("Report Printed");
+            report.close();
+
+        }
         catch(IOException e)
         {
             System.out.println("Error");
-        }//endcatch
-
+        }
     }
 
     public void displayMedListPanel()
@@ -345,6 +374,8 @@ public class ZooManager extends JFrame implements ActionListener
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         nextButton = new JButton("Next ->");
         printFeedingList = new JButton("Print List");
+        printFoodReport = new JButton("Print Report");
+        printFoodReport.setEnabled(false);
         printFeedingList.setEnabled(false);
         feedButton = new JButton("Feed");
         feedButton.setEnabled(false);
@@ -573,6 +604,7 @@ public class ZooManager extends JFrame implements ActionListener
         addFoodButton.addActionListener(this);
         printFeedingList.addActionListener(this);
         feedButton.addActionListener(this);
+        printFoodReport.addActionListener(this);
         
         if(theZoo.getCages().size() > 0 )
             displayAnimalPanel(0);
@@ -611,6 +643,7 @@ public class ZooManager extends JFrame implements ActionListener
                         isFed=false;
                         buttonswitch();
                         addFoodButton.setEnabled(false);
+                        printFoodReport.setEnabled(false);
                         animalPanel.removeAll();
                         animalPanel.revalidate();
                         animalPanel.repaint();
@@ -636,6 +669,7 @@ public class ZooManager extends JFrame implements ActionListener
                     nextButton.setEnabled(false);
                     printFeedingList.setEnabled(true);
                     feedButton.setEnabled(true);
+                    printFoodReport.setEnabled(true);
                     hayAmount.setEnabled(false);
                     fruitAmount.setEnabled(false);
                     grainAmount.setEnabled(false);
@@ -741,6 +775,20 @@ public class ZooManager extends JFrame implements ActionListener
             catch (Exception err) {
                 System.out.println(err.getMessage());
             }
+        }
+
+        if(e.getSource()==printFoodReport)
+        {
+            try
+            {
+                printFReport();
+                printFoodReport.setEnabled(false);
+            }
+            catch(Exception err)
+            {
+                System.out.println(err.getMessage());   
+            }
+
         }
 
     }

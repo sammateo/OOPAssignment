@@ -4,8 +4,8 @@ AnimalsFed: 12
 OK: 9
 Deaths: 3
 
-B-1 Oliver Ocelot  1 Fish
+B-1 Oliver Ocelot  Original Hunger Status: 5 Food Amount: 1 Food Type: Fish
 
-B-6 Sally Saddleback Tamarin  1 Fish
+B-6 Sally Saddleback Tamarin  Original Hunger Status: 5 Food Amount: 1 Food Type: Fish
 
-C-22 Camille Camel  1 Hay
+C-22 Camille Camel  Original Hunger Status: 5 Food Amount: 1 Food Type: Hay

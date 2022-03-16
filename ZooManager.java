@@ -205,7 +205,7 @@ public class ZooManager extends JFrame implements ActionListener
             FileWriter report = new FileWriter("FeedingReport.txt");
             JPanel fReportPanel = new JPanel();
             JPanel info = new JPanel();
-            fReportPanel.setPreferredSize(new Dimension(200, 200));
+            fReportPanel.setPreferredSize(new Dimension(400, 200));
             //JLabel animalAge = new JLabel("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
             fReportPanel.setLayout(new BoxLayout(fReportPanel, BoxLayout.Y_AXIS));
             info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
@@ -225,33 +225,28 @@ public class ZooManager extends JFrame implements ActionListener
             String animalsFed2 = "AnimalsFed: "+ animalFeeder.getFeedingListSize();
             report.write("\n"+"\n"+animalsFed2);
             ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
-        
-
             for(int i=0; i<animalFeeder.getFeedingListSize();i++)
             {
                 Animal tempFedAnimal = animalFeeder.getAnimal(animalFeeder.getFeedingList().get(i).getCageID());
-                if(tempFedAnimal.getHealthStatus() == 0)
+                if(tempFedAnimal.getHungerStatus() > 5)
                 {
-                deadAnimals.add(tempFedAnimal);
+                    deadAnimals.add(tempFedAnimal);
                 }
             }
             JLabel okAnimals = new JLabel("OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size()));
             String okAnimals2 = "OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size());
             report.write("\n"+okAnimals2);
-
             JLabel deathAnimals = new JLabel("Deaths: "+ deadAnimals.size());
             String deathAnimals2 = "Deaths: "+ deadAnimals.size();
             report.write("\n"+deathAnimals2);
-
             info.add(date);
             info.add(animalsFed);
             info.add(okAnimals);
             info.add(deathAnimals);
             for(int i=0;i<deadAnimals.size(); i++)
             {
-                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+ " "+ animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID())+ " "+ animalFeeder.getFoodType(deadAnimals.get(i).getCageID());
+                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Hunger Status: "+ (deadAnimals.get(i).hungerStatus - animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID()))+" Food Amount: "+ animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID())+ " Food Type: "+ animalFeeder.getFoodType(deadAnimals.get(i).getCageID());
                 JLabel deadAnimalInfo = new JLabel(deadAnimalInfo2);
-                
                 report.write("\n"+"\n"+ deadAnimalInfo2);
                 info.add(deadAnimalInfo);
             }

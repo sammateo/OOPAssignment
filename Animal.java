@@ -110,12 +110,12 @@ public class Animal
         }
 
         // Record the animal as being dead and print the notification to the Zoo Keeper
-        if(this.hungerStatus>5 || this.hungerStatus <=0)
-        {
-            this.healthStatus = 0;
-            this.hungerStatus = 0;
-            // System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
-        }
+        // if(this.hungerStatus>5 || this.hungerStatus <=0)
+        // {
+        //     this.healthStatus = 0;
+        //     this.hungerStatus = 0;
+        //     // System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
+        // }
     }   //eatFood
 
     public void takeMedicine(int amount) 
@@ -131,13 +131,13 @@ public class Animal
         }
         
         // Record the animal as being dead and print the notification to the Zoo Keeper
-        if(this.healthStatus> 10 || this.healthStatus<=0)
-        {
-            this.healthStatus = 0;
-            this.hungerStatus = 0;
-            // System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
+        // if(this.healthStatus> 10 || this.healthStatus<=0)
+        // {
+        //     this.healthStatus = 0;
+        //     this.hungerStatus = 0;
+        //     // System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
 
-        }
+        // }
     }   //takeMedicine
 
     public void speak()

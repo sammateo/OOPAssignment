@@ -669,7 +669,6 @@ public class ZooManager extends JFrame implements ActionListener
                     nextButton.setEnabled(false);
                     printFeedingList.setEnabled(true);
                     feedButton.setEnabled(true);
-                    printFoodReport.setEnabled(true);
                     hayAmount.setEnabled(false);
                     fruitAmount.setEnabled(false);
                     grainAmount.setEnabled(false);
@@ -771,6 +770,7 @@ public class ZooManager extends JFrame implements ActionListener
                 foodReportPanel.revalidate();
                 foodReportPanel.repaint();
                 feedButton.setEnabled(false);
+                printFoodReport.setEnabled(true);
             }
             catch (Exception err) {
                 System.out.println(err.getMessage());

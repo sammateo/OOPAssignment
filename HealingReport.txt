@@ -1,0 +1,13 @@
+17 March 2022
+
+Animals Medicated: 12
+OK: 8
+Deaths: 4
+
+B-17 Tomas Tapir  Original Health Status: 10 Medicine Amount: 1 Medicine Type: Herbicine
+
+C-4 Yanni Yak  Original Health Status: 10 Medicine Amount: 1 Medicine Type: Herbicine
+
+C-22 Camille Camel  Original Health Status: 10 Medicine Amount: 1 Medicine Type: Herbicine
+
+D-11 Suri Harbour Seal  Original Health Status: 5 Medicine Amount: 10 Medicine Type: Carnicine

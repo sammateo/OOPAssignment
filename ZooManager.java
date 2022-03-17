@@ -41,57 +41,74 @@ public class ZooManager extends JFrame implements ActionListener
     private JTextField grainAmount;
     private JTextField fishAmount;     
     private JTextField meatAmount;
-    JTextField herbicineAmount;
-    JTextField omnicineAmount;
-    JTextField carnicineAmount;
-
+    private JTextField herbicineAmount;
+    private JTextField omnicineAmount;
+    private JTextField carnicineAmount;
     private boolean isFed;
-    private boolean isMedicated;     
+    private boolean isMedicated; 
+    private ImageIcon zooLogo;
+    private ZooKeeper zooKeeper;    
     public static void main(String[] args) throws IOException
     {
-        Welcome msg = new Welcome();
-        msg.displayWelcome();
-        if(msg.getZooKeeperName()==null||msg.getZooKeeperName().trim().isEmpty())
-        {
-            System.exit(0);
-            return;
-        }
         ZooManager zm = new ZooManager();
         
     }   //main
 
     public void displayAnimalPanel(int position) throws IOException
     {
+        // animalPanel.setAlignmentX(CENTER_ALIGNMENT);
         JPanel info = new JPanel();
-        info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+        info.setLayout(new GridLayout(6,2));
+        // info.setAlignmentX(CENTER_ALIGNMENT);
         JPanel nxtContainer = new JPanel();
         nxtContainer.setLayout(new FlowLayout());
         info.setPreferredSize(new Dimension(200, 200));
         // theZoo.readAnimals();
         int i = position;
+        JLabel animalIDLabel = new JLabel("Cage ID: " );
+        JLabel animalNameLabel = new JLabel("Name: ");
+        // JLabel animalAge = new JLabel();
+        JLabel animalSpeciesLabel = new JLabel("Species: ");
+        JLabel animalTypeLabel = new JLabel("Category: ");
+        JLabel animalHungerLabel = new JLabel("Hunger: ");
+        JLabel animalHealthLabel = new JLabel("Health: ");
+        
         JLabel animalID = new JLabel();
-        JLabel animalNameLabel = new JLabel();
+        JLabel animalName = new JLabel();
         // JLabel animalAge = new JLabel();
         JLabel animalSpecies = new JLabel();
         JLabel animalType = new JLabel();
         JLabel animalHunger = new JLabel();
         JLabel animalHealth = new JLabel();
         
-        animalID.setText("Cage ID: " + theZoo.getCages().get(i).getCageID());
-        animalNameLabel.setText("Name: "+theZoo.getCages().get(i).getName());
+        animalID.setText( theZoo.getCages().get(i).getCageID());
+        animalName.setText(theZoo.getCages().get(i).getName());
         // animalAge.setText("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
-        animalSpecies.setText("Species: "+theZoo.getCages().get(i).getSpecies());
-        animalType.setText("Category: "+theZoo.getCages().get(i).getCategory());
-        animalHunger.setText("Hunger: "+theZoo.getCages().get(i).getHungerStatus()+"/5");
-        animalHealth.setText("Health: "+theZoo.getCages().get(i).getHealthStatus()+"/10");
-        
+        animalSpecies.setText(theZoo.getCages().get(i).getSpecies());
+        animalType.setText(theZoo.getCages().get(i).getCategory());
+        animalHunger.setText(theZoo.getCages().get(i).getHungerStatus()+"/5");
+        animalHealth.setText(theZoo.getCages().get(i).getHealthStatus()+"/10");
+        if(theZoo.getCages().get(i).getHealthStatus()< 8)
+        {
+            animalHealth.setForeground(Color.RED);
+        }
+        else{
+            animalHealth.setForeground(Color.BLACK);
+        }
+        info.add(animalIDLabel);
         info.add(animalID);
         info.add(animalNameLabel); 
+        info.add(animalName); 
+        info.add(animalSpeciesLabel);
         info.add(animalSpecies);
+        info.add(animalTypeLabel);
         info.add(animalType);
+        info.add(animalHungerLabel);
         info.add(animalHunger);
+        info.add(animalHealthLabel);
         info.add(animalHealth);
         info.setBorder(BorderFactory.createTitledBorder("Animal"));
+        
         nxtContainer.add(nextButton);
 
         animalPanel.add(info);
@@ -154,10 +171,15 @@ public class ZooManager extends JFrame implements ActionListener
     public void displayWelcomePanel()
     {
         welcomePanel.setLayout(new BoxLayout(welcomePanel, BoxLayout.Y_AXIS));
-        JLabel welcomeMessage = new JLabel("Welcome to the Zoo Manager System");
+        JLabel welcomeMessage = new JLabel("Welcome to the Zoo Manager System "+ zooKeeper.getName());
+        welcomeMessage.setAlignmentX(CENTER_ALIGNMENT);
         welcomePanel.add(welcomeMessage);
-        JButton logo = new JButton("ZooKeeper 2.0 LOGO");
-        welcomePanel.add(logo);
+        JLabel zooIcon = new JLabel(new ImageIcon(zooLogo.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH)));
+                zooIcon.setAlignmentX(CENTER_ALIGNMENT);
+
+        welcomePanel.add(zooIcon);
+        // JButton logo = new JButton("ZooKeeper 2.0 LOGO");
+        // welcomePanel.add(logo);
     }
 
     public void displayFoodPanel()
@@ -407,7 +429,7 @@ public class ZooManager extends JFrame implements ActionListener
             for(int i=0; i<animalHealer.getHealingListSize();i++)
             {
                 Animal tempHealedAnimal = animalHealer.getAnimal(animalHealer.getHealingList().get(i).getCageID());
-                if(tempHealedAnimal.getHungerStatus() > 5)
+                if(tempHealedAnimal.getHealthStatus() > 10)
                 {
                     deadAnimals.add(tempHealedAnimal);
                 }
@@ -537,7 +559,15 @@ public class ZooManager extends JFrame implements ActionListener
     }
     public ZooManager() throws IOException
     {
-
+        Welcome msg = new Welcome();
+        msg.displayWelcome();
+        if(msg.getZooKeeperName()==null||msg.getZooKeeperName().trim().isEmpty())
+        {
+            System.exit(0);
+            return;
+        }
+        zooKeeper = new ZooKeeper();
+        zooKeeper.setName(msg.getZooKeeperName());
         theZoo = new Zoo(); //initializes the zoo object
         theZoo.readAnimals();   //reads animals from text file
         animalFeeder = new AnimalFeeder(theZoo.getCages()); //initializes animal feeder object with cages
@@ -548,6 +578,7 @@ public class ZooManager extends JFrame implements ActionListener
         setSize(1080,720);
         setTitle("The Cave Hill Zoo Manager System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        zooLogo = new ImageIcon("Cave Hill Zoo.png");
         nextButton = new JButton("Next ->");
         printFeedingList = new JButton("Print List");
         printMedicineList = new JButton("Print List");
@@ -562,8 +593,6 @@ public class ZooManager extends JFrame implements ActionListener
         healButton = new JButton("Heal");
         printMedicineList.setEnabled(false);
         healButton.setEnabled(false);
-        westPanel = new JPanel();
-        westPanel.setLayout(new BoxLayout(westPanel, BoxLayout.Y_AXIS));
         welcomePanel = new JPanel();
         animalPanel = new JPanel();
         foodPanel = new JPanel();
@@ -585,18 +614,9 @@ public class ZooManager extends JFrame implements ActionListener
         foodButtonSwitch();
         addFoodButton.setEnabled(false);
         addMedicineButton.setEnabled(false);
-        // foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS)); 
-        // animalPanel.setBorder(BorderFactory.createTitledBorder("Animal"));
-        // animalPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         animalPanel.setLayout(new BoxLayout(animalPanel, BoxLayout.Y_AXIS));
         cagePosition = 0;
-        // hayAmount.addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         System.out.println(hayAmount.getText());
-        //     }
-        // });
-
-    
         hayAmount.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 try 
@@ -908,7 +928,10 @@ public class ZooManager extends JFrame implements ActionListener
         addMedicineButton.addActionListener(this);
 
         if(theZoo.getCages().size() > 0 )
-            displayAnimalPanel(0);
+        {
+            // do something is zoo is empty
+        }
+        displayAnimalPanel(0);
         displayWelcomePanel();
         displayFoodPanel();
         displayFeedReportPanel();

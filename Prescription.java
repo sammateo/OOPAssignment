@@ -9,32 +9,32 @@ public class Prescription {
         medType = null;
         unitsOfMed = 0;
     }//Prescription constructor
-    public void setcageID(String x)
+    public void setCageID(String x)
     {
         cageID = x;
     }//setcageID
 
-    public String getcageID()
+    public String getCageID()
     {
         return cageID;
     }//getcageID
 
-    public void setmedType(String x)
+    public void setMedType(String x)
     {
         medType = x;
     }//setmedType
 
-    public String getmedType()
+    public String getMedType()
     {
         return medType;
     }//getmedType
 
-    public void setUnits_med(int x)
+    public void setUnitsOfMed(int x)
     {
         unitsOfMed = x;
     }//setUnits_med
 
-    public int getUnits_med()
+    public int getUnitsOfMed()
     {
         return unitsOfMed;
     }//getUnits_med

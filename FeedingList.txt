@@ -1,0 +1,36 @@
+Feeding List - 17 March 2022
+
+(A) African Savanna
+Gary Giraffe  1 Hay
+Zoe Zebra  1 Hay
+Henry Hyena  1 Fish
+
+Food Summary
+2 Hay
+1 Fish
+
+(B) Amazonian Jungle
+Oliver Ocelot  1 Fish
+Sally Saddleback Tamarin  1 Fish
+Tomas Tapir  1 Hay
+
+Food Summary
+1 Hay
+2 Fish
+
+(C) Eurasian Wild
+Yanni Yak  1 Hay
+Camille Camel  1 Hay
+Fedora Red Fox  1 Hay
+
+Food Summary
+3 Hay
+
+(D) Frozen Tundra
+Anton Artic Fox  1 Hay
+Mikail Musk Ox  1 Hay
+Suri Harbour Seal  1 Fish
+
+Food Summary
+2 Hay
+1 Fish

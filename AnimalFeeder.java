@@ -99,7 +99,6 @@ public class AnimalFeeder
                         report.write("\n"+foodSummary[x]+" "+ foodType[x]);
                     }
             }
-           
         }
             report.close();
             // System.out.println("Report Printed");
@@ -108,7 +107,6 @@ public class AnimalFeeder
         {
             System.out.println("Error");
         }//end catch
-       
     }//printFeedingList
 
     public void simFeeding()

@@ -108,7 +108,27 @@ public class ZooManager extends JFrame implements ActionListener
         info.add(animalHealthLabel);
         info.add(animalHealth);
         info.setBorder(BorderFactory.createTitledBorder("Animal"));
-        
+        ImageIcon zoneImage;
+        String imgPath = "";
+        if(theZoo.getCages().get(i).getCageID().split("-")[0].equals("A"))
+        {
+            imgPath = "iconZoneA-savannah.png";
+        }
+        if(theZoo.getCages().get(i).getCageID().split("-")[0].equals("B"))
+        {
+            imgPath = "iconZoneB-amazonia.png";
+        }
+        if(theZoo.getCages().get(i).getCageID().split("-")[0].equals("C"))
+        {
+            imgPath = "iconZoneC-eurasia.png";
+        }
+        if(theZoo.getCages().get(i).getCageID().split("-")[0].equals("D"))
+        {
+            imgPath = "iconZoneD-tundra.png";
+        }
+        zoneImage = new ImageIcon(imgPath);
+        JLabel zoneIcon = new JLabel(new ImageIcon(zoneImage.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+        nxtContainer.add(zoneIcon);
         nxtContainer.add(nextButton);
 
         animalPanel.add(info);

@@ -16,6 +16,12 @@ public class AnimalHealer {
         this.cages = cages;
     }//AnimalHealer constructor
 
+    public void addPrescription()
+    {
+        Prescription newPrescription = new Prescription();
+        healingList.add(newPrescription);
+    }//addPrescription
+    
     public void addPrescription(String cageID,String medType, int unitsOfMed)
     {
         Prescription newPrescription = new Prescription();

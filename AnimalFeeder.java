@@ -15,6 +15,11 @@ public class AnimalFeeder
         this.cages = cages;
     }//AnimalFeeder
 
+    public void addMeal()
+    {
+        Meal newMeal = new Meal();
+        feedingList.add(newMeal);
+    }//addMeal
     public void addMeal(String cageID,String foodType, int foodAmt)
     {
         Meal newMeal = new Meal();

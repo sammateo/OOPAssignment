@@ -649,6 +649,7 @@ public class ZooManager extends JFrame implements ActionListener
                 } catch (Exception err) {
                     foodFieldManager();
                     addFoodButton.setEnabled(false);
+                    hayAmount.setText("0");
                     System.out.println(err.getMessage());
                 }
                 
@@ -686,6 +687,7 @@ public class ZooManager extends JFrame implements ActionListener
                 // System.out.println(fruitAmount.getText());
                 } catch (Exception err) {
                     foodFieldManager();
+                    fruitAmount.setText("0");
                     addFoodButton.setEnabled(false);
                     // System.out.println(err.getMessage());
                 }
@@ -725,6 +727,7 @@ public class ZooManager extends JFrame implements ActionListener
                 // System.out.println(grainAmount.getText());
                 } catch (Exception err) {
                     foodFieldManager();
+                    grainAmount.setText("0");
                     addFoodButton.setEnabled(false);
                     System.out.println(err.getMessage());
                 }
@@ -764,6 +767,7 @@ public class ZooManager extends JFrame implements ActionListener
                 // System.out.println(fishAmount.getText());
                 } catch (Exception err) {
                     foodFieldManager();
+                    fishAmount.setText("0");
                     addFoodButton.setEnabled(false);
                     System.out.println(err.getMessage());
                 }
@@ -802,6 +806,7 @@ public class ZooManager extends JFrame implements ActionListener
                 System.out.println(meatAmount.getText());
                 } catch (Exception err) {
                     foodFieldManager();
+                    meatAmount.setText("0");
                     addFoodButton.setEnabled(false);
                     // System.out.println(err.getMessage());
                 }
@@ -838,6 +843,7 @@ public class ZooManager extends JFrame implements ActionListener
                 // System.out.println(hayAmount.getText());
                 } catch (Exception err) {
                     medicineFieldManager();
+                    herbicineAmount.setText("0");
                     addMedicineButton.setEnabled(false);
                     System.out.println(err.getMessage());
                 }
@@ -874,6 +880,7 @@ public class ZooManager extends JFrame implements ActionListener
                 // System.out.println(hayAmount.getText());
                 } catch (Exception err) {
                     medicineFieldManager();
+                    omnicineAmount.setText("0");
                     addMedicineButton.setEnabled(false);
                     System.out.println(err.getMessage());
                 }
@@ -910,6 +917,7 @@ public class ZooManager extends JFrame implements ActionListener
                 // System.out.println(hayAmount.getText());
                 } catch (Exception err) {
                     medicineFieldManager();
+                    carnicineAmount.setText("0");
                     addMedicineButton.setEnabled(false);
                     System.out.println(err.getMessage());
                 }
@@ -964,37 +972,35 @@ public class ZooManager extends JFrame implements ActionListener
                 cagePosition++;
                 if(cagePosition < theZoo.getCages().size())
                 {
-                    try 
+                    printFeedingList.setEnabled(false);
+                    feedButton.setEnabled(false);
+                    isFed=false;
+                    isMedicated = false;
+                    if(theZoo.getCages().get(cagePosition).getHungerStatus()>=5)
                     {
-                        printFeedingList.setEnabled(false);
-                        feedButton.setEnabled(false);
-                        isFed=false;
-                        isMedicated = false;
-                        foodButtonSwitch();
-                        addFoodButton.setEnabled(false);
-                        addMedicineButton.setEnabled(false);
-                        printFoodReport.setEnabled(false);
-                        printMedReport.setEnabled(false);
-                        animalPanel.removeAll();
-                        animalPanel.revalidate();
-                        animalPanel.repaint();
-                        displayAnimalPanel(cagePosition);
-                        foodPanel.removeAll();
-                        foodPanel.revalidate();
-                        foodPanel.repaint();
-                        displayFoodPanel();
-                        
-                        medicinePanel.removeAll();
-                        medicinePanel.revalidate();
-                        medicinePanel.repaint();
-                        displayMedicinePanel();
-
-                        // System.out.println(cagePosition);
-                    } catch (IOException e1) 
-                    {
-                        // e1.printStackTrace();
-                        System.out.println("Error: "+ e1);
+                        isFed = true;
                     }
+                    if(theZoo.getCages().get(cagePosition).getHealthStatus()>=10)
+                    {
+                        isMedicated = true;
+                    }
+                    foodButtonSwitch();
+                    addFoodButton.setEnabled(false);
+                    addMedicineButton.setEnabled(false);
+                    printFoodReport.setEnabled(false);
+                    printMedReport.setEnabled(false);
+                    animalPanel.removeAll();
+                    animalPanel.revalidate();
+                    animalPanel.repaint();
+                    displayAnimalPanel(cagePosition);
+                    foodPanel.removeAll();
+                    foodPanel.revalidate();
+                    foodPanel.repaint();
+                    displayFoodPanel();
+                    medicinePanel.removeAll();
+                    medicinePanel.revalidate();
+                    medicinePanel.repaint();
+                    displayMedicinePanel();
                 }
                 else
                 {
@@ -1013,6 +1019,7 @@ public class ZooManager extends JFrame implements ActionListener
                     healButton.setEnabled(true);
                 }
             } catch (Exception err) {
+                System.out.println(err.getMessage());
             }
         }
 

@@ -38,14 +38,28 @@ public class Zoo
             tempAnimal.setHungerStatus(Integer.parseInt(animalArray[4]));
             tempAnimal.setHealthStatus(Integer.parseInt(animalArray[5]));
             tempAnimal.setCategory(animalArray[6]);
-            // for(int x = 0;x<cages.size();x++)
-            // {
-            //     if(cages.get(x).getName().equals(animalArray[1]) && cages.get(x).getSpecies().equals(species))
-            //     {
-            //         String newName = JOptionPane.showInputDialog(null, "Welcome to the Cave Hill Zoo Manager System \nEnter your name","Welcome", JOptionPane.INFORMATION_MESSAGE);
+            int sameName;
+            String newName = animalArray[1];
+            do{
+                sameName = 0;
+                for(int x = 0;x<cages.size();x++)
+                {
 
-            //     }
-            // }
+                    if(cages.get(x).getName().equals(newName) && cages.get(x).getSpecies().equals(species))
+                    {
+                        sameName++;
+                        newName= JOptionPane.showInputDialog(null, "An animal of the species "+species+ " with the name " + animalArray[1] + " already exists.\nEnter another name","Rename animal", JOptionPane.INFORMATION_MESSAGE);
+                        while (newName == null ||newName.trim().isEmpty())
+                        {
+                            JOptionPane.showMessageDialog(null, "The name you entered is invalid");
+                            newName = JOptionPane.showInputDialog(null, "Enter a new name");
+                            
+                        }
+                        tempAnimal.setName(newName);
+                    }
+                }
+            } while(sameName!=0);
+            
             cages.add(tempAnimal);
         } //while
 

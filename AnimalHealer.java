@@ -128,7 +128,7 @@ public class AnimalHealer {
             } catch (OverdosingException e) {
                 //TODO: handle exception
                 System.out.println(e);
-                System.out.println(e.getMessage());
+                // System.out.println(e.getMessage());
             }
         }
     }//simHealing

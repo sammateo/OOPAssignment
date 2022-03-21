@@ -126,7 +126,7 @@ public class AnimalFeeder
             } catch (OverFeedingException e) {
                 //TODO: handle exception
                 System.out.println(e);
-                System.out.println(e.getMessage());
+                // System.out.println(e.getMessage());
             }
             
         }

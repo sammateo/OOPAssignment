@@ -3,30 +3,32 @@ Feeding List - 21 March 2022
 (A) African Savanna
 Gary Giraffe  1 Hay
 Zoe Zebra  1 Hay
-Henry Hyena  4 Fish
+Henry Hyena  1 Fish
+Henri Hyena  1 Fish
 
 Food Summary
 2 Hay
-4 Fish
+2 Fish
 
 (B) Amazonian Jungle
+Jeff Giraffe  1 Hay
 Tomas Tapir  2 Hay
 
 Food Summary
-2 Hay
+3 Hay
 
 (C) Eurasian Wild
-Yanni Yak  2 Hay
+Yanni Yak  3 Hay
 Fedora Red Fox  1 Hay
 
 Food Summary
-3 Hay
+4 Hay
 
 (D) Frozen Tundra
 Anton Artic Fox  2 Hay
-Mikail Musk Ox  1 Hay
-Suri Harbour Seal  1 Fish
+Mikail Musk Ox  2 Hay
+Suri Harbour Seal  3 Fish
 
 Food Summary
-3 Hay
-1 Fish
+4 Hay
+3 Fish

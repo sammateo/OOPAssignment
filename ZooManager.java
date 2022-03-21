@@ -390,86 +390,14 @@ public class ZooManager extends JFrame implements ActionListener
 
     public void printFReport()
     {
-        try
-        {
-            FileWriter report = new FileWriter("FeedingReport.txt");
-            String date2 = getDate();
-            report.write(date2);
-
-            String animalsFed2 = "AnimalsFed: "+ animalFeeder.getFeedingListSize();
-            report.write("\n"+"\n"+animalsFed2);
-
-            ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
-            for(int i=0; i<animalFeeder.getFeedingListSize();i++)
-            {
-                Animal tempFedAnimal = animalFeeder.getAnimal(animalFeeder.getFeedingList().get(i).getCageID());
-                if(tempFedAnimal.getHungerStatus() > 5)
-                {
-                    deadAnimals.add(tempFedAnimal);
-                }
-            }
-
-            String okAnimals2 = "OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size());
-            report.write("\n"+okAnimals2);
-
-            String deathAnimals2 = "Deaths: "+ deadAnimals.size();
-            report.write("\n"+deathAnimals2);
-
-            for(int i=0;i<deadAnimals.size(); i++)
-            {
-                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Hunger Status: "+ (deadAnimals.get(i).hungerStatus - animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID()))+" Food Amount: "+ animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID())+ " Food Type: "+ animalFeeder.getFoodType(deadAnimals.get(i).getCageID());
-                report.write("\n"+"\n"+ deadAnimalInfo2); 
-            }
-            System.out.println("Report Printed");
-            report.close();
-
-        }
-        catch(IOException e)
-        {
-            System.out.println("Error");
-        }
+        theZoo.setAnimalFeeder(animalFeeder);
+        theZoo.printHungerReport();
     }
 
     public void printMReport()
     {
-        try
-        {
-            FileWriter report = new FileWriter("HealingReport.txt");
-            String date2 = getDate();
-            report.write(date2);
-
-            String animalsHealed2 = "Animals Medicated: "+ animalHealer.getHealingListSize();
-            report.write("\n"+"\n"+animalsHealed2);
-
-            ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
-            for(int i=0; i<animalHealer.getHealingListSize();i++)
-            {
-                Animal tempHealedAnimal = animalHealer.getAnimal(animalHealer.getHealingList().get(i).getCageID());
-                if(tempHealedAnimal.getHealthStatus() > 10)
-                {
-                    deadAnimals.add(tempHealedAnimal);
-                }
-            }
-
-            String okAnimals2 = "OK: "+(animalHealer.getHealingListSize() - deadAnimals.size());
-            report.write("\n"+okAnimals2);
-
-            String deathAnimals2 = "Deaths: "+ deadAnimals.size();
-            report.write("\n"+deathAnimals2);
-
-            for(int i=0;i<deadAnimals.size(); i++)
-            {
-                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Health Status: "+ (deadAnimals.get(i).healthStatus - animalHealer.getUnitsOfMed(deadAnimals.get(i).getCageID()))+" Medicine Amount: "+ animalHealer.getUnitsOfMed(deadAnimals.get(i).getCageID())+ " Medicine Type: "+ animalHealer.getMedType(deadAnimals.get(i).getCageID());
-                report.write("\n"+"\n"+ deadAnimalInfo2); 
-            }
-            System.out.println("Report Printed");
-            report.close();
-
-        }
-        catch(IOException e)
-        {
-            System.out.println("Error");
-        }
+        theZoo.setAnimalHealer(animalHealer);
+        theZoo.printHealthReport();
     }
     public void displayMedReportPanel()
     {

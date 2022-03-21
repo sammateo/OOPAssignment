@@ -1,11 +1,13 @@
-17 March 2022
+21 March 2022
 
-AnimalsFed: 12
-OK: 9
-Deaths: 3
+AnimalsFed: 11
+OK: 7
+Deaths: 4
 
-B-1 Oliver Ocelot  Original Hunger Status: 5 Food Amount: 1 Food Type: Fish
+A-19 Henry Hyena  Original Hunger Status: 2 Food Amount: 4 Food Type: Fish
 
-B-6 Sally Saddleback Tamarin  Original Hunger Status: 5 Food Amount: 1 Food Type: Fish
+A-25 Henri Hyena  Original Hunger Status: 2 Food Amount: 7 Food Type: Fish
 
-C-22 Camille Camel  Original Hunger Status: 5 Food Amount: 1 Food Type: Hay
+C-4 Yanni Yak  Original Hunger Status: 2 Food Amount: 6 Food Type: Hay
+
+D-2 Anton Artic Fox  Original Hunger Status: 3 Food Amount: 3 Food Type: Hay

@@ -2,14 +2,18 @@
 // 400006967 and 400007056
 import java.util.ArrayList;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Zoo 
 {
     private ArrayList<Animal> cages;    //holds an array list of the animals in the zoo
-
+    private AnimalFeeder animalFeeder;
+    private AnimalHealer animalHealer;
     public Zoo()
     {
         cages = new ArrayList<Animal>();
@@ -118,26 +122,105 @@ public class Zoo
             }
         }
     }   //removeAnimal
-
+    public String getDate()
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM");
+        String month = sdf.format(new Date());
+        sdf = new SimpleDateFormat("dd");
+        String day = sdf.format(new Date());
+        sdf = new SimpleDateFormat("yyyy");
+        String year = sdf.format(new Date());
+        return(day+ " "+ month+" "+ year);
+    }   //getDate
+    public void setAnimalFeeder(AnimalFeeder newFeeder)
+    {
+        animalFeeder = newFeeder;
+    }   //setAnimalFeeder
+    public void setAnimalHealer(AnimalHealer newHealer)
+    {
+        animalHealer = newHealer;
+    }   //setAnimalHealer
     public void printHungerReport()
     {
-        if(cages.size() == 0)
+        try
         {
-            System.out.println("No animals present");
-            return;
-        }
-        for(int i = 0; i < cages.size(); i++)
-        {
-            System.out.println("Animal # " +(i+1)+"/"+cages.size()); //Displays the position of the animal in the list of animals
-            System.out.println("Name: "+cages.get(i).getName()); //Uses the getName method from the Animal class
-            System.out.println("Species: "+cages.get(i).getSpecies()); //Uses the getSpecies method from the Animal class
-            System.out.println("Hunger Status: "+cages.get(i).getHungerStatus()); //Uses the getHungerStatus method from the Animal class
-        }
+            FileWriter report = new FileWriter("FeedingReport.txt");
+            String date2 = getDate();
+            report.write(date2);
 
+            String animalsFed2 = "AnimalsFed: "+ animalFeeder.getFeedingListSize();
+            report.write("\n"+"\n"+animalsFed2);
+
+            ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
+            for(int i=0; i<animalFeeder.getFeedingListSize();i++)
+            {
+                Animal tempFedAnimal = animalFeeder.getAnimal(animalFeeder.getFeedingList().get(i).getCageID());
+                if(tempFedAnimal.getHungerStatus() > 5)
+                {
+                    deadAnimals.add(tempFedAnimal);
+                }
+            }
+
+            String okAnimals2 = "OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size());
+            report.write("\n"+okAnimals2);
+
+            String deathAnimals2 = "Deaths: "+ deadAnimals.size();
+            report.write("\n"+deathAnimals2);
+
+            for(int i=0;i<deadAnimals.size(); i++)
+            {
+                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Hunger Status: "+ (deadAnimals.get(i).hungerStatus - animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID()))+" Food Amount: "+ animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID())+ " Food Type: "+ animalFeeder.getFoodType(deadAnimals.get(i).getCageID());
+                report.write("\n"+"\n"+ deadAnimalInfo2); 
+            }
+            System.out.println("Report Printed");
+            report.close();
+
+        }
+        catch(IOException e)
+        {
+            System.out.println("Error");
+        }
     }   //printHungerReport
 
     public void printHealthReport()
     {
+        try
+        {
+            FileWriter report = new FileWriter("HealingReport.txt");
+            String date2 = getDate();
+            report.write(date2);
 
+            String animalsHealed2 = "Animals Medicated: "+ animalHealer.getHealingListSize();
+            report.write("\n"+"\n"+animalsHealed2);
+
+            ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
+            for(int i=0; i<animalHealer.getHealingListSize();i++)
+            {
+                Animal tempHealedAnimal = animalHealer.getAnimal(animalHealer.getHealingList().get(i).getCageID());
+                if(tempHealedAnimal.getHealthStatus() > 10)
+                {
+                    deadAnimals.add(tempHealedAnimal);
+                }
+            }
+
+            String okAnimals2 = "OK: "+(animalHealer.getHealingListSize() - deadAnimals.size());
+            report.write("\n"+okAnimals2);
+
+            String deathAnimals2 = "Deaths: "+ deadAnimals.size();
+            report.write("\n"+deathAnimals2);
+
+            for(int i=0;i<deadAnimals.size(); i++)
+            {
+                String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Health Status: "+ (deadAnimals.get(i).healthStatus - animalHealer.getUnitsOfMed(deadAnimals.get(i).getCageID()))+" Medicine Amount: "+ animalHealer.getUnitsOfMed(deadAnimals.get(i).getCageID())+ " Medicine Type: "+ animalHealer.getMedType(deadAnimals.get(i).getCageID());
+                report.write("\n"+"\n"+ deadAnimalInfo2); 
+            }
+            System.out.println("Report Printed");
+            report.close();
+
+        }
+        catch(IOException e)
+        {
+            System.out.println("Error");
+        }
     }   //printHealthReport
 }   //Zoo

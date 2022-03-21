@@ -1,5 +1,5 @@
-// Mateo Sam
-// 400006967
+// Mateo Sam and Robali Sewitt
+// 400006967 and 400007056
 import java.util.Random;
 
 public class Animal
@@ -13,7 +13,7 @@ public class Animal
     protected final String defaultString = null;  //holds the default string value
     protected final int defaultInt = 0;   //holds the default integer value
     protected Random generator;   //holds the random generator
-    protected String category;
+    protected String category;//holds the type of animal, for eg. Carnivore
     protected String cageID;
 
 
@@ -30,10 +30,10 @@ public class Animal
 
     public String getCauseOfDeath() {
         return causeOfDeath;
-    }
+    }//getCauseOfDeath
     public void setCauseOfDeath(String causeOfDeath) {
         this.causeOfDeath = causeOfDeath;
-    }
+    }//setCauseOfDeath
     public void setSpecies(String species) 
     {
         this.species = species;
@@ -83,18 +83,18 @@ public class Animal
 
     public void setCageID(String cageID) {
         this.cageID = cageID;
-    }
+    }//setCageID
     public String getCageID() {
         return cageID;
-    }
+    }//getCageID
 
     public void setCategory(String category) {
         this.category = category;
-    }
+    }//setCategory
 
     public String getCategory() {
         return category;
-    }
+    }//getCategory
 
     public void eatFood(int amount) throws OverFeedingException
     {
@@ -111,13 +111,6 @@ public class Animal
             this.causeOfDeath = "Starvation";
         }
 
-        // Record the animal as being dead and print the notification to the Zoo Keeper
-        // if(this.hungerStatus>5 || this.hungerStatus <=0)
-        // {
-        //     this.healthStatus = 0;
-        //     this.hungerStatus = 0;
-        //     // System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
-        // }
     }   //eatFood
 
     public void takeMedicine(int amount) throws OverdosingException
@@ -132,15 +125,6 @@ public class Animal
         {
             this.causeOfDeath = "Died of under medication";
         }
-        
-        // Record the animal as being dead and print the notification to the Zoo Keeper
-        // if(this.healthStatus> 10 || this.healthStatus<=0)
-        // {
-        //     this.healthStatus = 0;
-        //     this.hungerStatus = 0;
-        //     // System.out.println("The " + this.species+" named "+ this.name+" has died of "+ this.causeOfDeath);
-
-        // }
     }   //takeMedicine
 
     public void speak()
@@ -148,22 +132,4 @@ public class Animal
         System.out.println("make noise");
     }   //speak
 
-    public void showAnimal()
-    {
-        System.out.println("Cage ID: "+ cageID);
-        System.out.println("Category: "+ category);
-        System.out.println("Species: "+species);
-        System.out.println("Name: "+name);
-        System.out.println("Age: "+age);
-        System.out.println("Hunger Status: "+hungerStatus);
-        System.out.println("Health Status: "+healthStatus);
-        // Displays The Cause of Death of the animal if it is dead
-        if(this.healthStatus == 0)
-        {
-            System.out.println("This animal is dead");
-            System.out.println("Cause of death: "+this.causeOfDeath);
-        }
-        System.out.println("---------------------------------");
-
-    }   //showAnimal
 }   //Animal

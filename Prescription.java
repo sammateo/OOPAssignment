@@ -1,3 +1,6 @@
+// Mateo Sam and Robali Sewitt
+// 400006967 and 400007056
+
 public class Prescription {
     private String cageID;
     private String medType;

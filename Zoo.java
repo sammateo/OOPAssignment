@@ -1,5 +1,5 @@
-// Mateo Sam
-// 400006967
+// Mateo Sam and Robali Sewitt
+// 400006967 and 400007056
 import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
@@ -40,6 +40,8 @@ public class Zoo
             tempAnimal.setCategory(animalArray[6]);
             int sameName;
             String newName = animalArray[1];
+
+            //This loop checks to make sure that if two animals with the same name exist, that it notifies the user and enables them to set a new name
             do{
                 sameName = 0;
                 for(int x = 0;x<cages.size();x++)
@@ -63,7 +65,7 @@ public class Zoo
             cages.add(tempAnimal);
         } //while
 
-    }
+    }//readAnimals
 
     public void setCages(ArrayList<Animal> cages) 
     {
@@ -90,7 +92,6 @@ public class Zoo
         for(int i = 0; i < cages.size(); i++)
         {
             System.out.println("Animal # " +(i+1)+"/"+cages.size()); //Displays the position of the animal in the list of animals
-            cages.get(i).showAnimal(); //Uses the showAnimal method from the Animal class
         }
     }   //showAnimal
 

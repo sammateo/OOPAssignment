@@ -1,3 +1,6 @@
+// Mateo Sam and Robali Sewitt
+// 400006967 and 400007056
+
 import javax.swing.*;
 public class Welcome
 {
@@ -5,23 +8,21 @@ public class Welcome
     private JFrame welcomeFrame;
     public Welcome() 
     {
-        
-        // welcomeMessage = new JLabel("Welcome to the Zoo Manager System");
         zooKeeperName = null;
-        // welcomeFrame = new JFrame();
-        
-        // panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     }//Welcome constructor
 
     public void displayWelcome()
     {
         
-        // welcomeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         zooKeeperName = JOptionPane.showInputDialog(null, "Welcome to the Cave Hill Zoo Manager System \nEnter your name","Welcome", JOptionPane.INFORMATION_MESSAGE);
+
+       //Exits the program if the cancel button is clicked
         if(zooKeeperName==null)
         {
             return;
         }
+
+        //Checks to see if a name is entered in the text field
         while (zooKeeperName.trim().isEmpty())
         {
             JOptionPane.showMessageDialog(welcomeFrame, "The amount you entered is invalid");
@@ -36,5 +37,5 @@ public class Welcome
 
     public String getZooKeeperName() {
         return zooKeeperName;
-    }
+    }//getZooKeeperName
 }//Welcome

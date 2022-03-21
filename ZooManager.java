@@ -1,22 +1,18 @@
-// Mateo Sam
-// 400006967
+// Mateo Sam and Robali Sewitt
+// 400006967 and 400007056
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-// import java.util.Scanner;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 import java.io.FileWriter;
-import javax.swing.border.TitledBorder;
-
 
 public class ZooManager extends JFrame implements ActionListener
 {   
     private AnimalFeeder animalFeeder;
     private AnimalHealer animalHealer;
-    private JPanel westPanel;
     private JPanel animalPanel;
     private JPanel welcomePanel;
     private JPanel foodPanel;
@@ -1255,5 +1251,5 @@ public class ZooManager extends JFrame implements ActionListener
         int x = (dim.width - w) / 2;
         int y = (dim.height - h) / 2;
         setLocation(x, y);
-    }
+    }//centerFrame
 }   //ZooManager

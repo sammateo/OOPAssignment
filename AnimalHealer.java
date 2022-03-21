@@ -1,5 +1,7 @@
+// Mateo Sam and Robali Sewitt
+// 400006967 and 400007056
+
 import java.util.ArrayList;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -7,9 +9,9 @@ import java.util.Date;
 
 
 public class AnimalHealer {
-    private ArrayList<Prescription> healingList;
-    private ArrayList<Animal> cages;
-    private Prescription aPrescription;
+    private ArrayList<Prescription> healingList; //holds an array list of the animals in the zoo
+    private ArrayList<Animal> cages;//holds an array list of the animals in the zoo
+    private Prescription aPrescription;//Holds a new meal to be added to the HealingList
     public AnimalHealer(ArrayList<Animal> cages)
     {
         healingList = new ArrayList<Prescription>();
@@ -18,7 +20,7 @@ public class AnimalHealer {
 
     public void addPrescription()
     {
-        // Prescription newPrescription = new Prescription();
+     
         healingList.add(aPrescription);
     }//addPrescription
     
@@ -28,26 +30,29 @@ public class AnimalHealer {
         aPrescription.setCageID(cageID);
         aPrescription.setUnitsOfMed(unitsOfMed);	
         aPrescription.setMedType(medType);
-        // healingList.add(aPrescription);
     }//addPrescription
 
+    //This function puts together and writes the contents of the healing list to a text file
     public void printHealingList()
     {
         try{
             FileWriter report = new FileWriter("HealingList.txt");
-            SimpleDateFormat sdf = new SimpleDateFormat("MMMM");
+            SimpleDateFormat sdf = new SimpleDateFormat("MMMM");//Gets the present date
             String month = sdf.format(new Date());
             sdf = new SimpleDateFormat("dd");
             String day = sdf.format(new Date());
             sdf = new SimpleDateFormat("yyyy");
             String year = sdf.format(new Date());
             report.write("Healing List - "+ day+ " " + month+ " "+ year);
+
+            //ArrayLists of prescription to store prescriptions by the different zones
             ArrayList<Prescription> aPrescriptions = new ArrayList<Prescription>();
             ArrayList<Prescription> bPrescriptions = new ArrayList<Prescription>();
             ArrayList<Prescription> cPrescriptions = new ArrayList<Prescription>();
             ArrayList<Prescription> dPrescriptions = new ArrayList<Prescription>();
-            ArrayList<ArrayList<Prescription>> totalPrescriptions = new ArrayList<ArrayList<Prescription>>();
-        // Organize the Feeding List by Zone
+            ArrayList<ArrayList<Prescription>> totalPrescriptions = new ArrayList<ArrayList<Prescription>>();//This ArrayList stores the contents of each ArrayList by their respective zones
+
+        // Organize the Healing List by Zone
         for(int i = 0; i <healingList.size(); i++)
         {
             String[] cageLetter = healingList.get(i).getCageID().split("-");
@@ -79,7 +84,6 @@ public class AnimalHealer {
         String[] medType = {"Herbicine", "Omnicine", "Carnicine"};
         for(int i = 0; i< totalPrescriptions.size(); i++)
         {
-            //System.out.println(zoneLabels[i]);
             report.write("\n"+"\n"+zoneLabels[i]);
             if(totalPrescriptions.get(i).size() == 0)
             {
@@ -88,8 +92,9 @@ public class AnimalHealer {
             for(int j = 0; j< totalPrescriptions.get(i).size();j++)
             {
                 Animal tempAnimal = getAnimal(totalPrescriptions.get(i).get(j).getCageID());
-                //System.out.println(tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" "+totalPrescriptions.get(i).get(j).getFoodAmt() + " "+totalPrescriptions.get(i).get(j).getFoodType() );
                 report.write("\n"+tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" (health: "+tempAnimal.getHealthStatus()+") needs "+totalPrescriptions.get(i).get(j).getUnitsOfMed() + " units of "+totalPrescriptions.get(i).get(j).getMedType());
+
+                //Populates the heal summary array with the amount of medicine added
                 for(int z = 0; z< medType.length; z++)
                 {
                     if(totalPrescriptions.get(i).get(j).getMedType().equalsIgnoreCase(medType[z]))
@@ -98,10 +103,13 @@ public class AnimalHealer {
                     }
                 }
             }
-            //System.out.println("Food Summary");
+            
             
         }
+
         int totalMedicine = 0;
+
+         //Writing the information of the Heal summary to the text file
         for(int x = 0; x < medSummary.length;x++)
             {
                 totalMedicine+=medSummary[x];
@@ -109,7 +117,7 @@ public class AnimalHealer {
         report.write("\n"+"\n" + "Summary of Medicine: "+ totalMedicine+ " units");
             
             report.close();
-            // System.out.println("Report Printed");
+        
         }//end try
         catch(IOException e)
         {
@@ -117,6 +125,7 @@ public class AnimalHealer {
         }//end catch
     }//printHealingList
 
+    //this function heals every animal in the healing list 
     public void simHealing()
     {
         for(int i = 0; i <healingList.size(); i++)
@@ -126,13 +135,12 @@ public class AnimalHealer {
                 tempAnimal.takeMedicine(healingList.get(i).getUnitsOfMed());
 
             } catch (OverdosingException e) {
-                //TODO: handle exception
                 System.out.println(e);
-                // System.out.println(e.getMessage());
             }
         }
     }//simHealing
 
+    //This function returns the animal at the corresponding cage ID
     public Animal getAnimal(String cageID)
     {   
         for(int i = 0; i < cages.size(); i++)
@@ -145,6 +153,7 @@ public class AnimalHealer {
         return null;
     }   //getAnimal
 
+    //This function returns the medicine type for the corresponding cage ID
     public String getMedType(String cageID)
     {
         for(int i = 0; i < healingList.size(); i++)
@@ -157,6 +166,7 @@ public class AnimalHealer {
         return null;
     }   //getFoodType
 
+    //This function returns the amount of the medicine type entered to the cage ID
     public int getUnitsOfMed(String cageID)
     {
         for(int i = 0; i < healingList.size(); i++)
@@ -171,11 +181,14 @@ public class AnimalHealer {
 
     public ArrayList<Prescription> getHealingList() {
         return healingList;
-    }
+    }//getHealingList
+
     public int getHealingListSize() {
         return healingList.size();
-    }
+    }//getHealingListSize
+
     public void setHealingList(ArrayList<Prescription> healingList) {
         this.healingList = healingList;
-    }
+    }//setHealingList
+
 }//class AnimalHealer

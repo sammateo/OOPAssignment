@@ -1102,7 +1102,8 @@ public class ZooManager extends JFrame implements ActionListener
                     zonePosition = 3;
                 }
                 foodTotals[rowPosition][zonePosition] += foodAmt;
-                animalFeeder.addMeal(theZoo.getCages().get(cagePosition).getCageID(), foodType, foodAmt);
+                animalFeeder.createMeal(theZoo.getCages().get(cagePosition).getCageID(), foodType, foodAmt);
+                animalFeeder.addMeal();
                 foodPanel.removeAll();
                 foodPanel.revalidate();
                 foodPanel.repaint();
@@ -1161,7 +1162,8 @@ public class ZooManager extends JFrame implements ActionListener
                     zonePosition = 3;
                 }
                 medicineTotals[rowPosition][zonePosition] += medicineAmt;
-                animalHealer.addPrescription(theZoo.getCages().get(cagePosition).getCageID(), medicineType, medicineAmt);
+                animalHealer.createPrescription(theZoo.getCages().get(cagePosition).getCageID(), medicineType, medicineAmt);
+                animalHealer.addPrescription();
                 medicinePanel.removeAll();
                 medicinePanel.revalidate();
                 medicinePanel.repaint();

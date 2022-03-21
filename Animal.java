@@ -96,13 +96,15 @@ public class Animal
         return category;
     }
 
-    public void eatFood(int amount) 
+    public void eatFood(int amount) throws OverFeedingException
     {
         this.hungerStatus += amount;
         // Record the causeOfDeath of the animal
         if(this.hungerStatus>5)
         {
-            this.causeOfDeath = "Overfeeding";
+                this.causeOfDeath = "Overfeeding";
+
+            throw new OverFeedingException();
         }
         else if(this.hungerStatus<=0)
         {
@@ -118,12 +120,13 @@ public class Animal
         // }
     }   //eatFood
 
-    public void takeMedicine(int amount) 
+    public void takeMedicine(int amount) throws OverdosingException
     {
         this.healthStatus += amount;
         // Record the causeOfDeath of the animal
         if(this.healthStatus> 10){
             this.causeOfDeath = "Overdosing";
+            throw new OverdosingException();
         }
         else if (this.healthStatus <= 0)
         {

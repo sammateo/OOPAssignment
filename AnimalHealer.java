@@ -9,7 +9,7 @@ import java.util.Date;
 public class AnimalHealer {
     private ArrayList<Prescription> healingList;
     private ArrayList<Animal> cages;
-
+    private Prescription aPrescription;
     public AnimalHealer(ArrayList<Animal> cages)
     {
         healingList = new ArrayList<Prescription>();
@@ -18,17 +18,17 @@ public class AnimalHealer {
 
     public void addPrescription()
     {
-        Prescription newPrescription = new Prescription();
-        healingList.add(newPrescription);
+        // Prescription newPrescription = new Prescription();
+        healingList.add(aPrescription);
     }//addPrescription
     
-    public void addPrescription(String cageID,String medType, int unitsOfMed)
+    public void createPrescription(String cageID,String medType, int unitsOfMed)
     {
-        Prescription newPrescription = new Prescription();
-        newPrescription.setCageID(cageID);
-        newPrescription.setUnitsOfMed(unitsOfMed);	
-        newPrescription.setMedType(medType);
-        healingList.add(newPrescription);
+        aPrescription = new Prescription();
+        aPrescription.setCageID(cageID);
+        aPrescription.setUnitsOfMed(unitsOfMed);	
+        aPrescription.setMedType(medType);
+        // healingList.add(aPrescription);
     }//addPrescription
 
     public void printHealingList()
@@ -122,7 +122,14 @@ public class AnimalHealer {
         for(int i = 0; i <healingList.size(); i++)
         {
             Animal tempAnimal = getAnimal(healingList.get(i).getCageID());
-            tempAnimal.takeMedicine(healingList.get(i).getUnitsOfMed());
+            try {
+                tempAnimal.takeMedicine(healingList.get(i).getUnitsOfMed());
+
+            } catch (OverdosingException e) {
+                //TODO: handle exception
+                System.out.println(e);
+                System.out.println(e.getMessage());
+            }
         }
     }//simHealing
 

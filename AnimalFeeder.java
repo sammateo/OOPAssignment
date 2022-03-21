@@ -9,6 +9,7 @@ public class AnimalFeeder
 {
     private ArrayList<Meal> feedingList;    //holds an array list of the animals in the zoo
     private ArrayList<Animal> cages;    //holds an array list of the animals in the zoo
+    private Meal aMeal;
     public AnimalFeeder(ArrayList<Animal> cages)
     {
         feedingList = new ArrayList<Meal>();
@@ -17,16 +18,17 @@ public class AnimalFeeder
 
     public void addMeal()
     {
-        Meal newMeal = new Meal();
-        feedingList.add(newMeal);
+        // Meal newMeal = new Meal();
+        feedingList.add(aMeal);
     }//addMeal
-    public void addMeal(String cageID,String foodType, int foodAmt)
+    public void createMeal(String cageID,String foodType, int foodAmt)
     {
-        Meal newMeal = new Meal();
-        newMeal.setCageID(cageID);
-        newMeal.setFoodAmt(foodAmt);
-        newMeal.setFoodType(foodType);
-        feedingList.add(newMeal);
+        // Meal newMeal = new Meal();
+        aMeal = new Meal();
+        aMeal.setCageID(cageID);
+        aMeal.setFoodAmt(foodAmt);
+        aMeal.setFoodType(foodType);
+        // feedingList.add(newMeal);
 
     }//addMeal
 
@@ -119,7 +121,14 @@ public class AnimalFeeder
         for(int i = 0; i <feedingList.size(); i++)
         {
             Animal tempAnimal = getAnimal(feedingList.get(i).getCageID());
-            tempAnimal.eatFood(feedingList.get(i).getFoodAmt());
+            try {
+                tempAnimal.eatFood(feedingList.get(i).getFoodAmt());
+            } catch (OverFeedingException e) {
+                //TODO: handle exception
+                System.out.println(e);
+                System.out.println(e.getMessage());
+            }
+            
         }
     }//simFeeding
 

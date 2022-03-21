@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.*;
+
 public class Zoo 
 {
     private ArrayList<Animal> cages;    //holds an array list of the animals in the zoo
@@ -36,6 +38,14 @@ public class Zoo
             tempAnimal.setHungerStatus(Integer.parseInt(animalArray[4]));
             tempAnimal.setHealthStatus(Integer.parseInt(animalArray[5]));
             tempAnimal.setCategory(animalArray[6]);
+            // for(int x = 0;x<cages.size();x++)
+            // {
+            //     if(cages.get(x).getName().equals(animalArray[1]) && cages.get(x).getSpecies().equals(species))
+            //     {
+            //         String newName = JOptionPane.showInputDialog(null, "Welcome to the Cave Hill Zoo Manager System \nEnter your name","Welcome", JOptionPane.INFORMATION_MESSAGE);
+
+            //     }
+            // }
             cages.add(tempAnimal);
         } //while
 

@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.*;
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,6 +15,9 @@ public class Zoo
     private ArrayList<Animal> cages;    //holds an array list of the animals in the zoo
     private AnimalFeeder animalFeeder;
     private AnimalHealer animalHealer;
+    private JButton nextButton;
+    private JPanel animalPanel;
+    private int position;
     public Zoo()
     {
         cages = new ArrayList<Animal>();
@@ -85,18 +89,93 @@ public class Zoo
     {
         cages.add(newAnimal);
     }   //addAnimal
+    public void setPosition(int newPosition)
+    {
+        position = newPosition;
+    }//setPosition
+    public void setAnimalPanel(JPanel newAnimalPanel)
+    {
+        animalPanel = newAnimalPanel;
+    }
 
+    public void setNextButton(JButton newNextButton)
+    {
+        nextButton = newNextButton;
+    }
     public void showAnimals()
     {
-        if(cages.size() == 0)
+        JPanel info = new JPanel();
+        info.setLayout(new GridLayout(6,2));
+        JPanel nxtContainer = new JPanel();
+        nxtContainer.setLayout(new FlowLayout());
+        info.setPreferredSize(new Dimension(200, 200));
+        int i = position;
+        JLabel animalIDLabel = new JLabel("Cage ID: " );
+        JLabel animalNameLabel = new JLabel("Name: ");
+        JLabel animalSpeciesLabel = new JLabel("Species: ");
+        JLabel animalTypeLabel = new JLabel("Category: ");
+        JLabel animalHungerLabel = new JLabel("Hunger: ");
+        JLabel animalHealthLabel = new JLabel("Health: ");
+        
+        JLabel animalID = new JLabel();
+        JLabel animalName = new JLabel();
+        JLabel animalSpecies = new JLabel();
+        JLabel animalType = new JLabel();
+        JLabel animalHunger = new JLabel();
+        JLabel animalHealth = new JLabel();
+        
+        animalID.setText( cages.get(i).getCageID());
+        animalName.setText(cages.get(i).getName());
+        animalSpecies.setText(cages.get(i).getSpecies());
+        animalType.setText(cages.get(i).getCategory());
+        animalHunger.setText(cages.get(i).getHungerStatus()+"/5");
+        animalHealth.setText(cages.get(i).getHealthStatus()+"/10");
+        if(cages.get(i).getHealthStatus()< 8)
         {
-            System.out.println("No animals present");
-            return;
+            animalHealth.setForeground(Color.RED);
         }
-        for(int i = 0; i < cages.size(); i++)
+        else{
+            animalHealth.setForeground(Color.BLACK);
+        }
+        info.add(animalIDLabel);
+        info.add(animalID);
+        info.add(animalNameLabel); 
+        info.add(animalName); 
+        info.add(animalSpeciesLabel);
+        info.add(animalSpecies);
+        info.add(animalTypeLabel);
+        info.add(animalType);
+        info.add(animalHungerLabel);
+        info.add(animalHunger);
+        info.add(animalHealthLabel);
+        info.add(animalHealth);
+        info.setBorder(BorderFactory.createTitledBorder("Animal"));
+        ImageIcon zoneImage;
+        String imgPath = "";
+        if(cages.get(i).getCageID().split("-")[0].equals("A"))
         {
-            System.out.println("Animal # " +(i+1)+"/"+cages.size()); //Displays the position of the animal in the list of animals
+            imgPath = "iconZoneA-savannah.png";
         }
+        if(cages.get(i).getCageID().split("-")[0].equals("B"))
+        {
+            imgPath = "iconZoneB-amazonia.png";
+        }
+        if(cages.get(i).getCageID().split("-")[0].equals("C"))
+        {
+            imgPath = "iconZoneC-eurasia.png";
+        }
+        if(cages.get(i).getCageID().split("-")[0].equals("D"))
+        {
+            imgPath = "iconZoneD-tundra.png";
+        }
+        zoneImage = new ImageIcon(imgPath);
+        JLabel zoneIcon = new JLabel(new ImageIcon(zoneImage.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
+        nxtContainer.add(zoneIcon);
+        nxtContainer.add(nextButton);
+
+        animalPanel.add(info);
+        animalPanel.add(nxtContainer);
+        
     }   //showAnimal
 
     public Animal getAnimal(String cageID)

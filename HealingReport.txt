@@ -1,11 +1,7 @@
 21 March 2022
 
 Animals Medicated: 11
-OK: 8
-Deaths: 3
+OK: 10
+Deaths: 1
 
-A-1 Gary Giraffe  Original Health Status: 9 Medicine Amount: 10 Medicine Type: Herbicine
-
-A-12 Zoe Zebra  Original Health Status: 4 Medicine Amount: 9 Medicine Type: Herbicine
-
-B-1 Oliver Ocelot  Original Health Status: 9 Medicine Amount: 2 Medicine Type: Carnicine
+A-19 Henry Hyena  Original Health Status: 8 Medicine Amount: 3 Medicine Type: Carnicine

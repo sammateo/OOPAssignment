@@ -1,13 +1,11 @@
 21 March 2022
 
 AnimalsFed: 11
-OK: 7
-Deaths: 4
+OK: 8
+Deaths: 3
 
-A-19 Henry Hyena  Original Hunger Status: 2 Food Amount: 4 Food Type: Fish
+A-19 Henry Hyena  Original Hunger Status: 2 Food Amount: 5 Food Type: Fish
 
-A-25 Henri Hyena  Original Hunger Status: 2 Food Amount: 7 Food Type: Fish
+A-25 Jerry Hyena  Original Hunger Status: 2 Food Amount: 6 Food Type: Fish
 
-C-4 Yanni Yak  Original Hunger Status: 2 Food Amount: 6 Food Type: Hay
-
-D-2 Anton Artic Fox  Original Hunger Status: 3 Food Amount: 3 Food Type: Hay
+C-23 Fedora Red Fox  Original Hunger Status: 4 Food Amount: 3 Food Type: Hay

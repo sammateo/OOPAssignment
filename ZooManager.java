@@ -52,83 +52,10 @@ public class ZooManager extends JFrame implements ActionListener
 
     public void displayAnimalPanel(int position) throws IOException
     {
-        // animalPanel.setAlignmentX(CENTER_ALIGNMENT);
-        JPanel info = new JPanel();
-        info.setLayout(new GridLayout(6,2));
-        // info.setAlignmentX(CENTER_ALIGNMENT);
-        JPanel nxtContainer = new JPanel();
-        nxtContainer.setLayout(new FlowLayout());
-        info.setPreferredSize(new Dimension(200, 200));
-        // theZoo.readAnimals();
-        int i = position;
-        JLabel animalIDLabel = new JLabel("Cage ID: " );
-        JLabel animalNameLabel = new JLabel("Name: ");
-        // JLabel animalAge = new JLabel();
-        JLabel animalSpeciesLabel = new JLabel("Species: ");
-        JLabel animalTypeLabel = new JLabel("Category: ");
-        JLabel animalHungerLabel = new JLabel("Hunger: ");
-        JLabel animalHealthLabel = new JLabel("Health: ");
-        
-        JLabel animalID = new JLabel();
-        JLabel animalName = new JLabel();
-        // JLabel animalAge = new JLabel();
-        JLabel animalSpecies = new JLabel();
-        JLabel animalType = new JLabel();
-        JLabel animalHunger = new JLabel();
-        JLabel animalHealth = new JLabel();
-        
-        animalID.setText( theZoo.getCages().get(i).getCageID());
-        animalName.setText(theZoo.getCages().get(i).getName());
-        // animalAge.setText("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
-        animalSpecies.setText(theZoo.getCages().get(i).getSpecies());
-        animalType.setText(theZoo.getCages().get(i).getCategory());
-        animalHunger.setText(theZoo.getCages().get(i).getHungerStatus()+"/5");
-        animalHealth.setText(theZoo.getCages().get(i).getHealthStatus()+"/10");
-        if(theZoo.getCages().get(i).getHealthStatus()< 8)
-        {
-            animalHealth.setForeground(Color.RED);
-        }
-        else{
-            animalHealth.setForeground(Color.BLACK);
-        }
-        info.add(animalIDLabel);
-        info.add(animalID);
-        info.add(animalNameLabel); 
-        info.add(animalName); 
-        info.add(animalSpeciesLabel);
-        info.add(animalSpecies);
-        info.add(animalTypeLabel);
-        info.add(animalType);
-        info.add(animalHungerLabel);
-        info.add(animalHunger);
-        info.add(animalHealthLabel);
-        info.add(animalHealth);
-        info.setBorder(BorderFactory.createTitledBorder("Animal"));
-        ImageIcon zoneImage;
-        String imgPath = "";
-        if(theZoo.getCages().get(i).getCageID().split("-")[0].equals("A"))
-        {
-            imgPath = "iconZoneA-savannah.png";
-        }
-        if(theZoo.getCages().get(i).getCageID().split("-")[0].equals("B"))
-        {
-            imgPath = "iconZoneB-amazonia.png";
-        }
-        if(theZoo.getCages().get(i).getCageID().split("-")[0].equals("C"))
-        {
-            imgPath = "iconZoneC-eurasia.png";
-        }
-        if(theZoo.getCages().get(i).getCageID().split("-")[0].equals("D"))
-        {
-            imgPath = "iconZoneD-tundra.png";
-        }
-        zoneImage = new ImageIcon(imgPath);
-        JLabel zoneIcon = new JLabel(new ImageIcon(zoneImage.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)));
-        nxtContainer.add(zoneIcon);
-        nxtContainer.add(nextButton);
-
-        animalPanel.add(info);
-        animalPanel.add(nxtContainer);
+        theZoo.setPosition(position);
+        theZoo.setAnimalPanel(animalPanel);
+        theZoo.setNextButton(nextButton);
+        theZoo.showAnimals();
         revalidate();
         repaint();
     }

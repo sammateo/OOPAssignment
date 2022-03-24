@@ -85,9 +85,9 @@ public class Zoo
         return cages;
     }   //getCages
 
-    public void addAnimal(Animal newAnimal)
+    public void addAnimal(Animal a)
     {
-        cages.add(newAnimal);
+        cages.add(a);
     }   //addAnimal
     public void setPosition(int newPosition)
     {

@@ -840,9 +840,11 @@ public class ZooManager extends JFrame implements ActionListener
         healButton.addActionListener(this);
         addMedicineButton.addActionListener(this);
 
-        if(theZoo.getCages().size() > 0 )
+        if(theZoo.getCages().size() == 0 )
         {
-            // do something is zoo is empty
+            // do something if zoo is empty
+            JOptionPane.showMessageDialog(null,"Empty Zoo");
+            return;
         }
         //These display functions show the related panels on the JFrame
         displayAnimalPanel(0);

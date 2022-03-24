@@ -5,7 +5,6 @@ import javax.swing.*;
 public class Welcome
 {
     private String zooKeeperName;
-    private JFrame welcomeFrame;
     public Welcome() 
     {
         zooKeeperName = null;
@@ -25,8 +24,8 @@ public class Welcome
         //Checks to see if a name is entered in the text field
         while (zooKeeperName.trim().isEmpty())
         {
-            JOptionPane.showMessageDialog(welcomeFrame, "The amount you entered is invalid");
-            zooKeeperName = JOptionPane.showInputDialog(welcomeFrame, "Welcome to the Zoo Manager System \nEnter your name");
+            JOptionPane.showMessageDialog(null, "The amount you entered is invalid");
+            zooKeeperName = JOptionPane.showInputDialog(null, "Welcome to the Zoo Manager System \nEnter your name");
             if(zooKeeperName==null)
             {
                 return;

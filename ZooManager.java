@@ -126,17 +126,18 @@ public class ZooManager extends JFrame implements ActionListener
     public void displayWelcomePanel()
     {
         welcomePanel.setLayout(new BoxLayout(welcomePanel, BoxLayout.Y_AXIS));
-        JLabel welcomeMessage = new JLabel("Welcome to the Zoo Manager System "+ zooKeeper.getName());//gets the name of the ZooKeeper
+        JLabel welcomeMessage = new JLabel("Welcome to the Zoo Manager System "+ zooKeeper.getName());//gets the name of the ZooKeeper and sets it to a JLabel object
         welcomeMessage.setAlignmentX(CENTER_ALIGNMENT);
         welcomePanel.add(welcomeMessage);
 
-        JLabel zooIcon = new JLabel(new ImageIcon(zooLogo.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH)));//gets and sets the Zoo image
+        JLabel zooIcon = new JLabel(new ImageIcon(zooLogo.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH)));//gets and sets the Zoo image sets it to a JLabel object
         zooIcon.setAlignmentX(CENTER_ALIGNMENT);
 
         welcomePanel.add(zooIcon);
         
     }//displayWelcomePanel
 
+    //Displays the panel which stores the information for foodtypes, JText fields references and the two dimensional arrays
     public void displayFoodPanel()
     {
         foodPanel.setLayout(new BoxLayout(foodPanel, BoxLayout.Y_AXIS));
@@ -145,6 +146,8 @@ public class ZooManager extends JFrame implements ActionListener
         JPanel allFood = new JPanel();
         print.setLayout(new FlowLayout());
         foodInfoPanel.setLayout(new GridLayout(6,2,10,10));
+
+        //Declaring new JLabel objects for the related food variables 
         JLabel typeLabel = new JLabel("Type");
         JLabel hayLabel = new JLabel("Hay");
         JLabel fruitLabel = new JLabel("Fruit");
@@ -185,10 +188,11 @@ public class ZooManager extends JFrame implements ActionListener
         allFood.add(addFoodButton);
         print.add(printFeedingList);
         print.add(feedButton);
-        //foodInfoPanel.add(print);
 
         JPanel foodTotalsPanel = new JPanel();
         foodTotalsPanel.setLayout(new GridLayout(6,4,15,15));
+
+        //Creating new JLabel objects to store the zone headings
         JLabel aLabel = new JLabel("A");
         JLabel bLabel = new JLabel("B");
         JLabel cLabel = new JLabel("C");
@@ -210,8 +214,9 @@ public class ZooManager extends JFrame implements ActionListener
         allFood.add(foodTotalsPanel);
         foodPanel.add(allFood);
         foodPanel.add(print);
-    }
+    }//displayFoodPanel
 
+    //Displays the panel which stores the information for medicine types, JText fields references and the two dimensional arrays
     public void displayMedicinePanel()
     {
         medicinePanel.setLayout(new BoxLayout(medicinePanel, BoxLayout.Y_AXIS));
@@ -220,6 +225,8 @@ public class ZooManager extends JFrame implements ActionListener
         JPanel allMedicine = new JPanel();
         printMedicinePanel.setLayout(new FlowLayout());
         medicineInfoPanel.setLayout(new GridLayout(4,2,10,10));
+
+        //Declaring new JLabel objects for the related medicine variables 
         JLabel typeLabel = new JLabel("Type");
         JLabel herbicineLabel = new JLabel("Herbicine");
         JLabel omnicineLabel = new JLabel("Omnicine");
@@ -250,10 +257,11 @@ public class ZooManager extends JFrame implements ActionListener
         allMedicine.add(addMedicineButton);
         printMedicinePanel.add(printMedicineList);
         printMedicinePanel.add(healButton);
-        //foodInfoPanel.add(print);
 
         JPanel medicineTotalsPanel = new JPanel();
         medicineTotalsPanel.setLayout(new GridLayout(4,4,14,14));
+
+        //Creating new JLabel objects to store the zone headings
         JLabel aLabel = new JLabel("A");
         JLabel bLabel = new JLabel("B");
         JLabel cLabel = new JLabel("C");
@@ -275,30 +283,30 @@ public class ZooManager extends JFrame implements ActionListener
         allMedicine.add(medicineTotalsPanel);
         medicinePanel.add(allMedicine);
         medicinePanel.add(printMedicinePanel);
-    }
+    }//displayMedicinePanel
 
+    //This function displays all the contents of the FeedingReport Panel(JScrollPane object is created)
     public void displayFeedReportPanel()
     {
             JPanel fReportPanel = new JPanel();
             JPanel info = new JPanel();
             JPanel button = new JPanel();
             fReportPanel.setPreferredSize(new Dimension(300, 200));
-            //JLabel animalAge = new JLabel("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
             fReportPanel.setLayout(new BoxLayout(fReportPanel, BoxLayout.Y_AXIS));
             info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
 
-            // JLabel test = new JLabel("This is a test");
             JScrollPane scroll = new JScrollPane(info);
             scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-            // fReportPanel.add(test);
             fReportPanel.add(scroll);
             JLabel date = new JLabel(getDate());
             
             JLabel animalsFed = new JLabel("AnimalsFed: "+ animalFeeder.getFeedingListSize());
             
             ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
+
+            //This loop goes through the animals and finds the dead ones and appends them to an arraylist
             for(int i=0; i<animalFeeder.getFeedingListSize();i++)
             {
                 Animal tempFedAnimal = animalFeeder.getAnimal(animalFeeder.getFeedingList().get(i).getCageID());
@@ -314,6 +322,8 @@ public class ZooManager extends JFrame implements ActionListener
             info.add(animalsFed);
             info.add(okAnimals);
             info.add(deathAnimals);
+
+            //This loop gets the information of any dead animals
             for(int i=0;i<deadAnimals.size(); i++)
             {
                 String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Hunger Status: "+ (deadAnimals.get(i).hungerStatus - animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID()))+" Food Amount: "+ animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID())+ " Food Type: "+ animalFeeder.getFoodType(deadAnimals.get(i).getCageID());
@@ -325,41 +335,41 @@ public class ZooManager extends JFrame implements ActionListener
             fReportPanel.setBorder(BorderFactory.createTitledBorder("Feeding Report"));
             foodReportPanel.add(fReportPanel);
 
-    }
+    }//displayFeedReportPanel
 
     public void printFReport()
     {
         theZoo.setAnimalFeeder(animalFeeder);
         theZoo.printHungerReport();
-    }
+    }//printFReport
 
     public void printMReport()
     {
         theZoo.setAnimalHealer(animalHealer);
         theZoo.printHealthReport();
-    }
+    }//printMReport
     public void displayMedReportPanel()
     {
         JPanel mReportPanel = new JPanel();
             JPanel mInfo = new JPanel();
             JPanel mButton = new JPanel();
             mReportPanel.setPreferredSize(new Dimension(300, 200));
-            //JLabel animalAge = new JLabel("Age: "+Integer.toString(theZoo.getCages().get(i).getAge()));
             mReportPanel.setLayout(new BoxLayout(mReportPanel, BoxLayout.Y_AXIS));
             mInfo.setLayout(new BoxLayout(mInfo, BoxLayout.Y_AXIS));
 
-            // JLabel test = new JLabel("This is a test");
             JScrollPane scroll = new JScrollPane(mInfo);
             scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
             scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-            // mReportPanel.add(test);
             mReportPanel.add(scroll);
             JLabel date = new JLabel(getDate());
             
             JLabel animalsHealed = new JLabel("AnimalsHealed: "+ animalHealer.getHealingListSize());
             
             ArrayList<Animal> deadAnimals = new ArrayList<Animal>();
+
+            
+            //This loop goes through the animals and finds the dead ones and appends them to an arraylist
             for(int i=0; i<animalHealer.getHealingListSize();i++)
             {
                 Animal tempHealedAnimal = animalHealer.getAnimal(animalHealer.getHealingList().get(i).getCageID());
@@ -375,6 +385,9 @@ public class ZooManager extends JFrame implements ActionListener
             mInfo.add(animalsHealed);
             mInfo.add(okAnimals);
             mInfo.add(deathAnimals);
+
+            
+            //This loop find the information of the dead animals
             for(int i=0;i<deadAnimals.size(); i++)
             {
                 String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Health Status: "+ (deadAnimals.get(i).healthStatus - animalHealer.getUnitsOfMed(deadAnimals.get(i).getCageID()))+" Medication Amount: "+ animalHealer.getUnitsOfMed(deadAnimals.get(i).getCageID())+ " Medication Type: "+ animalHealer.getMedType(deadAnimals.get(i).getCageID());
@@ -385,8 +398,9 @@ public class ZooManager extends JFrame implements ActionListener
             mReportPanel.add(mButton);
             mReportPanel.setBorder(BorderFactory.createTitledBorder("Healing Report"));
             medReportPanel.add(mReportPanel);
-    }
+    }//displayMedReportPanel
 
+    //This function changes the status of the "Next" button in the GUI depending on the condition
     public void nextButtonSwitch()
     {
         if(isMedicated && isFed)
@@ -396,7 +410,9 @@ public class ZooManager extends JFrame implements ActionListener
         else{
             nextButton.setEnabled(false);
         }
-    }
+    }//nextButtonSwitch
+
+    //This function changes the status of the "Add" button for the food in the GUI depending on the condition
     public void foodButtonSwitch()
     {
         
@@ -413,6 +429,7 @@ public class ZooManager extends JFrame implements ActionListener
         
     }//foodButtonSwitch
 
+    //This function changes the status of the "Add" button for the medicine in the GUI depending on the condition
     public void medButtonSwitch()
     {
         
@@ -429,7 +446,7 @@ public class ZooManager extends JFrame implements ActionListener
     }//medButtonSwitch
 
     
-
+    //Gets the current date 
     public String getDate()
     {
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM");
@@ -444,13 +461,15 @@ public class ZooManager extends JFrame implements ActionListener
     {
         Welcome msg = new Welcome();
         msg.displayWelcome();
+
+        //Checks to see if the person enters valid information into the text field(A proper name) and ensures that it is not empty or if they want to come out of the program
         if(msg.getZooKeeperName()==null||msg.getZooKeeperName().trim().isEmpty())
         {
             System.exit(0);
             return;
         }
         zooKeeper = new ZooKeeper();
-        zooKeeper.setName(msg.getZooKeeperName());
+        zooKeeper.setName(msg.getZooKeeperName());//Sets the name of the ZooKeeper entered at the welcome message popup
         theZoo = new Zoo(); //initializes the zoo object
         theZoo.readAnimals();   //reads animals from text file
         animalFeeder = new AnimalFeeder(theZoo.getCages()); //initializes animal feeder object with cages
@@ -462,23 +481,35 @@ public class ZooManager extends JFrame implements ActionListener
         setTitle("The Cave Hill Zoo Manager System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         zooLogo = new ImageIcon("Cave Hill Zoo.png");
+
+        //Creating button objects for the respective variables
         nextButton = new JButton("Next ->");
         printFeedingList = new JButton("Print List");
         printMedicineList = new JButton("Print List");
         printFoodReport = new JButton("Print Report");
         printMedReport = new JButton("Print Report");
+        feedButton = new JButton("Feed");
+        healButton = new JButton("Heal");
+        addFoodButton = new JButton("Add ->");
+        addMedicineButton = new JButton("Add ->");
+        foodButtonSwitch();
+
+        //Setting the default condition for the buttons
         printMedReport.setEnabled(false);
         printFoodReport.setEnabled(false);
         printFeedingList.setEnabled(false);
-        
-        feedButton = new JButton("Feed");
         feedButton.setEnabled(false);
-        healButton = new JButton("Heal");
         printMedicineList.setEnabled(false);
         healButton.setEnabled(false);
+        addFoodButton.setEnabled(false);
+        addMedicineButton.setEnabled(false);
+        
+        //Creating panel objects for the respective variables
         welcomePanel = new JPanel();
         animalPanel = new JPanel();
         foodPanel = new JPanel();
+
+        //Creating textfield objects for the respective variables
         hayAmount= new JTextField(4);
         fruitAmount = new JTextField();
         grainAmount = new JTextField();
@@ -487,19 +518,19 @@ public class ZooManager extends JFrame implements ActionListener
         herbicineAmount = new JTextField();
         omnicineAmount = new JTextField();
         carnicineAmount = new JTextField();
+
+        //Setting the default conditions for feeding and medication for the animals
         isFed = false;
         isMedicated = false;
+
+        //Creating panel objects for the respective variables
         foodReportPanel = new JPanel();
         medReportPanel = new JPanel();
-        addFoodButton = new JButton("Add ->");
-        addMedicineButton = new JButton("Add ->");
         medicinePanel = new JPanel();
-        foodButtonSwitch();
-        addFoodButton.setEnabled(false);
-        addMedicineButton.setEnabled(false);
-
+        
         animalPanel.setLayout(new BoxLayout(animalPanel, BoxLayout.Y_AXIS));
-        cagePosition = 0;
+        cagePosition = 0;//initializes cagePosition to 0
+
         hayAmount.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 try 

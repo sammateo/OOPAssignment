@@ -69,6 +69,7 @@ public class ZooManager extends JFrame implements ActionListener
     //This function enables the respective buttons to be used to select the food to feed an animal depending on the category of the animal
     public void foodFieldManager()
     {
+        
         if(theZoo.getCages().get(cagePosition).getCategory().equalsIgnoreCase("Herbivore"))
         {
             hayAmount.setEnabled(true);
@@ -94,6 +95,14 @@ public class ZooManager extends JFrame implements ActionListener
             fishAmount.setEnabled(true);
             meatAmount.setEnabled(false);
         }
+        if(isFed)
+        {
+            hayAmount.setEnabled(false);
+            fruitAmount.setEnabled(false);
+            grainAmount.setEnabled(false);
+            fishAmount.setEnabled(false);
+            meatAmount.setEnabled(false);
+        }
         foodPanel.revalidate();
         foodPanel.repaint();
     }//foodFieldManager
@@ -117,6 +126,12 @@ public class ZooManager extends JFrame implements ActionListener
         {
             herbicineAmount.setEnabled(false);
             omnicineAmount.setEnabled(true);
+            carnicineAmount.setEnabled(false);
+        }
+        if(isMedicated)
+        {
+            herbicineAmount.setEnabled(false);
+            omnicineAmount.setEnabled(false);
             carnicineAmount.setEnabled(false);
         }
         medicinePanel.revalidate();
@@ -159,6 +174,7 @@ public class ZooManager extends JFrame implements ActionListener
         
 
         foodFieldManager();
+        
         hayAmount.setText("0");
         fruitAmount.setText("0");
         grainAmount.setText("0");

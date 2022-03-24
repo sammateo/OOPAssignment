@@ -15,6 +15,9 @@ public class Animal
     protected Random generator;   //holds the random generator
     protected String category;//holds the type of animal, for eg. Carnivore
     protected String cageID;
+    protected final int maxHunger = 5;
+    protected final int maxHealth = 10;
+    protected final int goodHealth = 8;
 
 
     public Animal()
@@ -24,8 +27,8 @@ public class Animal
         causeOfDeath =defaultString;
         age=defaultInt;
         generator = new Random();   //initializes the random generator
-        hungerStatus = generator.nextInt(5)+1; //Generate a random integer from 1 to 5
-        healthStatus = generator.nextInt(10)+1; //Generate a random integer from 1 to 10
+        hungerStatus = generator.nextInt(maxHunger)+1; //Generate a random integer from 1 to 5
+        healthStatus = generator.nextInt(maxHealth)+1; //Generate a random integer from 1 to 10
     }   //Animal
 
     public String getCauseOfDeath() {
@@ -96,17 +99,37 @@ public class Animal
         return category;
     }//getCategory
 
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+    public int getMaxHunger() {
+        return maxHunger;
+    }
+
+    public int getDefaultInt() {
+        return defaultInt;
+    }
+    public String getDefaultString() {
+        return defaultString;
+    }
+
+    public int getGoodHealth() {
+        return goodHealth;
+    }
+
+    
+
     public void eatFood(int amount) throws OverFeedingException
     {
         this.hungerStatus += amount;
         // Record the causeOfDeath of the animal
-        if(this.hungerStatus>5)
+        if(this.hungerStatus>maxHunger)
         {
                 this.causeOfDeath = "Overfeeding";
 
             throw new OverFeedingException();
         }
-        else if(this.hungerStatus<=0)
+        else if(this.hungerStatus<=defaultInt)
         {
             this.causeOfDeath = "Starvation";
         }
@@ -117,11 +140,11 @@ public class Animal
     {
         this.healthStatus += amount;
         // Record the causeOfDeath of the animal
-        if(this.healthStatus> 10){
+        if(this.healthStatus> maxHealth){
             this.causeOfDeath = "Overdosing";
             throw new OverdosingException();
         }
-        else if (this.healthStatus <= 0)
+        else if (this.healthStatus <= defaultInt)
         {
             this.causeOfDeath = "Died of under medication";
         }

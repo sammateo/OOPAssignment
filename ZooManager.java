@@ -271,9 +271,9 @@ public class ZooManager extends JFrame implements ActionListener
         medicineTotalsPanel.add(bLabel);
         medicineTotalsPanel.add(cLabel);
         medicineTotalsPanel.add(dLabel);
-        for(int i = 0; i < 3;i++)
+        for(int i = 0; i <  medicineTotals.length;i++)  //3
         {
-            for(int j = 0;j<4;j++)
+            for(int j = 0;j< medicineTotals[1].length;j++) //4
             {
                 JLabel totalLabel = new JLabel(""+ medicineTotals[i][j]);
                 medicineTotalsPanel.add(totalLabel);
@@ -310,7 +310,7 @@ public class ZooManager extends JFrame implements ActionListener
             for(int i=0; i<animalFeeder.getFeedingListSize();i++)
             {
                 Animal tempFedAnimal = animalFeeder.getAnimal(animalFeeder.getFeedingList().get(i).getCageID());
-                if(tempFedAnimal.getHungerStatus() > 5)
+                if(tempFedAnimal.getHungerStatus() > tempFedAnimal.getMaxHunger())
                 {
                     deadAnimals.add(tempFedAnimal);
                 }
@@ -373,7 +373,7 @@ public class ZooManager extends JFrame implements ActionListener
             for(int i=0; i<animalHealer.getHealingListSize();i++)
             {
                 Animal tempHealedAnimal = animalHealer.getAnimal(animalHealer.getHealingList().get(i).getCageID());
-                if(tempHealedAnimal.getHealthStatus() > 10)
+                if(tempHealedAnimal.getHealthStatus() > tempHealedAnimal.getMaxHealth())
                 {
                     deadAnimals.add(tempHealedAnimal);
                 }
@@ -465,7 +465,7 @@ public class ZooManager extends JFrame implements ActionListener
         //Checks to see if the person enters valid information into the text field(A proper name) and ensures that it is not empty or if they want to come out of the program
         if(msg.getZooKeeperName()==null||msg.getZooKeeperName().trim().isEmpty())
         {
-            System.exit(0);
+            // System.exit(0);
             return;
         }
         zooKeeper = new ZooKeeper();
@@ -568,6 +568,7 @@ public class ZooManager extends JFrame implements ActionListener
                 
             }
         });
+        
         fruitAmount.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 try 
@@ -847,13 +848,12 @@ public class ZooManager extends JFrame implements ActionListener
             return;
         }
         //These display functions show the related panels on the JFrame
-        displayAnimalPanel(0);
+        displayAnimalPanel(cagePosition);
         displayWelcomePanel();
         displayFoodPanel();
         displayFeedReportPanel();
         displayMedicinePanel();
         displayMedReportPanel();
-       
         //Adds the JFrame panels in the order that was shown in the instructions
         add(animalPanel);
         add(foodPanel);

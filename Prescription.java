@@ -35,12 +35,12 @@ public class Prescription {
     public void setUnitsOfMed(int x)
     {
         unitsOfMed = x;
-    }//setUnits_med
+    }//setUnitsOfMed
 
     public int getUnitsOfMed()
     {
         return unitsOfMed;
-    }//getUnits_med
+    }//getUnitsOfMed
 
     
 }//Prescription

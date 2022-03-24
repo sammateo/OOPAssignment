@@ -515,7 +515,6 @@ public class ZooManager extends JFrame implements ActionListener
                     addFoodButton.setEnabled(false);
 
                 }
-                // System.out.println(hayAmount.getText());
                 } catch (Exception err) {
                     foodFieldManager();
                     addFoodButton.setEnabled(false);
@@ -554,12 +553,10 @@ public class ZooManager extends JFrame implements ActionListener
                     addFoodButton.setEnabled(false);
 
                 }
-                // System.out.println(fruitAmount.getText());
                 } catch (Exception err) {
                     foodFieldManager();
                     fruitAmount.setText("0");
                     addFoodButton.setEnabled(false);
-                    // System.out.println(err.getMessage());
                 }
                 
             }
@@ -594,7 +591,6 @@ public class ZooManager extends JFrame implements ActionListener
                     addFoodButton.setEnabled(false);
 
                 }
-                // System.out.println(grainAmount.getText());
                 } catch (Exception err) {
                     foodFieldManager();
                     grainAmount.setText("0");
@@ -634,7 +630,6 @@ public class ZooManager extends JFrame implements ActionListener
                     addFoodButton.setEnabled(false);
 
                 }
-                // System.out.println(fishAmount.getText());
                 } catch (Exception err) {
                     foodFieldManager();
                     fishAmount.setText("0");
@@ -673,12 +668,10 @@ public class ZooManager extends JFrame implements ActionListener
                     addFoodButton.setEnabled(false);
 
                 }
-                System.out.println(meatAmount.getText());
                 } catch (Exception err) {
                     foodFieldManager();
                     meatAmount.setText("0");
                     addFoodButton.setEnabled(false);
-                    // System.out.println(err.getMessage());
                 }
                 
             }
@@ -710,7 +703,6 @@ public class ZooManager extends JFrame implements ActionListener
                     addMedicineButton.setEnabled(false);
 
                 }
-                // System.out.println(hayAmount.getText());
                 } catch (Exception err) {
                     medicineFieldManager();
                     herbicineAmount.setText("0");
@@ -747,7 +739,6 @@ public class ZooManager extends JFrame implements ActionListener
                     addMedicineButton.setEnabled(false);
 
                 }
-                // System.out.println(hayAmount.getText());
                 } catch (Exception err) {
                     medicineFieldManager();
                     omnicineAmount.setText("0");
@@ -784,7 +775,6 @@ public class ZooManager extends JFrame implements ActionListener
                     addMedicineButton.setEnabled(false);
 
                 }
-                // System.out.println(hayAmount.getText());
                 } catch (Exception err) {
                     medicineFieldManager();
                     carnicineAmount.setText("0");
@@ -958,8 +948,6 @@ public class ZooManager extends JFrame implements ActionListener
                 foodPanel.revalidate();
                 foodPanel.repaint();
                 displayFoodPanel();
-                // System.out.println(cageLetter[0]+" "+foodTotals[rowPosition][zonePosition]);
-                //animalFeeder.printFeedingList();
             } catch (Exception err) {
                 System.out.println(err.getMessage());
             }

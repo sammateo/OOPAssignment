@@ -116,7 +116,7 @@ public class AnimalFeeder
         }//end try
         catch(IOException e)
         {
-            System.out.println("Error");
+            System.out.println(e.getMessage());
         }//end catch
     }//printFeedingList
     

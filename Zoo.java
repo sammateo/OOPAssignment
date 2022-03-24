@@ -257,7 +257,7 @@ public class Zoo
         }
         catch(IOException e)
         {
-            System.out.println("Error");
+            System.out.println(e.getMessage());
         }
     }   //printHungerReport
 
@@ -299,7 +299,7 @@ public class Zoo
         }
         catch(IOException e)
         {
-            System.out.println("Error");
+            System.out.println(e.getMessage());
         }
     }   //printHealthReport
 }   //Zoo

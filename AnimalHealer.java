@@ -121,7 +121,7 @@ public class AnimalHealer {
         }//end try
         catch(IOException e)
         {
-            System.out.println("Error");
+            System.out.println(e.getMessage());
         }//end catch
     }//printHealingList
 

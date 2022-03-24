@@ -74,7 +74,8 @@ public class AnimalFeeder
                 dMeals.add(feedingList.get(i));
             }
             
-        }
+        }//endfor
+
         // Add zoned lists to a total list of everything
         totalMeals.add(aMeals);
         totalMeals.add(bMeals);
@@ -98,8 +99,8 @@ public class AnimalFeeder
                     {
                         foodSummary[z]+=totalMeals.get(i).get(j).getFoodAmt();
                     }
-                }
-            }
+                }//endfor
+            }//endfor
             
             report.write("\n"+"\n" + "Food Summary");
             //Writing the information of the food summary to the text file
@@ -109,8 +110,8 @@ public class AnimalFeeder
                     {
                         report.write("\n"+foodSummary[x]+" "+ foodType[x]);
                     }
-            }
-        }
+            }//endfor
+        }//endfor
             report.close();
         
         }//end try
@@ -132,7 +133,7 @@ public class AnimalFeeder
                 System.out.println(e);
             }
             
-        }
+        }//endfor
     }//simFeeding
 
     public ArrayList<Meal> getFeedingList() {
@@ -156,7 +157,7 @@ public class AnimalFeeder
             {
                 return cages.get(i);
             }
-        }
+        }//endfor
         return null;
     }   //getAnimal
     
@@ -169,7 +170,7 @@ public class AnimalFeeder
             {
                 return feedingList.get(i).getFoodType();
             }
-        }
+        }//endfor
         return null;
     }   //getFoodType
 
@@ -182,7 +183,7 @@ public class AnimalFeeder
             {
                 return feedingList.get(i).getFoodAmt();
             }
-        }
+        }//endfor
         return 0;
     }   //getFoodType
 

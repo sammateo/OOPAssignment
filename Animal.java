@@ -15,9 +15,9 @@ public class Animal
     protected Random generator;   //holds the random generator
     protected String category;//holds the type of animal, for eg. Carnivore
     protected String cageID;
-    protected final int maxHunger = 5;
-    protected final int maxHealth = 10;
-    protected final int goodHealth = 8;
+    protected final int maxHunger = 5;//holds the maximum hunger value
+    protected final int maxHealth = 10;//holds the maximum health value
+    protected final int goodHealth = 8;//holds the good health value
 
 
     public Animal()
@@ -101,21 +101,21 @@ public class Animal
 
     public int getMaxHealth() {
         return maxHealth;
-    }
+    }//getMaxHealth
     public int getMaxHunger() {
         return maxHunger;
-    }
+    }//getMaxHunger
 
     public int getDefaultInt() {
         return defaultInt;
-    }
+    }//getDefaultInt
     public String getDefaultString() {
         return defaultString;
-    }
+    }//getDefaultString
 
     public int getGoodHealth() {
         return goodHealth;
-    }
+    }//getGoodHealth
 
     
 

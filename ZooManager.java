@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
-import java.io.FileWriter;
 
 public class ZooManager extends JFrame implements ActionListener
 {   

@@ -35,7 +35,8 @@ public class AnimalFeeder
     //This function puts together and writes the contents of the feeding list to a text file
     public void printFeedingList()
     {
-        try{
+        try
+        {
             FileWriter report = new FileWriter("FeedingList.txt");
             SimpleDateFormat sdf = new SimpleDateFormat("MMMM");//To get the present month
             String month = sdf.format(new Date());
@@ -53,66 +54,66 @@ public class AnimalFeeder
             ArrayList<Meal> dMeals = new ArrayList<Meal>();
             ArrayList<ArrayList<Meal>> totalMeals = new ArrayList<ArrayList<Meal>>();//This ArrayList stores the contents of each ArrayList by their respective zones
 
-        // Organize the Feeding List by Zone
-        for(int i = 0; i <feedingList.size(); i++)
-        {
-            String[] cageLetter = feedingList.get(i).getCageID().split("-");
-            if(cageLetter[0].equals("A"))
+            // Organize the Feeding List by Zone
+            for(int i = 0; i <feedingList.size(); i++)
             {
-                aMeals.add(feedingList.get(i));
-            }
-            else if(cageLetter[0].equals("B"))
-            {
-                bMeals.add(feedingList.get(i));
-            }
-            else if(cageLetter[0].equals("C"))
-            {
-                cMeals.add(feedingList.get(i));
-            }
-            else if(cageLetter[0].equals("D"))
-            {
-                dMeals.add(feedingList.get(i));
-            }
-            
-        }//endfor
-
-        // Add zoned lists to a total list of everything
-        totalMeals.add(aMeals);
-        totalMeals.add(bMeals);
-        totalMeals.add(cMeals);
-        totalMeals.add(dMeals);
-        String[] zoneLabels = {"(A) African Savanna","(B) Amazonian Jungle","(C) Eurasian Wild","(D) Frozen Tundra"};
-        for(int i = 0; i< totalMeals.size(); i++)
-        {
-            report.write("\n"+"\n"+zoneLabels[i]);
-            int[] foodSummary = {0,0,0,0,0}; //hay,fruit,grain,fish,meat
-            String[] foodType = {"Hay","Fruit","Grain","Fish","Meat"};
-            for(int j = 0; j< totalMeals.get(i).size();j++)
-            {
-                Animal tempAnimal = getAnimal(totalMeals.get(i).get(j).getCageID());
-                report.write("\n"+tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" "+totalMeals.get(i).get(j).getFoodAmt() + " "+totalMeals.get(i).get(j).getFoodType());
-
-                //Populates the food summary array with the amount of food added
-                for(int z = 0; z< foodType.length; z++)
+                String[] cageLetter = feedingList.get(i).getCageID().split("-");
+                if(cageLetter[0].equals("A"))
                 {
-                    if(totalMeals.get(i).get(j).getFoodType().equalsIgnoreCase(foodType[z]))
+                    aMeals.add(feedingList.get(i));
+                }
+                else if(cageLetter[0].equals("B"))
+                {
+                    bMeals.add(feedingList.get(i));
+                }
+                else if(cageLetter[0].equals("C"))
+                {
+                    cMeals.add(feedingList.get(i));
+                }
+                else if(cageLetter[0].equals("D"))
+                {
+                    dMeals.add(feedingList.get(i));
+                }
+                
+            }//endfor
+            
+            // Add zoned lists to a total list of everything
+            totalMeals.add(aMeals);
+            totalMeals.add(bMeals);
+            totalMeals.add(cMeals);
+            totalMeals.add(dMeals);
+            String[] zoneLabels = {"(A) African Savanna","(B) Amazonian Jungle","(C) Eurasian Wild","(D) Frozen Tundra"};
+            for(int i = 0; i< totalMeals.size(); i++)
+            {
+                report.write("\n"+"\n"+zoneLabels[i]);
+                int[] foodSummary = {0,0,0,0,0}; //hay,fruit,grain,fish,meat
+                String[] foodType = {"Hay","Fruit","Grain","Fish","Meat"};
+                for(int j = 0; j< totalMeals.get(i).size();j++)
+                {
+                    Animal tempAnimal = getAnimal(totalMeals.get(i).get(j).getCageID());
+                    report.write("\n"+tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" "+totalMeals.get(i).get(j).getFoodAmt() + " "+totalMeals.get(i).get(j).getFoodType());
+
+                    //Populates the food summary array with the amount of food added
+                    for(int z = 0; z< foodType.length; z++)
                     {
-                        foodSummary[z]+=totalMeals.get(i).get(j).getFoodAmt();
-                    }
+                        if(totalMeals.get(i).get(j).getFoodType().equalsIgnoreCase(foodType[z]))
+                        {
+                            foodSummary[z]+=totalMeals.get(i).get(j).getFoodAmt();
+                        }
+                    }//endfor
+                }//endfor
+                
+                report.write("\n"+"\n" + "Food Summary");
+                //Writing the information of the food summary to the text file
+                for(int x = 0; x < foodSummary.length;x++)
+                {
+                    if(foodSummary[x] > 0)
+                        {
+                            report.write("\n"+foodSummary[x]+" "+ foodType[x]);
+                        }
                 }//endfor
             }//endfor
-            
-            report.write("\n"+"\n" + "Food Summary");
-            //Writing the information of the food summary to the text file
-            for(int x = 0; x < foodSummary.length;x++)
-            {
-                if(foodSummary[x] > 0)
-                    {
-                        report.write("\n"+foodSummary[x]+" "+ foodType[x]);
-                    }
-            }//endfor
-        }//endfor
-            report.close();
+                report.close();
         
         }//end try
         catch(IOException e)
@@ -127,24 +128,29 @@ public class AnimalFeeder
         for(int i = 0; i <feedingList.size(); i++)
         {
             Animal tempAnimal = getAnimal(feedingList.get(i).getCageID());
-            try {
+            try 
+            {
                 tempAnimal.eatFood(feedingList.get(i).getFoodAmt());
-            } catch (OverFeedingException e) {
+            } catch (OverFeedingException e) 
+            {
                 System.out.println(e);
             }
             
         }//endfor
     }//simFeeding
 
-    public ArrayList<Meal> getFeedingList() {
+    public ArrayList<Meal> getFeedingList()
+    {
         return feedingList;
     }//getFeedingList
 
-    public int getFeedingListSize() {
+    public int getFeedingListSize()
+    {
         return feedingList.size();
     }//getFeedingListSize
 
-    public void setFeedingList(ArrayList<Meal> feedingList) {
+    public void setFeedingList(ArrayList<Meal> feedingList)
+    {
         this.feedingList = feedingList;
     }//setFeedingList
 

@@ -1,0 +1,9 @@
+24 March 2022
+
+Animals Medicated: 11
+OK: 9
+Deaths: 2
+
+C-23 Fedora Red Fox  Original Health Status: 9 Medicine Amount: 2 Medicine Type: Omnicine
+
+D-6 Mikail Musk Ox  Original Health Status: 9 Medicine Amount: 2 Medicine Type: Herbicine

@@ -34,7 +34,8 @@ public class Welcome
         
     }//displayWelcome
 
-    public String getZooKeeperName() {
+    public String getZooKeeperName()
+    {
         return zooKeeperName;
     }//getZooKeeperName
 }//Welcome

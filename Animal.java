@@ -31,10 +31,12 @@ public class Animal
         healthStatus = generator.nextInt(maxHealth)+1; //Generate a random integer from 1 to 10
     }   //Animal
 
-    public String getCauseOfDeath() {
+    public String getCauseOfDeath() 
+    {
         return causeOfDeath;
     }//getCauseOfDeath
-    public void setCauseOfDeath(String causeOfDeath) {
+    public void setCauseOfDeath(String causeOfDeath) 
+    {
         this.causeOfDeath = causeOfDeath;
     }//setCauseOfDeath
     public void setSpecies(String species) 
@@ -84,36 +86,45 @@ public class Animal
         return healthStatus;
     }   //getHealthStatus
 
-    public void setCageID(String cageID) {
+    public void setCageID(String cageID)
+    {
         this.cageID = cageID;
     }//setCageID
-    public String getCageID() {
+    public String getCageID()
+    {
         return cageID;
     }//getCageID
 
-    public void setCategory(String category) {
+    public void setCategory(String category)
+    {
         this.category = category;
     }//setCategory
 
-    public String getCategory() {
+    public String getCategory()
+    {
         return category;
     }//getCategory
 
-    public int getMaxHealth() {
+    public int getMaxHealth()
+    {
         return maxHealth;
-    }//getMaxHealth
-    public int getMaxHunger() {
+    }
+    public int getMaxHunger()
+    {
         return maxHunger;
     }//getMaxHunger
 
-    public int getDefaultInt() {
+    public int getDefaultInt()
+    {
         return defaultInt;
     }//getDefaultInt
-    public String getDefaultString() {
+    public String getDefaultString()
+    {
         return defaultString;
     }//getDefaultString
 
-    public int getGoodHealth() {
+    public int getGoodHealth()
+    {
         return goodHealth;
     }//getGoodHealth
 

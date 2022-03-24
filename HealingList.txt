@@ -1,0 +1,22 @@
+Healing List - 24 March 2022
+
+(A) African Savanna
+Gary Giraffe  (health: 9) needs 1 units of Herbicine
+Zoe Zebra  (health: 4) needs 5 units of Herbicine
+Henry Hyena  (health: 8) needs 2 units of Carnicine
+hhjgjg Hyena  (health: 8) needs 2 units of Carnicine
+
+(B) Amazonian Jungle
+jhghjg Giraffe  (health: 7) needs 1 units of Herbicine
+Oliver Ocelot  (health: 9) needs 1 units of Carnicine
+Sally Saddleback Tamarin  (health: 3) needs 4 units of Omnicine
+
+(C) Eurasian Wild
+Fedora Red Fox  (health: 9) needs 2 units of Omnicine
+
+(D) Frozen Tundra
+Anton Artic Fox  (health: 8) needs 2 units of Omnicine
+Mikail Musk Ox  (health: 9) needs 2 units of Herbicine
+Suri Harbour Seal  (health: 5) needs 1 units of Carnicine
+
+Summary of Medicine: 23 units

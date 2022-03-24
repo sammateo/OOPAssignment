@@ -20,7 +20,6 @@ public class AnimalHealer {
 
     public void addPrescription()
     {
-     
         healingList.add(aPrescription);
     }//addPrescription
     
@@ -35,7 +34,8 @@ public class AnimalHealer {
     //This function puts together and writes the contents of the healing list to a text file
     public void printHealingList()
     {
-        try{
+        try
+        {
             FileWriter report = new FileWriter("HealingList.txt");
             SimpleDateFormat sdf = new SimpleDateFormat("MMMM");//Gets the present date
             String month = sdf.format(new Date());
@@ -52,71 +52,71 @@ public class AnimalHealer {
             ArrayList<Prescription> dPrescriptions = new ArrayList<Prescription>();
             ArrayList<ArrayList<Prescription>> totalPrescriptions = new ArrayList<ArrayList<Prescription>>();//This ArrayList stores the contents of each ArrayList by their respective zones
 
-        // Organize the Healing List by Zone
-        for(int i = 0; i <healingList.size(); i++)
-        {
-            String[] cageLetter = healingList.get(i).getCageID().split("-");
-            if(cageLetter[0].equals("A"))
+            // Organize the Healing List by Zone
+            for(int i = 0; i <healingList.size(); i++)
             {
-                aPrescriptions.add(healingList.get(i));
-            }
-            else if(cageLetter[0].equals("B"))
-            {
-                bPrescriptions.add(healingList.get(i));
-            }
-            else if(cageLetter[0].equals("C"))
-            {
-                cPrescriptions.add(healingList.get(i));
-            }
-            else if(cageLetter[0].equals("D"))
-            {
-                dPrescriptions.add(healingList.get(i));
-            }
-            
-        }
-        // Add zoned lists to a total list of everything
-        totalPrescriptions.add(aPrescriptions);
-        totalPrescriptions.add(bPrescriptions);
-        totalPrescriptions.add(cPrescriptions);
-        totalPrescriptions.add(dPrescriptions);
-        String[] zoneLabels = {"(A) African Savanna","(B) Amazonian Jungle","(C) Eurasian Wild","(D) Frozen Tundra"};
-        int[] medSummary = {0,0,0}; //herbicine, omnicine,carnicine
-        String[] medType = {"Herbicine", "Omnicine", "Carnicine"};
-        for(int i = 0; i< totalPrescriptions.size(); i++)
-        {
-            report.write("\n"+"\n"+zoneLabels[i]);
-            if(totalPrescriptions.get(i).size() == 0)
-            {
-                report.write("\n[No medical attention required]");
-            }
-            for(int j = 0; j< totalPrescriptions.get(i).size();j++)
-            {
-                Animal tempAnimal = getAnimal(totalPrescriptions.get(i).get(j).getCageID());
-                report.write("\n"+tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" (health: "+tempAnimal.getHealthStatus()+") needs "+totalPrescriptions.get(i).get(j).getUnitsOfMed() + " units of "+totalPrescriptions.get(i).get(j).getMedType());
-
-                //Populates the heal summary array with the amount of medicine added
-                for(int z = 0; z< medType.length; z++)
+                String[] cageLetter = healingList.get(i).getCageID().split("-");
+                if(cageLetter[0].equals("A"))
                 {
-                    if(totalPrescriptions.get(i).get(j).getMedType().equalsIgnoreCase(medType[z]))
+                    aPrescriptions.add(healingList.get(i));
+                }
+                else if(cageLetter[0].equals("B"))
+                {
+                    bPrescriptions.add(healingList.get(i));
+                }
+                else if(cageLetter[0].equals("C"))
+                {
+                    cPrescriptions.add(healingList.get(i));
+                }
+                else if(cageLetter[0].equals("D"))
+                {
+                    dPrescriptions.add(healingList.get(i));
+                }
+                
+            }
+            // Add zoned lists to a total list of everything
+            totalPrescriptions.add(aPrescriptions);
+            totalPrescriptions.add(bPrescriptions);
+            totalPrescriptions.add(cPrescriptions);
+            totalPrescriptions.add(dPrescriptions);
+            String[] zoneLabels = {"(A) African Savanna","(B) Amazonian Jungle","(C) Eurasian Wild","(D) Frozen Tundra"};
+            int[] medSummary = {0,0,0}; //herbicine, omnicine,carnicine
+            String[] medType = {"Herbicine", "Omnicine", "Carnicine"};
+            for(int i = 0; i< totalPrescriptions.size(); i++)
+            {
+                report.write("\n"+"\n"+zoneLabels[i]);
+                if(totalPrescriptions.get(i).size() == 0)
+                {
+                    report.write("\n[No medical attention required]");
+                }
+                for(int j = 0; j< totalPrescriptions.get(i).size();j++)
+                {
+                    Animal tempAnimal = getAnimal(totalPrescriptions.get(i).get(j).getCageID());
+                    report.write("\n"+tempAnimal.getName()+ " "+tempAnimal.getSpecies()+" (health: "+tempAnimal.getHealthStatus()+") needs "+totalPrescriptions.get(i).get(j).getUnitsOfMed() + " units of "+totalPrescriptions.get(i).get(j).getMedType());
+
+                    //Populates the heal summary array with the amount of medicine added
+                    for(int z = 0; z< medType.length; z++)
                     {
-                        medSummary[z]+=totalPrescriptions.get(i).get(j).getUnitsOfMed();
+                        if(totalPrescriptions.get(i).get(j).getMedType().equalsIgnoreCase(medType[z]))
+                        {
+                            medSummary[z]+=totalPrescriptions.get(i).get(j).getUnitsOfMed();
+                        }
                     }
                 }
+                
+                
             }
-            
-            
-        }
 
-        int totalMedicine = 0;
+            int totalMedicine = 0;
 
-         //Writing the information of the Heal summary to the text file
-        for(int x = 0; x < medSummary.length;x++)
-            {
-                totalMedicine+=medSummary[x];
-            }
-        report.write("\n"+"\n" + "Summary of Medicine: "+ totalMedicine+ " units");
-            
-            report.close();
+            //Writing the information of the Heal summary to the text file
+            for(int x = 0; x < medSummary.length;x++)
+                {
+                    totalMedicine+=medSummary[x];
+                }
+            report.write("\n"+"\n" + "Summary of Medicine: "+ totalMedicine+ " units");
+                
+                report.close();
         
         }//end try
         catch(IOException e)
@@ -131,10 +131,12 @@ public class AnimalHealer {
         for(int i = 0; i <healingList.size(); i++)
         {
             Animal tempAnimal = getAnimal(healingList.get(i).getCageID());
-            try {
+            try 
+            {
                 tempAnimal.takeMedicine(healingList.get(i).getUnitsOfMed());
 
-            } catch (OverdosingException e) {
+            } catch (OverdosingException e) 
+            {
                 System.out.println(e);
             }
         }
@@ -179,15 +181,18 @@ public class AnimalHealer {
         return 0;
     }   //getUnitsOfMed
 
-    public ArrayList<Prescription> getHealingList() {
+    public ArrayList<Prescription> getHealingList()
+    {
         return healingList;
     }//getHealingList
 
-    public int getHealingListSize() {
+    public int getHealingListSize()
+    {
         return healingList.size();
     }//getHealingListSize
 
-    public void setHealingList(ArrayList<Prescription> healingList) {
+    public void setHealingList(ArrayList<Prescription> healingList)
+    {
         this.healingList = healingList;
     }//setHealingList
 

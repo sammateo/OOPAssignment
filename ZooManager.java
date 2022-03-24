@@ -579,7 +579,8 @@ public class ZooManager extends JFrame implements ActionListener
                     addFoodButton.setEnabled(false);
 
                 }
-                } catch (Exception err) {
+                } catch (Exception err) 
+                {
                     foodFieldManager();
                     addFoodButton.setEnabled(false);
                     hayAmount.setText("0");
@@ -590,39 +591,43 @@ public class ZooManager extends JFrame implements ActionListener
         });
 
         //Ensures that if a value is added to the fruitAmount variable, that you cannot add any other food types
-        fruitAmount.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent e) {
+        fruitAmount.addKeyListener(new KeyAdapter() 
+        {
+            public void keyReleased(KeyEvent e) 
+            {
                 try 
                 {
                     //Checks that if the value is empty that no food of the respective type is added
-                    if(fruitAmount.getText() == null) {
+                    if(fruitAmount.getText() == null) 
+                    {
                         foodFieldManager();
                         addFoodButton.setEnabled(false);
                         return;
                     }
-                else if(fruitAmount.getText().trim().isEmpty())
+                    else if(fruitAmount.getText().trim().isEmpty())
+                    {
+                        foodFieldManager();
+                        addFoodButton.setEnabled(false);
+
+                    }
+
+                    //If food is being entered, then only the food of that type can be entered
+                    else if(Integer.parseInt(fruitAmount.getText()) > 0)
+                    {
+                        hayAmount.setEnabled(false);
+                        grainAmount.setEnabled(false);
+                        fishAmount.setEnabled(false);
+                        meatAmount.setEnabled(false);
+                        foodButtonSwitch();
+
+                    }
+                    else{
+                        foodFieldManager();
+                        addFoodButton.setEnabled(false);
+
+                    }
+                } catch (Exception err) 
                 {
-                    foodFieldManager();
-                    addFoodButton.setEnabled(false);
-
-                }
-
-                 //If food is being entered, then only the food of that type can be entered
-                else if(Integer.parseInt(fruitAmount.getText()) > 0)
-                {
-                    hayAmount.setEnabled(false);
-                    grainAmount.setEnabled(false);
-                    fishAmount.setEnabled(false);
-                    meatAmount.setEnabled(false);
-                    foodButtonSwitch();
-
-                }
-                else{
-                    foodFieldManager();
-                    addFoodButton.setEnabled(false);
-
-                }
-                } catch (Exception err) {
                     foodFieldManager();
                     fruitAmount.setText("0");
                     addFoodButton.setEnabled(false);
@@ -632,8 +637,10 @@ public class ZooManager extends JFrame implements ActionListener
         });
 
         //Ensures that if a value is added to the grainAmount variable, that you cannot add any other food types
-        grainAmount.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent e) {
+        grainAmount.addKeyListener(new KeyAdapter() 
+        {
+            public void keyReleased(KeyEvent e) 
+            {
                 try 
                 {
                     //Checks that if the value is empty that no food of the respective type is added
@@ -642,29 +649,30 @@ public class ZooManager extends JFrame implements ActionListener
                         addFoodButton.setEnabled(false);
                         return;
                     }
-                else if(grainAmount.getText().trim().isEmpty())
+                    else if(grainAmount.getText().trim().isEmpty())
+                    {
+                        foodFieldManager();
+                        addFoodButton.setEnabled(false);
+
+                    }
+
+                    //If food is being entered, then only the food of that type can be entered
+                    else if(Integer.parseInt(grainAmount.getText()) > 0)
+                    {
+                        hayAmount.setEnabled(false);
+                        fruitAmount.setEnabled(false);
+                        fishAmount.setEnabled(false);
+                        meatAmount.setEnabled(false);
+                        foodButtonSwitch();
+
+                    }
+                    else{
+                        foodFieldManager();
+                        addFoodButton.setEnabled(false);
+
+                    }
+                } catch (Exception err) 
                 {
-                    foodFieldManager();
-                    addFoodButton.setEnabled(false);
-
-                }
-
-                //If food is being entered, then only the food of that type can be entered
-                else if(Integer.parseInt(grainAmount.getText()) > 0)
-                {
-                    hayAmount.setEnabled(false);
-                    fruitAmount.setEnabled(false);
-                    fishAmount.setEnabled(false);
-                    meatAmount.setEnabled(false);
-                    foodButtonSwitch();
-
-                }
-                else{
-                    foodFieldManager();
-                    addFoodButton.setEnabled(false);
-
-                }
-                } catch (Exception err) {
                     foodFieldManager();
                     grainAmount.setText("0");
                     addFoodButton.setEnabled(false);
@@ -675,39 +683,43 @@ public class ZooManager extends JFrame implements ActionListener
         });
 
         //Ensures that if a value is added to the fishAmount variable, that you cannot add any other food types
-        fishAmount.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent e) {
+        fishAmount.addKeyListener(new KeyAdapter() 
+        {
+            public void keyReleased(KeyEvent e) 
+            {
                 try 
                 {
                     //Checks that if the value is empty that no food of the respective type is added
-                    if(fishAmount.getText() == null) {
+                    if(fishAmount.getText() == null) 
+                    {
                         foodFieldManager();
                         addFoodButton.setEnabled(false);
                         return;
                     }
-                else if(fishAmount.getText().trim().isEmpty())
+                    else if(fishAmount.getText().trim().isEmpty())
+                    {
+                        foodFieldManager();
+                        addFoodButton.setEnabled(false);
+
+                    }
+
+                    //If food is being entered, then only the food of that type can be entered
+                    else if(Integer.parseInt(fishAmount.getText()) > 0)
+                    {
+                        hayAmount.setEnabled(false);
+                        grainAmount.setEnabled(false);
+                        fruitAmount.setEnabled(false);
+                        meatAmount.setEnabled(false);
+                        foodButtonSwitch();
+
+                    }
+                    else{
+                        foodFieldManager();
+                        addFoodButton.setEnabled(false);
+
+                    }
+                } catch (Exception err) 
                 {
-                    foodFieldManager();
-                    addFoodButton.setEnabled(false);
-
-                }
-
-                //If food is being entered, then only the food of that type can be entered
-                else if(Integer.parseInt(fishAmount.getText()) > 0)
-                {
-                    hayAmount.setEnabled(false);
-                    grainAmount.setEnabled(false);
-                    fruitAmount.setEnabled(false);
-                    meatAmount.setEnabled(false);
-                    foodButtonSwitch();
-
-                }
-                else{
-                    foodFieldManager();
-                    addFoodButton.setEnabled(false);
-
-                }
-                } catch (Exception err) {
                     foodFieldManager();
                     fishAmount.setText("0");
                     addFoodButton.setEnabled(false);
@@ -718,8 +730,10 @@ public class ZooManager extends JFrame implements ActionListener
         });
 
         //Ensures that if a value is added to the meatAmount variable, that you cannot add any other food types
-        meatAmount.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent e) {
+        meatAmount.addKeyListener(new KeyAdapter() 
+        {
+            public void keyReleased(KeyEvent e) 
+            {
                 try 
                 {
                     //Checks that if the value is empty that no food of the respective type is added
@@ -749,7 +763,8 @@ public class ZooManager extends JFrame implements ActionListener
                     addFoodButton.setEnabled(false);
 
                 }
-                } catch (Exception err) {
+                } catch (Exception err) 
+                {
                     foodFieldManager();
                     meatAmount.setText("0");
                     addFoodButton.setEnabled(false);
@@ -759,8 +774,10 @@ public class ZooManager extends JFrame implements ActionListener
         });
 
         //Ensures that if a value is added to the herbicineAmount variable, that you cannot add any other food types
-        herbicineAmount.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent e) {
+        herbicineAmount.addKeyListener(new KeyAdapter() 
+        {
+            public void keyReleased(KeyEvent e) 
+            {
                 try 
                 {
                     //Checks that if the value is empty that no food of the respective type is added
@@ -769,26 +786,27 @@ public class ZooManager extends JFrame implements ActionListener
                         addMedicineButton.setEnabled(false);
                         return;
                     }
-                else if(herbicineAmount.getText().trim().isEmpty())
+                    else if(herbicineAmount.getText().trim().isEmpty())
+                    {
+                        medicineFieldManager();
+                        addMedicineButton.setEnabled(false);
+
+                    }
+
+                    //If medicine is being entered, then only the medicine of that type can be entered
+                    else if(Integer.parseInt(herbicineAmount.getText()) > 0)
+                    {
+                        carnicineAmount.setEnabled(false);
+                        omnicineAmount.setEnabled(false);
+                        medButtonSwitch();
+                    }
+                    else{
+                        medicineFieldManager();
+                        addMedicineButton.setEnabled(false);
+
+                    }
+                } catch (Exception err) 
                 {
-                    medicineFieldManager();
-                    addMedicineButton.setEnabled(false);
-
-                }
-
-                //If medicine is being entered, then only the medicine of that type can be entered
-                else if(Integer.parseInt(herbicineAmount.getText()) > 0)
-                {
-                    carnicineAmount.setEnabled(false);
-                    omnicineAmount.setEnabled(false);
-                    medButtonSwitch();
-                }
-                else{
-                    medicineFieldManager();
-                    addMedicineButton.setEnabled(false);
-
-                }
-                } catch (Exception err) {
                     medicineFieldManager();
                     herbicineAmount.setText("0");
                     addMedicineButton.setEnabled(false);
@@ -799,36 +817,40 @@ public class ZooManager extends JFrame implements ActionListener
         });
 
         //Ensures that if a value is added to the omnicineAmount variable, that you cannot add any other food types
-        omnicineAmount.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent e) {
+        omnicineAmount.addKeyListener(new KeyAdapter() 
+        {
+            public void keyReleased(KeyEvent e) 
+            {
                 try 
                 {
                     //Checks that if the value is empty that no food of the respective type is added
-                    if(omnicineAmount.getText() == null) {
+                    if(omnicineAmount.getText() == null) 
+                    {
                         medicineFieldManager();
                         addMedicineButton.setEnabled(false);
                         return;
                     }
-                else if(omnicineAmount.getText().trim().isEmpty())
+                    else if(omnicineAmount.getText().trim().isEmpty())
+                    {
+                        medicineFieldManager();
+                        addMedicineButton.setEnabled(false);
+
+                    }
+
+                    //If medicine is being entered, then only the medicine of that type can be entered
+                    else if(Integer.parseInt(omnicineAmount.getText()) > 0)
+                    {
+                        carnicineAmount.setEnabled(false);
+                        herbicineAmount.setEnabled(false);
+                        medButtonSwitch();
+                    }
+                    else{
+                        medicineFieldManager();
+                        addMedicineButton.setEnabled(false);
+
+                    }
+                } catch (Exception err) 
                 {
-                    medicineFieldManager();
-                    addMedicineButton.setEnabled(false);
-
-                }
-
-                //If medicine is being entered, then only the medicine of that type can be entered
-                else if(Integer.parseInt(omnicineAmount.getText()) > 0)
-                {
-                    carnicineAmount.setEnabled(false);
-                    herbicineAmount.setEnabled(false);
-                    medButtonSwitch();
-                }
-                else{
-                    medicineFieldManager();
-                    addMedicineButton.setEnabled(false);
-
-                }
-                } catch (Exception err) {
                     medicineFieldManager();
                     omnicineAmount.setText("0");
                     addMedicineButton.setEnabled(false);
@@ -868,7 +890,8 @@ public class ZooManager extends JFrame implements ActionListener
                     addMedicineButton.setEnabled(false);
 
                 }
-                } catch (Exception err) {
+                } catch (Exception err) 
+                {
                     medicineFieldManager();
                     carnicineAmount.setText("0");
                     addMedicineButton.setEnabled(false);
@@ -897,6 +920,16 @@ public class ZooManager extends JFrame implements ActionListener
         }
         //These display functions show the related panels on the JFrame
         displayAnimalPanel(cagePosition);
+        if(theZoo.getCages().get(cagePosition).getHungerStatus()>=theZoo.getCages().get(cagePosition).getMaxHunger())
+        {
+            isFed = true;
+        }
+        if(theZoo.getCages().get(cagePosition).getHealthStatus()>=theZoo.getCages().get(cagePosition).getMaxHealth())
+        {
+            isMedicated = true;
+        }
+        nextButtonSwitch();
+
         displayWelcomePanel();
         displayFoodPanel();
         displayFeedReportPanel();
@@ -931,11 +964,11 @@ public class ZooManager extends JFrame implements ActionListener
                     isMedicated = false;
 
                     //If the animal is already healthy, it is left alone
-                    if(theZoo.getCages().get(cagePosition).getHungerStatus()>=5)
+                    if(theZoo.getCages().get(cagePosition).getHungerStatus()>=theZoo.getCages().get(cagePosition).getMaxHunger())
                     {
                         isFed = true;
                     }
-                    if(theZoo.getCages().get(cagePosition).getHealthStatus()>=10)
+                    if(theZoo.getCages().get(cagePosition).getHealthStatus()>=theZoo.getCages().get(cagePosition).getMaxHealth())
                     {
                         isMedicated = true;
                     }
@@ -977,7 +1010,8 @@ public class ZooManager extends JFrame implements ActionListener
                     printMedicineList.setEnabled(true);
                     healButton.setEnabled(true);
                 }
-            } catch (Exception err) {
+            } catch (Exception err) 
+            {
                 System.out.println(err.getMessage());
             }
         }
@@ -1050,7 +1084,8 @@ public class ZooManager extends JFrame implements ActionListener
                 foodPanel.revalidate();
                 foodPanel.repaint();
                 displayFoodPanel();
-            } catch (Exception err) {
+            } catch (Exception err) 
+            {
                 System.out.println(err.getMessage());
             }
         }
@@ -1111,7 +1146,8 @@ public class ZooManager extends JFrame implements ActionListener
                 medicinePanel.revalidate();
                 medicinePanel.repaint();
                 displayMedicinePanel();
-            } catch (Exception err) {
+            } catch (Exception err) 
+            {
                 System.out.println(err.getMessage());
             }
         }
@@ -1125,8 +1161,9 @@ public class ZooManager extends JFrame implements ActionListener
                     printFeedingList.setEnabled(false);//Disables the button so that the file is not printed twice
                 }
 
-                catch (Exception err) {
-                System.out.println(err.getMessage());
+                catch (Exception err) 
+                {
+                    System.out.println(err.getMessage());
                 }
             }
 
@@ -1134,7 +1171,8 @@ public class ZooManager extends JFrame implements ActionListener
         if(e.getSource() == feedButton)
         {
             //Feeds all animals and then disables the feed button, then it enables the printFoodReport button
-            try {
+            try 
+            {
                 animalFeeder.simFeeding();
                 foodReportPanel.removeAll();
                 displayFeedReportPanel();
@@ -1143,7 +1181,8 @@ public class ZooManager extends JFrame implements ActionListener
                 feedButton.setEnabled(false);
                 printFoodReport.setEnabled(true);
             }
-            catch (Exception err) {
+            catch (Exception err) 
+            {
                 System.out.println(err.getMessage());
             }
         }
@@ -1173,7 +1212,8 @@ public class ZooManager extends JFrame implements ActionListener
         //Functionality for healButton
         if(e.getSource() == healButton)
         {
-            try {
+            try 
+            {
                 //Heals all animals and then disables the heal button, then it enables the printMedReport button
                 animalHealer.simHealing();
                 medReportPanel.removeAll();
@@ -1183,7 +1223,8 @@ public class ZooManager extends JFrame implements ActionListener
                 healButton.setEnabled(false);
                 printMedReport.setEnabled(true);
             }
-            catch (Exception err) {
+            catch (Exception err) 
+            {
                 System.out.println(err.getMessage());
             }
         }

@@ -1,0 +1,9 @@
+24 March 2022
+
+AnimalsFed: 11
+OK: 9
+Deaths: 2
+
+C-23 Fedora Red Fox  Original Hunger Status: 4 Food Amount: 3 Food Type: Hay
+
+D-11 Suri Harbour Seal  Original Hunger Status: 4 Food Amount: 2 Food Type: Fish

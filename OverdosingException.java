@@ -8,7 +8,8 @@ public class OverdosingException extends Exception
         super();
     }// OverdosingException
 
-    public String toString(){
+    public String toString()
+    {
         return("Animal overdosed and died");
     }//toString
 }//class OverdosingException

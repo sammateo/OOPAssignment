@@ -950,7 +950,8 @@ public class ZooManager extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e)
     {
         //The functionality for the nextButton variable
-        if(e.getSource()==nextButton){
+        if(e.getSource()==nextButton)
+        {
             try 
             {
                 

@@ -30,7 +30,7 @@ public class Welcome
             {
                 return;
             }
-        }
+        }//while
         
     }//displayWelcome
 

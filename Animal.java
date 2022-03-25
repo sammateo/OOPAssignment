@@ -151,7 +151,8 @@ public class Animal
     {
         this.healthStatus += amount;
         // Record the causeOfDeath of the animal
-        if(this.healthStatus> maxHealth){
+        if(this.healthStatus> maxHealth)
+        {
             this.causeOfDeath = "Overdosing";
             throw new OverdosingException();
         }

@@ -73,7 +73,7 @@ public class AnimalHealer {
                     dPrescriptions.add(healingList.get(i));
                 }
                 
-            }
+            }//endfor
             // Add zoned lists to a total list of everything
             totalPrescriptions.add(aPrescriptions);
             totalPrescriptions.add(bPrescriptions);
@@ -101,11 +101,11 @@ public class AnimalHealer {
                         {
                             medSummary[z]+=totalPrescriptions.get(i).get(j).getUnitsOfMed();
                         }
-                    }
-                }
+                    }//endfor
+                }//endfor
                 
                 
-            }
+            }//endfor
 
             int totalMedicine = 0;
 
@@ -113,7 +113,7 @@ public class AnimalHealer {
             for(int x = 0; x < medSummary.length;x++)
                 {
                     totalMedicine+=medSummary[x];
-                }
+                }//endfor
             report.write("\n"+"\n" + "Summary of Medicine: "+ totalMedicine+ " units");
                 
                 report.close();
@@ -139,7 +139,7 @@ public class AnimalHealer {
             {
                 System.out.println(e);
             }
-        }
+        }//endfor
     }//simHealing
 
     //This function returns the animal at the corresponding cage ID
@@ -151,7 +151,7 @@ public class AnimalHealer {
             {
                 return cages.get(i);
             }
-        }
+        }//endfor
         return null;
     }   //getAnimal
 
@@ -164,7 +164,7 @@ public class AnimalHealer {
             {
                 return healingList.get(i).getMedType();
             }
-        }
+        }//endfor
         return null;
     }   //getFoodType
 
@@ -177,7 +177,7 @@ public class AnimalHealer {
             {
                 return healingList.get(i).getUnitsOfMed();
             }
-        }
+        }//endfor
         return 0;
     }   //getUnitsOfMed
 

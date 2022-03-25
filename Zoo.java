@@ -38,7 +38,7 @@ public class Zoo
             for(int i=0;i<tempSpeciesArray.length;i++)
             {
                 species+=tempSpeciesArray[i]+" ";
-            }
+            }//endfor
             tempAnimal.setCageID(animalArray[0]);
             tempAnimal.setName(animalArray[1]);
             tempAnimal.setSpecies(species);
@@ -67,7 +67,7 @@ public class Zoo
                         }
                         tempAnimal.setName(newName);
                     }
-                }
+                }//endfor
             } while(sameName!=0);
             
             cages.add(tempAnimal);
@@ -186,7 +186,7 @@ public class Zoo
             {
                 return cages.get(i);
             }
-        }
+        }//endfor
         return null;
     }   //getAnimal
     
@@ -199,7 +199,7 @@ public class Zoo
                 cages.remove(i);
                 return;
             }
-        }
+        }//endfor
     }   //removeAnimal
     public String getDate()
     {
@@ -238,7 +238,7 @@ public class Zoo
                 {
                     deadAnimals.add(tempFedAnimal);
                 }
-            }
+            }//endfor
 
             String okAnimals2 = "OK: "+(animalFeeder.getFeedingListSize() - deadAnimals.size());
             report.write("\n"+okAnimals2);
@@ -250,7 +250,7 @@ public class Zoo
             {
                 String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Hunger Status: "+ (deadAnimals.get(i).hungerStatus - animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID()))+" Food Amount: "+ animalFeeder.getFoodAmt(deadAnimals.get(i).getCageID())+ " Food Type: "+ animalFeeder.getFoodType(deadAnimals.get(i).getCageID());
                 report.write("\n"+"\n"+ deadAnimalInfo2); 
-            }
+            }//endfor
             System.out.println("Report Printed");
             report.close();
 
@@ -280,7 +280,7 @@ public class Zoo
                 {
                     deadAnimals.add(tempHealedAnimal);
                 }
-            }
+            }//endfor
 
             String okAnimals2 = "OK: "+(animalHealer.getHealingListSize() - deadAnimals.size());
             report.write("\n"+okAnimals2);
@@ -292,7 +292,7 @@ public class Zoo
             {
                 String deadAnimalInfo2 = deadAnimals.get(i).getCageID()+" "+ deadAnimals.get(i).getName()+ " "+ deadAnimals.get(i).getSpecies()+" Original Health Status: "+ (deadAnimals.get(i).healthStatus - animalHealer.getUnitsOfMed(deadAnimals.get(i).getCageID()))+" Medicine Amount: "+ animalHealer.getUnitsOfMed(deadAnimals.get(i).getCageID())+ " Medicine Type: "+ animalHealer.getMedType(deadAnimals.get(i).getCageID());
                 report.write("\n"+"\n"+ deadAnimalInfo2); 
-            }
+            }//endfor
             System.out.println("Report Printed");
             report.close();
 

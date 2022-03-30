@@ -1,6 +1,6 @@
 // Mateo Sam and Robali Sewitt
 // 400006967 and 400007056
-
+import javax.swing.*;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -118,6 +118,7 @@ public class AnimalFeeder
         }//end try
         catch(IOException e)
         {
+            JOptionPane.showMessageDialog(null, "Error printing the Feeding List");
             System.out.println(e.getMessage());
         }//end catch
     }//printFeedingList
@@ -131,8 +132,15 @@ public class AnimalFeeder
             try 
             {
                 tempAnimal.eatFood(feedingList.get(i).getFoodAmt());
+                // Checks to see if the animal has been underfed
+                if(tempAnimal.getHungerStatus() < tempAnimal.getMaxHunger())
+                {
+                    JOptionPane.showMessageDialog(null, "Status for " + getAnimal(feedingList.get(i).getCageID()).getName() + ": Animal has been underfed");
+                }
             } catch (OverFeedingException e) 
             {
+                // alerts the user to an overfed animal
+                JOptionPane.showMessageDialog(null, "Status for " + getAnimal(feedingList.get(i).getCageID()).getName() + ": "+ e);
                 System.out.println(e);
             }
             

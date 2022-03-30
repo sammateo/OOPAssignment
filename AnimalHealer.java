@@ -1,6 +1,6 @@
 // Mateo Sam and Robali Sewitt
 // 400006967 and 400007056
-
+import javax.swing.*;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -121,6 +121,7 @@ public class AnimalHealer {
         }//end try
         catch(IOException e)
         {
+            JOptionPane.showMessageDialog(null, "Error printing the Healing List");
             System.out.println(e.getMessage());
         }//end catch
     }//printHealingList
@@ -134,9 +135,15 @@ public class AnimalHealer {
             try 
             {
                 tempAnimal.takeMedicine(healingList.get(i).getUnitsOfMed());
-
+                // Checks to see if the animal has been underdosed
+                if(tempAnimal.getHealthStatus() < tempAnimal.getMaxHealth())
+                {
+                    JOptionPane.showMessageDialog(null, "Status for " + getAnimal(healingList.get(i).getCageID()).getName() + ": Animal has been underdosed");
+                }
             } catch (OverdosingException e) 
             {
+                // alerts the user to an overdosed animal
+                JOptionPane.showMessageDialog(null, "Status for " + getAnimal(healingList.get(i).getCageID()).getName() + ": "+ e);
                 System.out.println(e);
             }
         }//endfor

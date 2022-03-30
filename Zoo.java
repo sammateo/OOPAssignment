@@ -257,6 +257,7 @@ public class Zoo
         }
         catch(IOException e)
         {
+            JOptionPane.showMessageDialog(null, "Error printing the Feeding Report");
             System.out.println(e.getMessage());
         }
     }   //printHungerReport
@@ -299,6 +300,7 @@ public class Zoo
         }
         catch(IOException e)
         {
+            JOptionPane.showMessageDialog(null, "Error printing the Healing Report");
             System.out.println(e.getMessage());
         }
     }   //printHealthReport

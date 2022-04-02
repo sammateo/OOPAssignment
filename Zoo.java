@@ -26,6 +26,7 @@ public class Zoo
     public void readAnimals() throws IOException
     {
         File animalFile = new File("animals.txt"); 
+
         Scanner readFile = new Scanner(animalFile);
         while (readFile.hasNext()) //read data from file & place into the list
         {
@@ -234,7 +235,7 @@ public class Zoo
             for(int i=0; i<animalFeeder.getFeedingListSize();i++)
             {
                 Animal tempFedAnimal = animalFeeder.getAnimal(animalFeeder.getFeedingList().get(i).getCageID());
-                if(tempFedAnimal.getHungerStatus() > 5)
+                if(tempFedAnimal.getHungerStatus() > tempFedAnimal.getMaxHunger())
                 {
                     deadAnimals.add(tempFedAnimal);
                 }
@@ -277,7 +278,7 @@ public class Zoo
             for(int i=0; i<animalHealer.getHealingListSize();i++)
             {
                 Animal tempHealedAnimal = animalHealer.getAnimal(animalHealer.getHealingList().get(i).getCageID());
-                if(tempHealedAnimal.getHealthStatus() > 10)
+                if(tempHealedAnimal.getHealthStatus() > tempHealedAnimal.getMaxHealth())
                 {
                     deadAnimals.add(tempHealedAnimal);
                 }

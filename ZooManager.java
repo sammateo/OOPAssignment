@@ -49,9 +49,14 @@ public class ZooManager extends JFrame implements ActionListener
     private boolean isFed;//Checks if an animal is fed already
     private boolean isMedicated;//Checks if an animal is medicated  
     private ImageIcon zooLogo;//creates ImageIcon reference for the zooLogo   
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args)
     {
-        ZooManager zm = new ZooManager();
+        try {
+            ZooManager zm = new ZooManager();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        
         
     }//main
 

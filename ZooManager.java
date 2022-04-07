@@ -502,7 +502,7 @@ public class ZooManager extends JFrame implements ActionListener
         setSize(1080,720);
         setTitle("The Cave Hill Zoo Manager System");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        zooLogo = new ImageIcon("Cave Hill Zoo.png");
+        zooLogo = new ImageIcon("zooLogo.png");
 
         //Creating button objects for the respective variables
         nextButton = new JButton("Next ->");
